@@ -380,7 +380,7 @@ class Checkout_Form {
 			if ($response->httpStatusCode != 200) {
                 Common_Helpers::renderResponse(array(
                     "success" => false,
-                    "message" => __('Failed to create customer. Please try again later. [Error Code: CCF2]', 'coinqvest')
+                    "message" => __('Failed to create customer. Please try again later.', 'coinqvest')
                 ));
 			}
 
