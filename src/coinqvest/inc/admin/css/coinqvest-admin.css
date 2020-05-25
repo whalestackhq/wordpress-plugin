@@ -1,0 +1,78 @@
+
+img.responsive {
+    width:100%;
+    height:auto;
+}
+
+.paddingTop10 {
+    padding-top: 10px;
+}
+
+.fontSize16 {
+    font-size: 16px;
+}
+
+div.notice {
+    padding:10px;
+}
+
+pre.json {
+    width: 480px;
+    background-color: #153967;
+    border: 1px solid #0f224a;
+    border-radius: 4px;
+    color: #6fcff5;
+    line-height: 18px;
+    font-size: 13px;
+    padding: 10px;
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+span.active {
+    color: #46b450;
+}
+
+span.inactive {
+    color: #dc3232;
+}
+
+th span.optional {
+    font-weight: normal;
+    font-size: 11px;
+}
+
+.wp-list-table .column-price { width: 10%; }
+.wp-list-table .column-shortcode { width: 25%; }
+.wp-list-table .column-status { width: 10%; }
+/*.wp-list-table .column-json { width: 30%; }*/
+
+
+div.logs textarea {
+    width: 100%;
+    min-height: 600px;
+    overflow: auto;
+
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+    font-size: 13px;
+    padding: 5px;
+    background-color: #153967;
+    border: 1px solid #153967;
+    color: #6fcff5;
+    font-weight: normal;
+    line-height: 150%;
+}
+
+input.terminal {
+    cursor:pointer;
+    margin: 0;
+    border-radius: 3px;
+    font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+    font-size: 13px;
+    padding: 5px;
+    background-color: #153967;
+    border: 1px solid #153967;
+    color: #6fcff5;
+    font-weight: normal;
+    line-height: 150%;
+    width:100%;
+}
