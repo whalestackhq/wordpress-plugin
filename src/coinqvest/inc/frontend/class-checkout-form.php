@@ -66,7 +66,7 @@ class Checkout_Form {
 		$params['first_name'] = isset($user_meta['first_name'][0]) ? $user_meta['first_name'][0] : null;
 		$params['last_name'] = isset($user_meta['last_name'][0]) ? $user_meta['last_name'][0] : null;
 		$params['email'] = isset($user->user_email) ? $user->user_email : null;
-		$params['css_class'] = !empty($row->cssclass) ? 'class="' . $row->cssclass . '"' : null;
+		$params['css_class'] = !empty($row->cssclass) ? $row->cssclass : null;
 		$params['button_text'] = !empty($row->buttontext) ? $row->buttontext : "Pay Now";
 		$params['customer_info'] = $customer_info;
 		$params['display_price'] = Common_Helpers::calculate_price($row->json);
@@ -100,7 +100,7 @@ class Checkout_Form {
                 <input type="hidden" name="action" value="submit_coinqvest_checkout">
 		        ' . wp_nonce_field($params['nonce']) . '
                 <input type="hidden" name="cq_checkout_id" value="' . $params['hashid'] . '">
-                <button type="submit" ' . $params['css_class'] . '>' . __('Buy Now', 'coinqvest') . '</button>
+                <button type="submit" class="button ' . $params['css_class'] . '">' . __('Buy Now', 'coinqvest') . '</button>
             </form>
         </div>';
 
@@ -115,7 +115,7 @@ class Checkout_Form {
 
 	    $output = '
         <div id="coinqvest-checkout-button">
-            <a class="button" href="#coinqvest-' . $params['hashid'] . '" ' . $params['css_class'] . '>' . __('Buy Now', 'coinqvest') . '</a>
+            <a class="button ' . $params['css_class'] . '" href="#coinqvest-' . $params['hashid'] . '">' . __('Buy Now', 'coinqvest') . '</a>
         </div>
 
         <div id="coinqvest-' . $params['hashid'] . '" class="coinqvest-modal">
@@ -232,7 +232,7 @@ class Checkout_Form {
                             <a href="#" rel="modal:close" class="cq-cancel">' . __('Cancel Payment', 'coinqvest') . '</a>
                         </div>
                         <div class="cq-col-6 cq-center-xs">
-                            <img src="' . $this->plugin_name_url . 'assets/images/coinqvest-logo.png">
+                            <img class="cq-logo" src="' . $this->plugin_name_url . 'assets/images/coinqvest-logo.png" width="100px">
                             <div class="coinqvest-clear-both"></div>
                         </div>
                     </div>
@@ -243,7 +243,6 @@ class Checkout_Form {
 
         </div>
         
-
         <script>jQuery("a[href=#coinqvest-' . $params['hashid'] . ']").click(function(e){e.preventDefault(),jQuery(this).modal({escapeClose:!1,clickClose:!1,modalClass:"coinqvest-modal",blockerClass:"coinqvest-jquery-modal"})});</script>';
 
 	    return $output;

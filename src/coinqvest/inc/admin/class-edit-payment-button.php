@@ -24,8 +24,6 @@ class Edit_Payment_Button {
 		    exit;
 		}
 
-
-
 		?>
 
         <div class="wrap">
@@ -111,16 +109,14 @@ class Edit_Payment_Button {
 
 		if (!$row) {
 			$result = "error";
-			$message = __('Button id doesn\'t exist', 'coinqvest');
+			$message = sprintf(__('Payment button id %s does not exist.', 'coinqvest'), absint($id));
 			$page = "coinqvest-payment-buttons";
 
 			if (isset($_POST['ajaxrequest']) && $_POST['ajaxrequest'] === 'true') {
-				echo json_encode(
-					array(
-						"success" => false,
-						"message" => $message
-					)
-				);
+                Common_Helpers::renderResponse(array(
+                    "success" => false,
+                    "message" => $message
+                ));
 			} else {
 				$this->redirect = new Admin_Helpers();
 				$this->redirect->custom_redirect($result, $message, $page);
@@ -134,12 +130,10 @@ class Edit_Payment_Button {
 			$page = "coinqvest-create-payment-button";
 
 			if (isset($_POST['ajaxrequest']) && $_POST['ajaxrequest'] === 'true') {
-				echo json_encode(
-					array(
-						"success" => false,
-						"message" => $message
-					)
-				);
+                Common_Helpers::renderResponse(array(
+                    "success" => false,
+                    "message" => $message
+                ));
 			} else {
 				$this->redirect = new Admin_Helpers();
 				$this->redirect->custom_redirect($result, $message, $page);
@@ -153,12 +147,10 @@ class Edit_Payment_Button {
 			$page = "coinqvest-create-payment-button";
 
 			if (isset($_POST['ajaxrequest']) && $_POST['ajaxrequest'] === 'true') {
-				echo json_encode(
-					array(
-						"success" => false,
-						"message" => $message
-					)
-				);
+                Common_Helpers::renderResponse(array(
+                    "success" => false,
+                    "message" => $message
+                ));
 			} else {
 				$this->redirect = new Admin_Helpers();
 				$this->redirect->custom_redirect($result, $message, $page);
@@ -172,12 +164,10 @@ class Edit_Payment_Button {
 			$page = "coinqvest-create-payment-button";
 
 			if (isset($_POST['ajaxrequest']) && $_POST['ajaxrequest'] === 'true') {
-				echo json_encode(
-					array(
-						"success" => false,
-						"message" => $message
-					)
-				);
+                Common_Helpers::renderResponse(array(
+                    "success" => false,
+                    "message" => $message
+                ));
 			} else {
 				$this->redirect = new Admin_Helpers();
 				$this->redirect->custom_redirect($result, $message, $page);
@@ -193,16 +183,14 @@ class Edit_Payment_Button {
 
 		if (empty($api_settings['api_key']) || empty($api_settings['api_secret'])) {
 			$result = "error";
-			$message = __('API key and API secret don\'t exist.', 'coinqvest');;
+			$message = __('API key and API secret do not exist.', 'coinqvest');;
 			$page = "coinqvest-create-payment-button";
 
 			if (isset($_POST['ajaxrequest']) && $_POST['ajaxrequest'] === 'true') {
-				echo json_encode(
-					array(
-						"success" => false,
-						"message" => $message
-					)
-				);
+                Common_Helpers::renderResponse(array(
+                    "success" => false,
+                    "message" => $message
+                ));
 			} else {
 				$this->redirect = new Admin_Helpers();
 				$this->redirect->custom_redirect($result, $message, $page);
@@ -243,12 +231,10 @@ class Edit_Payment_Button {
 			$log::write("[CQ Add Payment Button] " . $message);
 
 			if (isset($_POST['ajaxrequest']) && $_POST['ajaxrequest'] === 'true') {
-				echo json_encode(
-					array(
-						"success" => false,
-						"message" => $message
-					)
-				);
+                Common_Helpers::renderResponse(array(
+                    "success" => false,
+                    "message" => $message
+                ));
 			} else {
 				$this->redirect = new Admin_Helpers();
 				$this->redirect->custom_redirect($result, $message, $page);
@@ -280,14 +266,11 @@ class Edit_Payment_Button {
 		$message = __('Payment button edited successfully.', 'coinqvest');
 
 		if (isset($_POST['ajaxrequest']) && $_POST['ajaxrequest'] === 'true') {
-			echo json_encode(
-				array(
-					"success" => true,
-					"message" => $message,
-                    "redirect" => "/wp-admin/admin.php?page=coinqvest-payment-buttons",
-                    "clear" => true
-				)
-			);
+            Common_Helpers::renderResponse(array(
+                "success" => true,
+                "message" => $message,
+                "redirect" => "/wp-admin/admin.php?page=coinqvest-payment-buttons"
+            ));
 		} else {
 			$result = "success";
 			$page = "coinqvest-payment-buttons";

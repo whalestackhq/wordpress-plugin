@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: COINQVEST v0.0.1\n"
-"POT-Creation-Date: 2020-05-24 12:08+0200\n"
+"POT-Creation-Date: 2020-05-25 22:44+0200\n"
 "PO-Revision-Date: 2020-05-23 10:41+0200\n"
 "Last-Translator: \n"
 "Language-Team: COINQVEST www.coinqvest.com\n"
@@ -26,7 +26,7 @@ msgstr ""
 msgid "Please enter your API key and API secret first before you can create a payment button:"
 msgstr ""
 
-#: admin/class-add-payment-button.php:26 admin/class-settings.php:68
+#: admin/class-add-payment-button.php:26 admin/class-settings.php:67
 msgid "API Settings"
 msgstr ""
 
@@ -34,88 +34,95 @@ msgstr ""
 msgid "Provide a name and a JSON object, according to the COINQVEST API documentation"
 msgstr ""
 
-#: admin/class-add-payment-button.php:44
+#: admin/class-add-payment-button.php:44 admin/class-edit-payment-button.php:49
 msgid "Button Name"
 msgstr ""
 
-#: admin/class-add-payment-button.php:49
+#: admin/class-add-payment-button.php:49 admin/class-edit-payment-button.php:54
 msgid "JSON Object"
 msgstr ""
 
-#: admin/class-add-payment-button.php:52
+#: admin/class-add-payment-button.php:53 admin/class-edit-payment-button.php:58
 msgid "Example of a minimal JSON object:"
 msgstr ""
 
-#: admin/class-add-payment-button.php:68
+#: admin/class-add-payment-button.php:57
 msgid "To get started, just copy and paste this example and adjust parameters to your requirements."
 msgstr ""
 
-#: admin/class-add-payment-button.php:74
+#: admin/class-add-payment-button.php:63 admin/class-edit-payment-button.php:66
 msgid "Button Text"
 msgstr ""
 
-#: admin/class-add-payment-button.php:74 admin/class-add-payment-button.php:82
-#: admin/class-settings.php:115 admin/class-settings.php:123
-#: admin/class-settings.php:131 admin/class-settings.php:141
-#: frontend/class-checkout-form.php:169 frontend/class-checkout-form.php:173
-#: frontend/class-checkout-form.php:184 frontend/class-checkout-form.php:206
+#: admin/class-add-payment-button.php:63 admin/class-add-payment-button.php:73
+#: admin/class-edit-payment-button.php:66
+#: admin/class-edit-payment-button.php:74 admin/class-settings.php:114
+#: admin/class-settings.php:122 admin/class-settings.php:130
+#: admin/class-settings.php:140 frontend/class-checkout-form.php:169
+#: frontend/class-checkout-form.php:173 frontend/class-checkout-form.php:184
+#: frontend/class-checkout-form.php:206
 msgid "optional"
 msgstr ""
 
-#: admin/class-add-payment-button.php:76 admin/class-add-payment-button.php:200
-#: frontend/class-checkout-form.php:103 frontend/class-checkout-form.php:118
+#: admin/class-add-payment-button.php:65 admin/class-add-payment-button.php:183
+#: admin/class-edit-payment-button.php:68
+#: admin/class-edit-payment-button.php:207 frontend/class-checkout-form.php:103
+#: frontend/class-checkout-form.php:118
 msgid "Buy Now"
 msgstr ""
 
-#: admin/class-add-payment-button.php:77
+#: admin/class-add-payment-button.php:67 admin/class-edit-payment-button.php:69
 msgid "Customize the button text. Default is \"Buy Now\"."
 msgstr ""
 
-#: admin/class-add-payment-button.php:82
+#: admin/class-add-payment-button.php:73 admin/class-edit-payment-button.php:74
 msgid "Button CSS Class"
 msgstr ""
 
-#: admin/class-add-payment-button.php:85
+#: admin/class-add-payment-button.php:76 admin/class-edit-payment-button.php:77
 msgid "Customize the button style. Add a CSS class here."
 msgstr ""
 
-#: admin/class-add-payment-button.php:90
-#: admin/class-payment-buttons-list-table.php:161
+#: admin/class-add-payment-button.php:81 admin/class-edit-payment-button.php:82
+#: admin/class-payment-buttons-list-table.php:160
 msgid "Status"
 msgstr ""
 
-#: admin/class-add-payment-button.php:91
+#: admin/class-add-payment-button.php:82 admin/class-edit-payment-button.php:83
 msgid "active"
 msgstr ""
 
-#: admin/class-add-payment-button.php:96 admin/class-settings.php:94
-#: admin/class-settings.php:180
+#: admin/class-add-payment-button.php:87 admin/class-edit-payment-button.php:88
+#: admin/class-settings.php:93 admin/class-settings.php:179
 msgid "Save"
 msgstr ""
 
-#: admin/class-add-payment-button.php:114
+#: admin/class-add-payment-button.php:105
+#: admin/class-edit-payment-button.php:129
 msgid "Please fill in all fields."
 msgstr ""
 
-#: admin/class-add-payment-button.php:133
+#: admin/class-add-payment-button.php:122
+#: admin/class-edit-payment-button.php:146
 #, php-format
 msgid "Name is too long. Max. %s characters."
 msgstr ""
 
-#: admin/class-add-payment-button.php:152
+#: admin/class-add-payment-button.php:139
+#: admin/class-edit-payment-button.php:163
 #, php-format
 msgid "Button text is too long. Max. %s characters."
 msgstr ""
 
-#: admin/class-add-payment-button.php:177
+#: admin/class-add-payment-button.php:162
 msgid "API key and API secret don't exist."
 msgstr ""
 
-#: admin/class-add-payment-button.php:273
+#: admin/class-add-payment-button.php:254
 msgid "Payment button created successfully."
 msgstr ""
 
-#: admin/class-admin.php:149
+#: admin/class-admin.php:167
 msgid "Items Per Page"
 msgstr ""
 
@@ -128,7 +135,7 @@ msgid "Supported digital currencies: Bitcoin (BTC), Ethereum (ETH), Ripple (XRP)
 msgstr ""
 
 #: admin/class-coinqvest-start.php:27
-msgid "Supported payout currencies: USD, EUR, NGN"
+msgid "Supported payout currencies: USD, EUR, CAD, NGN"
 msgstr ""
 
 #: admin/class-coinqvest-start.php:39
@@ -182,6 +189,31 @@ msgstr ""
 msgid "Help Center"
 msgstr ""
 
+#: admin/class-edit-payment-button.php:23
+msgid "Requested button id doesn't exist."
+msgstr ""
+
+#: admin/class-edit-payment-button.php:31
+msgid "Edit Payment Button"
+msgstr ""
+
+#: admin/class-edit-payment-button.php:34
+msgid "Build the JSON object according to the COINQVEST API documentation"
+msgstr ""
+
+#: admin/class-edit-payment-button.php:112 frontend/class-checkout-form.php:275
+#, php-format
+msgid "Payment button id %s does not exist."
+msgstr ""
+
+#: admin/class-edit-payment-button.php:186
+msgid "API key and API secret do not exist."
+msgstr ""
+
+#: admin/class-edit-payment-button.php:266
+msgid "Payment button edited successfully."
+msgstr ""
+
 #: admin/class-logs.php:36
 msgid "COINQVEST Debug Log"
 msgstr ""
@@ -198,158 +230,178 @@ msgstr ""
 msgid "Items"
 msgstr ""
 
-#: admin/class-payment-buttons-list-table.php:93
+#: admin/class-payment-buttons-list-table.php:102
 #, php-format
 msgid "No payment buttons available yet. <a href=\"%s\">Create one here</a>."
 msgstr ""
 
-#: admin/class-payment-buttons-list-table.php:160
+#: admin/class-payment-buttons-list-table.php:133
+msgid "Edit"
+msgstr ""
+
+#: admin/class-payment-buttons-list-table.php:134
+msgid "Delete"
+msgstr ""
+
+#: admin/class-payment-buttons-list-table.php:159
 msgid "Name"
 msgstr ""
 
-#: admin/class-payment-buttons-list-table.php:162
+#: admin/class-payment-buttons-list-table.php:161
 msgid "Price"
 msgstr ""
 
-#: admin/class-payment-buttons-list-table.php:163
+#: admin/class-payment-buttons-list-table.php:162
 msgid "Shortcode"
 msgstr ""
 
-#: admin/class-payment-buttons-list-table.php:164
+#: admin/class-payment-buttons-list-table.php:163
 msgid "Button text"
 msgstr ""
 
-#: admin/class-payment-buttons-list-table.php:165
+#: admin/class-payment-buttons-list-table.php:164
 msgid "CSS class"
 msgstr ""
 
-#: admin/class-payment-buttons-list-table.php:166
+#: admin/class-payment-buttons-list-table.php:165
 msgid "Time"
 msgstr ""
 
-#: admin/class-payment-buttons-list-table.php:202
+#: admin/class-payment-buttons-list-table.php:200
 msgid "Cannot be deleted when status is active"
 msgstr ""
 
-#: admin/class-payment-buttons-list-table.php:212
+#: admin/class-payment-buttons-list-table.php:210
 msgid "Button successfully deleted"
 msgstr ""
 
-#: admin/class-settings.php:66
+#: admin/class-settings.php:65
 msgid "COINQVEST API and Global Settings"
 msgstr ""
 
-#: admin/class-settings.php:70
+#: admin/class-settings.php:69
 #, php-format
 msgid "Go to %1$s and log in or sign up. You will find your API keys here: %2$s"
 msgstr ""
 
-#: admin/class-settings.php:83
+#: admin/class-settings.php:82
 msgid "API Key"
 msgstr ""
 
-#: admin/class-settings.php:88
+#: admin/class-settings.php:87
 msgid "API Secret"
 msgstr ""
 
-#: admin/class-settings.php:100
+#: admin/class-settings.php:99
 msgid "Global Settings"
 msgstr ""
 
-#: admin/class-settings.php:102
+#: admin/class-settings.php:101
 msgid "Global settings overwrite JSON parameters in payment buttons."
 msgstr ""
 
-#: admin/class-settings.php:115
+#: admin/class-settings.php:114
 msgid "Return URL"
 msgstr ""
 
-#: admin/class-settings.php:118
+#: admin/class-settings.php:117
 msgid "Specifies where to send the customer when the payment successfully completed."
 msgstr ""
 
-#: admin/class-settings.php:123
+#: admin/class-settings.php:122
 msgid "Cancel URL"
 msgstr ""
 
-#: admin/class-settings.php:126
+#: admin/class-settings.php:125
 msgid "Specifies where to send the customer when he wishes to cancel the checkout process."
 msgstr ""
 
-#: admin/class-settings.php:131
+#: admin/class-settings.php:130
 msgid "Webhook URL"
 msgstr ""
 
-#: admin/class-settings.php:134
+#: admin/class-settings.php:133
 msgid "A webhook URL on your server that listens for payment events."
 msgstr ""
 
-#: admin/class-settings.php:141
+#: admin/class-settings.php:140
 msgid "Settlement Currency"
 msgstr ""
 
-#: admin/class-settings.php:145
+#: admin/class-settings.php:144
 msgid "Select currency"
 msgstr ""
 
-#: admin/class-settings.php:155
+#: admin/class-settings.php:154
 msgid "The currency that the crypto payments get converted to. If you don't choose a currency here, the settlement currency will be the billing currency."
 msgstr ""
 
-#: admin/class-settings.php:162
+#: admin/class-settings.php:161
 msgid "Required customer info"
 msgstr ""
 
-#: admin/class-settings.php:165
+#: admin/class-settings.php:164
 msgid "None"
 msgstr ""
 
-#: admin/class-settings.php:166
+#: admin/class-settings.php:165
 msgid "Minimal"
 msgstr ""
 
-#: admin/class-settings.php:167
+#: admin/class-settings.php:166
 msgid "Compliant"
 msgstr ""
 
-#: admin/class-settings.php:170
+#: admin/class-settings.php:169
 msgid "Defines what customer data to collect. Main purpose is to connect a payment to a customer and staying tax compliant."
 msgstr ""
 
-#: admin/class-settings.php:171
+#: admin/class-settings.php:170
 msgid "- None: No customer data required. You will receive the payment amount, but will not know from whom. Can be used for donations."
 msgstr ""
 
-#: admin/class-settings.php:172
+#: admin/class-settings.php:171
 msgid "- Minimal (default): Email and firstname + lastname"
 msgstr ""
 
-#: admin/class-settings.php:173
+#: admin/class-settings.php:172
 msgid "- Compliant: All data that is required to generate invoices"
 msgstr ""
 
-#: admin/class-settings.php:194
+#: admin/class-settings.php:193
 msgid "Please provide API Key and API Secret"
 msgstr ""
 
-#: admin/class-settings.php:213
+#: admin/class-settings.php:210
 msgid "API key seems to be wrong. Please double check."
 msgstr ""
 
-#: admin/class-settings.php:232
+#: admin/class-settings.php:227
 msgid "API secret seems to be wrong. Please double check."
 msgstr ""
 
-#: admin/class-settings.php:263
+#: admin/class-settings.php:256
 msgid "API key and/or API secret are wrong."
 msgstr ""
 
-#: admin/class-settings.php:289
+#: admin/class-settings.php:280
 msgid "API settings saved successfully."
 msgstr ""
 
-#: admin/class-settings.php:325
+#: admin/class-settings.php:314
 msgid "Global settings saved successfully."
+msgstr ""
+
+#: admin/views/partials-wp-payment-buttons-display.php:3
+msgid "Payment Buttons"
+msgstr ""
+
+#: admin/views/partials-wp-payment-buttons-display.php:5
+msgid "Create new payment button"
+msgstr ""
+
+#: admin/views/partials-wp-payment-buttons-display.php:7
+msgid "Copy and paste the Shortcode below to a Post, Page or Widget"
 msgstr ""
 
 #: frontend/class-checkout-form.php:40
@@ -412,29 +464,28 @@ msgstr ""
 msgid "Cancel Payment"
 msgstr ""
 
-#: frontend/class-checkout-form.php:236
-msgid "Powered by"
-msgstr ""
-
-#: frontend/class-checkout-form.php:280
-#, php-format
-msgid "Payment button id %s does not exist."
-msgstr ""
-
-#: frontend/class-checkout-form.php:291
+#: frontend/class-checkout-form.php:285
 #, php-format
 msgid "Payment button id %s is inactive."
 msgstr ""
 
-#: frontend/class-checkout-form.php:318
+#: frontend/class-checkout-form.php:311
 msgid "Please provide all highlighted fields."
 msgstr ""
 
-#: frontend/class-checkout-form.php:327
+#: frontend/class-checkout-form.php:319
 msgid "Please provide a valid email address."
 msgstr ""
 
-#: frontend/class-checkout-form.php:459
+#: frontend/class-checkout-form.php:382
+msgid "Failed to create customer. Please try again later."
+msgstr ""
+
+#: frontend/class-checkout-form.php:422
+msgid "Failed to create checkout. Please try again later."
+msgstr ""
+
+#: frontend/class-checkout-form.php:436
 msgid "Success. You will be redirected to the checkout page."
 msgstr ""
 

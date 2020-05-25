@@ -106,12 +106,10 @@ class Add_Payment_Button {
 			$page = "coinqvest-create-payment-button";
 
 			if (isset($_POST['ajaxrequest']) && $_POST['ajaxrequest'] === 'true') {
-				echo json_encode(
-					array(
-						"success" => false,
-						"message" => $message
-					)
-				);
+                Common_Helpers::renderResponse(array(
+                    "success" => false,
+                    "message" => $message
+                ));
 			} else {
 				$this->redirect = new Admin_Helpers();
 				$this->redirect->custom_redirect($result, $message, $page);
@@ -125,12 +123,10 @@ class Add_Payment_Button {
 			$page = "coinqvest-create-payment-button";
 
 			if (isset($_POST['ajaxrequest']) && $_POST['ajaxrequest'] === 'true') {
-				echo json_encode(
-					array(
-						"success" => false,
-						"message" => $message
-					)
-				);
+                Common_Helpers::renderResponse(array(
+                    "success" => false,
+                    "message" => $message
+                ));
 			} else {
 				$this->redirect = new Admin_Helpers();
 				$this->redirect->custom_redirect($result, $message, $page);
@@ -144,12 +140,10 @@ class Add_Payment_Button {
 			$page = "coinqvest-create-payment-button";
 
 			if (isset($_POST['ajaxrequest']) && $_POST['ajaxrequest'] === 'true') {
-				echo json_encode(
-					array(
-						"success" => false,
-						"message" => $message
-					)
-				);
+                Common_Helpers::renderResponse(array(
+                    "success" => false,
+                    "message" => $message
+                ));
 			} else {
 				$this->redirect = new Admin_Helpers();
 				$this->redirect->custom_redirect($result, $message, $page);
@@ -169,12 +163,10 @@ class Add_Payment_Button {
 			$page = "coinqvest-create-payment-button";
 
 			if (isset($_POST['ajaxrequest']) && $_POST['ajaxrequest'] === 'true') {
-				echo json_encode(
-					array(
-						"success" => false,
-						"message" => $message
-					)
-				);
+                Common_Helpers::renderResponse(array(
+                    "success" => false,
+                    "message" => $message
+                ));
 			} else {
 				$this->redirect = new Admin_Helpers();
 				$this->redirect->custom_redirect($result, $message, $page);
@@ -215,12 +207,10 @@ class Add_Payment_Button {
 			$log::write("[CQ Add Payment Button] " . $message);
 
 			if (isset($_POST['ajaxrequest']) && $_POST['ajaxrequest'] === 'true') {
-				echo json_encode(
-					array(
-						"success" => false,
-						"message" => $message
-					)
-				);
+                Common_Helpers::renderResponse(array(
+                    "success" => false,
+                    "message" => $message
+                ));
 			} else {
 				$this->redirect = new Admin_Helpers();
 				$this->redirect->custom_redirect($result, $message, $page);
@@ -264,14 +254,11 @@ class Add_Payment_Button {
 		$message = __('Payment button created successfully.', 'coinqvest');
 
 		if (isset($_POST['ajaxrequest']) && $_POST['ajaxrequest'] === 'true') {
-			echo json_encode(
-				array(
-					"success" => true,
-					"message" => $message,
-                    "redirect" => "/wp-admin/admin.php?page=coinqvest-payment-buttons",
-                    "clear" => true
-				)
-			);
+            Common_Helpers::renderResponse(array(
+                "success" => true,
+                "message" => $message,
+                "redirect" => "/wp-admin/admin.php?page=coinqvest-payment-buttons"
+            ));
 		} else {
 			$result = "success";
 			$page = "coinqvest-payment-buttons";

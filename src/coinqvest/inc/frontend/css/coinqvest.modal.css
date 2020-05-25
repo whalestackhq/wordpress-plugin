@@ -271,26 +271,9 @@
   float: right;
 }
 
-.coinqvest-checkout .cq-grid .cq-powered-by {
-  font-size: 13px !important;
-  color: #666 !important;
-  font-weight: normal !important;
-  width: 50% !important;
-  float: left !important;
-  display: inline-block !important;
-  padding-top:5px !important;
-  text-align: right !important;
-  font-family: Avenir, Helvetica Neue, Helvetica, Arial, sans-serif !important;
-}
-
 .coinqvest-checkout .cq-grid .cq-logo {
-  text-align: right !important;
   float: right !important;
-  display: inline-block !important;
-}
-
-.coinqvest-checkout .cq-grid .cq-logo img {
-  vertical-align: middle;
+  margin-top: 7px !important;
 }
 
 .coinqvest-checkout .cq-grid .cq-hide {
@@ -342,21 +325,9 @@
     float: none;
   }
 
-  .coinqvest-checkout .cq-grid .cq-powered-by {
-    width: 50%;
-    padding-right: 4px;
-  }
-
   .coinqvest-checkout .cq-grid .cq-logo {
-    width: 50%;
-    float: left;
-    text-align: left;
-    margin-left: 0;
-  }
-
-  .coinqvest-checkout .cq-grid .cq-logo img {
-    width: 100px;
-    float: right;
+    float: none !important;
+    margin: 15px auto !important;
   }
 
 }

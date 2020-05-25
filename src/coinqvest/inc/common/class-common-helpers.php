@@ -1,8 +1,6 @@
 <?php
 namespace COINQVEST\Inc\Common;
 
-use COINQVEST\Inc\Libraries\API\CQLoggingService;
-
 class Common_Helpers {
 
 	public function get_coinqvest_credentials() {

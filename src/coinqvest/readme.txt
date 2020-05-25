@@ -63,7 +63,7 @@ Do you have questions or issues with COINQVEST? Feel free to contact us anytime!
 
 == Screenshots ==
 
-![https://www.coinqvest.com/images/scf-images/create-checkout.jpg](Merchant Dashboard)
-![https://www.coinqvest.com/images/scf-images/hosted-checkout.jpg](Hosted Checkout Page)
-![https://www.coinqvest.com/images/scf-images/create-customer.jpg](Transaction Records and Invoicing)
-![https://www.coinqvest.com/images/scf-images/create-withdrawal.jpg](Instant Withdrawals)
+[https://www.coinqvest.com/images/scf-images/create-checkout.jpg Merchant Dashboard]
+[https://www.coinqvest.com/images/scf-images/hosted-checkout.jpg Hosted Checkout Page]
+[https://www.coinqvest.com/images/scf-images/create-customer.jpg Transaction Records and Invoicing]
+[https://www.coinqvest.com/images/scf-images/create-withdrawal.jpg Instant Withdrawals]

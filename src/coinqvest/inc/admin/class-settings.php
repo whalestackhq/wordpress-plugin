@@ -2,6 +2,7 @@
 
 namespace COINQVEST\Inc\Admin;
 use COINQVEST\Inc\Libraries\API;
+use COINQVEST\Inc\Common\Common_Helpers;
 
 class Settings {
 
@@ -43,12 +44,10 @@ class Settings {
 				$page = "coinqvest-settings";
 
 				if (isset($_POST['ajaxrequest']) && $_POST['ajaxrequest'] === 'true') {
-					echo json_encode(
-						array(
-							"success" => false,
-							"message" => $message
-						)
-					);
+                    Common_Helpers::renderResponse(array(
+                        "success" => false,
+                        "message" => $message
+                    ));
 				} else {
 					$this->redirect = new Admin_Helpers();
 					$this->redirect->custom_redirect($result, $message, $page);
@@ -195,12 +194,10 @@ class Settings {
 			$page = "coinqvest-settings";
 
 			if (isset( $_POST['ajaxrequest']) && $_POST['ajaxrequest'] === 'true') {
-				echo json_encode(
-                    array(
-				        "success" => false,
-                        "message" => $message
-                    )
-                );
+                Common_Helpers::renderResponse(array(
+                    "success" => false,
+                    "message" => $message
+                ));
 			} else {
 				$this->redirect = new Admin_Helpers();
 				$this->redirect->custom_redirect($result, $message, $page);
@@ -214,12 +211,10 @@ class Settings {
 			$page = "coinqvest-settings";
 
 			if (isset( $_POST['ajaxrequest']) && $_POST['ajaxrequest'] === 'true') {
-				echo json_encode(
-					array(
-						"success" => false,
-						"message" => $message
-					)
-				);
+                Common_Helpers::renderResponse(array(
+                    "success" => false,
+                    "message" => $message
+                ));
 			} else {
 				$this->redirect = new Admin_Helpers();
 				$this->redirect->custom_redirect($result, $message, $page);
@@ -233,12 +228,10 @@ class Settings {
 			$page = "coinqvest-settings";
 
 			if (isset( $_POST['ajaxrequest']) && $_POST['ajaxrequest'] === 'true') {
-				echo json_encode(
-					array(
-						"success" => false,
-						"message" => $message
-					)
-				);
+                Common_Helpers::renderResponse(array(
+                    "success" => false,
+                    "message" => $message
+                ));
 			} else {
 				$this->redirect = new Admin_Helpers();
 				$this->redirect->custom_redirect($result, $message, $page);
@@ -264,12 +257,10 @@ class Settings {
             $page = "coinqvest-settings";
 
             if (isset($_POST['ajaxrequest']) && $_POST['ajaxrequest'] === 'true') {
-                echo json_encode(
-                    array(
-                        "success" => false,
-                        "message" => $message
-                    )
-                );
+                Common_Helpers::renderResponse(array(
+                    "success" => false,
+                    "message" => $message
+                ));
             } else {
                 $this->redirect = new Admin_Helpers();
                 $this->redirect->custom_redirect($result, $message, $page);
@@ -290,12 +281,10 @@ class Settings {
 		$page = "coinqvest-settings";
 
 		if (isset( $_POST['ajaxrequest']) && $_POST['ajaxrequest'] === 'true') {
-			echo json_encode(
-				array(
-					"success" => true,
-					"message" => $message
-				)
-			);
+            Common_Helpers::renderResponse(array(
+                "success" => true,
+                "message" => $message
+            ));
 		} else {
 			$this->redirect = new Admin_Helpers();
 			$this->redirect->custom_redirect($result, $message, $page);
@@ -326,12 +315,10 @@ class Settings {
 		$page = "coinqvest-settings";
 
 		if (isset( $_POST['ajaxrequest']) && $_POST['ajaxrequest'] === 'true') {
-			echo json_encode(
-				array(
-					"success" => true,
-					"message" => $message
-				)
-			);
+            Common_Helpers::renderResponse(array(
+                "success" => true,
+                "message" => $message
+            ));
 		} else {
 			$this->redirect = new Admin_Helpers();
 			$this->redirect->custom_redirect($result, $message, $page);

@@ -20,7 +20,7 @@ class Activator {
 
 		global $wpdb;
 		$charset_collate = $wpdb->get_charset_collate();
-		$table_name = $wpdb->prefix . 'coinqvest_payment_tries';
+		$table_name = $wpdb->prefix . 'coinqvest_payment_buttons';
 
 		$query = $wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like($table_name));
 
