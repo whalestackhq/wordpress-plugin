@@ -37,14 +37,14 @@ class Checkout_Form {
 		if (!$row) {
 			$log = new API\CQLoggingService();
 			$log::write('[CQ Frontend Shortcode Display] [COINQVEST_checkout id="' . absint($id) . '"] doesn\'t exist but is embedded on your website.');
-			return '<div class="coinqvest_payments_error_msg" style="color: #dc3232;">' . __('Something is wrong with your COINQVEST checkout shortcode.', 'coinqvest' ) . '</div>';
+			return '<div class="coinqvest_payments_error_msg coinqvest-text-color-red">' . __('Something is wrong with your COINQVEST checkout shortcode.', 'coinqvest' ) . '</div>';
 		}
 
 		// validate that button is active
 		if ($row->status != 1) {
 			$log = new API\CQLoggingService();
 			$log::write('[CQ Frontend Shortcode Display] [COINQVEST_checkout id="' . absint($id) . '"] is not active but is embedded on your website.');
-			return "<p style='color: #dc3232;'>" . __('Your COINQVEST checkout button is not active.', 'coinqvest' ) . "</p>";
+			return "<p class='coinqvest-text-color-red'>" . __('Your COINQVEST checkout button is not active.', 'coinqvest' ) . "</p>";
 		}
 
 		/**
@@ -232,12 +232,8 @@ class Checkout_Form {
                             <a href="#" rel="modal:close" class="cq-cancel">' . __('Cancel Payment', 'coinqvest') . '</a>
                         </div>
                         <div class="cq-col-6 cq-center-xs">
-	                        <div>
-	                        	<div class="cq-powered-by">' . __('Powered by', 'coinqvest') . '</div>
-	                            <div class="cq-logo">
-	                                <img src="' . $this->plugin_name_url . 'assets/images/coinqvest-logo.png" width="100px">
-	                            </div>
-	                        </div>
+                            <img src="' . $this->plugin_name_url . 'assets/images/coinqvest-logo.png">
+                            <div class="coinqvest-clear-both"></div>
                         </div>
                     </div>
 
@@ -275,22 +271,20 @@ class Checkout_Form {
 		if (!$row) {
 			$log = new API\CQLoggingService();
 			$log::write('[CQ Frontend Submit Checkout] [COINQVEST_checkout id="' . absint($id) . '"] doesn\'t exist.');
-			echo json_encode(array(
-				"success" => false,
-				"message" => sprintf(__('Payment button id %s does not exist.', 'coinqvest'), absint($id))
-			));
-			exit;
+            Common_Helpers::renderResponse(array(
+                "success" => false,
+                "message" => sprintf(__('Payment button id %s does not exist.', 'coinqvest'), absint($id))
+            ));
 		}
 
 		// validate that button is active
 		if ($row->status != 1) {
 			$log = new API\CQLoggingService();
 			$log::write('[CQ Frontend Submit Checkout] [COINQVEST_checkout id="' . absint($id) . '"] is not active.');
-			echo json_encode(array(
-				"success" => false,
-				"message" => sprintf(__('Payment button id %s is inactive.', 'coinqvest'), absint($id))
-			));
-			exit;
+            Common_Helpers::renderResponse(array(
+                "success" => false,
+                "message" => sprintf(__('Payment button id %s is inactive.', 'coinqvest'), absint($id))
+            ));
 		}
 
 		$settings = unserialize(get_option('coinqvest_settings'));
@@ -313,21 +307,19 @@ class Checkout_Form {
 
 			$errors = Common_Helpers::validate_required_form_fields($requiredFields, $_POST);
 			if ($errors) {
-				echo json_encode(array(
-					"success" => false,
-					"message" => __('Please provide all highlighted fields.', 'coinqvest'),
-					"highlightFields" => $errors
-				));
-				exit;
+                Common_Helpers::renderResponse(array(
+                    "success" => false,
+                    "message" => __('Please provide all highlighted fields.', 'coinqvest'),
+                    "highlightFields" => $errors
+                ));
 			}
 
 			if (!is_email($_POST['cq_email'])) {
-				echo json_encode(array(
-					"success" => false,
-					"message" => __('Please provide a valid email address.', 'coinqvest'),
-					"highlightFields" => ['cq_email']
-				));
-				exit;
+                Common_Helpers::renderResponse(array(
+                    "success" => false,
+                    "message" => __('Please provide a valid email address.', 'coinqvest'),
+                    "highlightFields" => ['cq_email']
+                ));
 			}
 
 		}
@@ -386,19 +378,10 @@ class Checkout_Form {
 			)));
 
 			if ($response->httpStatusCode != 200) {
-
-				$message = "Status Code: " . $response->httpStatusCode . " - " . $response->responseBody;
-				$log = new API\CQLoggingService();
-				$log::write("[CQ Create Customer] " . $message);
-
-                echo json_encode(
-                    array(
-                        "success" => false,
-                        "message" => $message
-                    )
-                );
-				exit;
-
+                Common_Helpers::renderResponse(array(
+                    "success" => false,
+                    "message" => __('Failed to create customer. Please try again later. [Error Code: CCF2]', 'coinqvest')
+                ));
 			}
 
 			$data = json_decode($response->responseBody, true);
@@ -435,14 +418,10 @@ class Checkout_Form {
 		$response = $client->post('/checkout/hosted', $checkout);
 
 		if ($response->httpStatusCode != 200) {
-
-			$message = 'Checkout failed for Shortcode [COINQVEST_checkout id="' . $id . '"]:';
-			$message .= 'Status Code: ' . $response->httpStatusCode . '\n';
-			$message .= 'Response Body: ' . $response->responseBody . '\n';
-
-			$log = new API\CQLoggingService();
-			$log::write("[CQ Frontend Submit Checkout] Checkout failed " . $message);
-			exit;
+            Common_Helpers::renderResponse(array(
+                "success" => false,
+                "message" => __('Failed to create checkout. Please try again later.', 'coinqvest')
+            ));
 		}
 
 		/**
@@ -453,18 +432,14 @@ class Checkout_Form {
 		$url = $data['url'];
 
 		if (isset($_POST['ajaxrequest']) && $_POST['ajaxrequest'] === 'true') {
-			echo json_encode(
-				array(
-					"success" => true,
-					"message" => __('Success. You will be redirected to the checkout page.', 'coinqvest'),
-					"redirect" => $url
-				)
-			);
-		} else {
-			wp_redirect($url);
+            Common_Helpers::renderResponse(array(
+                "success" => true,
+                "message" => __('Success. You will be redirected to the checkout page.', 'coinqvest'),
+                "redirect" => $url
+            ));
 		}
 
-		exit;
+		wp_redirect($url);
 
 	}
 

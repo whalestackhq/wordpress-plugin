@@ -5,7 +5,7 @@ use COINQVEST\Inc\Libraries\API\CQLoggingService;
 
 class Common_Helpers {
 
-	public function get_coinqvest_api_key_secret() {
+	public function get_coinqvest_credentials() {
 
 		$api_settings = get_option('coinqvest_settings');
 		$api_settings = unserialize($api_settings);
@@ -14,7 +14,7 @@ class Common_Helpers {
 		$api_secret = $api_settings['api_secret'];
 
 		if (!isset($api_key) || !isset($api_secret)) {
-			return false;
+			return null;
 		}
 
 		return array(
@@ -38,6 +38,7 @@ class Common_Helpers {
 			$total += $price;
 		}
 
+		// todo: this should use our Format.js in the future. It's currently user locale but should inherit format from the currency settings instead.
 		return number_format_i18n($total, 2) . ' ' . $json['charge']['currency'];
 
 	}
@@ -66,14 +67,16 @@ class Common_Helpers {
 		return json_encode(json_decode($example_json), JSON_PRETTY_PRINT);
 	}
 
-//	public static function log($message) {
-//
-//		$log = new CQLoggingService();
-//		$log::write($message);
-//
-//		return true;
-//
-//	}
+    /**
+     * Renders the HTTP response body for form submissions.
+     * @param array $data
+     */
+	public static function renderResponse($data = array()) {
+
+        echo json_encode($data);
+        exit;
+
+    }
 
 
 }

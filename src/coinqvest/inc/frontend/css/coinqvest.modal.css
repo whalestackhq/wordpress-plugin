@@ -322,6 +322,15 @@
   color: #1f6130;
 }
 
+/** Convenience Classes **/
+.coinqvest-text-color-red {
+  color: #ad0000 !important;
+}
+
+.coinqvest-clear-both {
+  clear: both !important;
+}
+
 
 @media only screen and (max-width: 720px) {
 
@@ -342,7 +351,12 @@
     width: 50%;
     float: left;
     text-align: left;
-    margin-left: 0px;
+    margin-left: 0;
+  }
+
+  .coinqvest-checkout .cq-grid .cq-logo img {
+    width: 100px;
+    float: right;
   }
 
 }
