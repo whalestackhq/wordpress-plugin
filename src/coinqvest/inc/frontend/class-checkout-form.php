@@ -232,7 +232,7 @@ class Checkout_Form {
                             <a href="#" rel="modal:close" class="cq-cancel">' . __('Cancel Payment', 'coinqvest') . '</a>
                         </div>
                         <div class="cq-col-6 cq-center-xs">
-                            <img src="' . $this->plugin_name_url . 'assets/images/coinqvest-logo.png">
+                            <a href="https://www.coinqvest.com" target="_blank"><img src="' . $this->plugin_name_url . 'assets/images/coinqvest-logo.png" /></a>
                             <div class="coinqvest-clear-both"></div>
                         </div>
                     </div>
