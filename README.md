@@ -4,8 +4,6 @@ WordPress Plugin for COINQVEST. Accept and settle payments in digital currencies
 
 This WordPress plugin implements the PHP REST API documented at https://www.coinqvest.com/en/api-docs
 
-Read our Merchant API [development guide](https://www.coinqvest.com/en/blog/guide-mastering-cryptocurrency-checkouts-with-coinqvest-merchant-apis-321ac139ce15) and the examples below to help you get started.
-
 Key features
 ------------
 
