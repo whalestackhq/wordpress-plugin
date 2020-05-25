@@ -78,9 +78,8 @@ class Payment_Buttons_List_Table extends Libraries\WP_List_Table  {
 		$sql .= " LIMIT $per_page";
 		$sql .= ' OFFSET ' . ( $page_number - 1 ) * $per_page;
 
-		$result = $wpdb->get_results( $sql, 'ARRAY_A' );
+        return $wpdb->get_results( $sql, 'ARRAY_A' );
 
-		return $result;
 	}
 
 

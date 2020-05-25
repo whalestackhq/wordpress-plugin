@@ -6,8 +6,8 @@
  * Author: COINQVEST Ltd.
  * Author URI: https://www.coinqvest.com/
  * Version: 0.0.1
- * License: GPLv3+
- * License URI: https://www.gnu.org/licenses/gpl-3.0.html
+ * License: Apache 2.0
+ * License URI: https://www.apache.org/licenses/LICENSE-2.0
  */
 
 namespace COINQVEST;
@@ -67,5 +67,3 @@ $min_php = '5.6.0';
 if ( version_compare( PHP_VERSION, $min_php, '>=' ) ) {
 	cqInit();
 }
-
-?>

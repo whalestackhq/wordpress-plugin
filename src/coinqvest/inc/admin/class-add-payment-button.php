@@ -14,7 +14,7 @@ class Add_Payment_Button {
 	public function render_add_payment_button_page(){
 
 	    $helpers = new Common_Helpers();
-	    $api_settings_exist = $helpers->get_coinqvest_api_key_secret();
+	    $api_credentials = $helpers->get_coinqvest_credentials();
 
 		?>
 
@@ -22,7 +22,7 @@ class Add_Payment_Button {
 
             <h2><?php _e('Add New Payment Button', 'coinqvest')?></h2>
 
-            <?php if (!$api_settings_exist) { ?>
+            <?php if (is_null($api_credentials)) { ?>
                 <div class="notice notice-error"><?php _e('Please enter your API key and API secret first before you can create a payment button:', 'coinqvest')?> <a href="/wp-admin/admin.php?page=coinqvest-settings"><?php _e('API Settings', 'coinqvest')?></a></div>
             <?php } ?>
 
