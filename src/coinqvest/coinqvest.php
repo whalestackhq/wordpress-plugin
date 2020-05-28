@@ -8,6 +8,8 @@
  * Version: 0.0.1
  * License: Apache 2.0
  * License URI: https://www.apache.org/licenses/LICENSE-2.0
+ * Text domain: coinqvest
+ * Domain Path: /languages
  */
 
 namespace COINQVEST;

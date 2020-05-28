@@ -47,7 +47,7 @@ class Common_Helpers {
 		foreach ($requiredFields as $field) {
 
 			if (!$params[$field] || $params[$field] == '') {
-				$errors[] = $field;
+				$errors[] = esc_attr($field);
 			}
 
 		}

@@ -23,7 +23,7 @@ class Checkout_Form {
 	 */
 	public function render_checkout_form($params) {
 
-		$id = $params['id'];
+		$id = absint($params['id']);
 
 		/**
 		 * Input Validation
@@ -44,7 +44,7 @@ class Checkout_Form {
 		if ($row->status != 1) {
 			$log = new API\CQLoggingService();
 			$log::write('[CQ Frontend Shortcode Display] [COINQVEST_checkout id="' . absint($id) . '"] is not active but is embedded on your website.');
-			return "<p class='coinqvest-text-color-red'>" . __('Your COINQVEST checkout button is not active.', 'coinqvest' ) . "</p>";
+			return '<p class="coinqvest-text-color-red">' . __('Your COINQVEST checkout button is not active.', 'coinqvest' ) . '</p>';
 		}
 
 		/**
@@ -67,7 +67,7 @@ class Checkout_Form {
 		$params['last_name'] = isset($user_meta['last_name'][0]) ? $user_meta['last_name'][0] : null;
 		$params['email'] = isset($user->user_email) ? $user->user_email : null;
 		$params['css_class'] = !empty($row->cssclass) ? $row->cssclass : null;
-		$params['button_text'] = !empty($row->buttontext) ? $row->buttontext : "Pay Now";
+        $params['button_text'] = is_null($row->buttontext) ? __('Buy Now', 'coinqvest') : $row->buttontext;
 		$params['customer_info'] = $customer_info;
 		$params['display_price'] = Common_Helpers::calculate_price($row->json);
 
@@ -99,8 +99,8 @@ class Checkout_Form {
             <form action="' . esc_url(admin_url("admin-post.php")) . '" method="POST">
                 <input type="hidden" name="action" value="submit_coinqvest_checkout">
 		        ' . wp_nonce_field($params['nonce']) . '
-                <input type="hidden" name="cq_checkout_id" value="' . $params['hashid'] . '">
-                <button type="submit" class="button ' . $params['css_class'] . '">' . __('Buy Now', 'coinqvest') . '</button>
+                <input type="hidden" name="cq_checkout_id" value="' . esc_attr($params['hashid']) . '">
+                <button type="submit" class="button ' . esc_attr($params['css_class']) . '">' . esc_attr($params['button_text']) . '</button>
             </form>
         </div>';
 
@@ -115,10 +115,10 @@ class Checkout_Form {
 
 	    $output = '
         <div id="coinqvest-checkout-button">
-            <a class="button ' . $params['css_class'] . '" href="#coinqvest-' . $params['hashid'] . '">' . __('Buy Now', 'coinqvest') . '</a>
+            <a class="button ' . esc_attr($params['css_class']) . '" href="#coinqvest-' . esc_attr($params['hashid']) . '">' . esc_attr($params['button_text']) . '</a>
         </div>
 
-        <div id="coinqvest-' . $params['hashid'] . '" class="coinqvest-modal">
+        <div id="coinqvest-' . esc_attr($params['hashid']) . '" class="coinqvest-modal">
 
             <div class="coinqvest-checkout">
 
@@ -126,16 +126,16 @@ class Checkout_Form {
 
                     <div class="cq-row">
                         <div class="cq-col-12">
-                            <p class="cq-price">' . $params['display_price'] . '</p>
+                            <p class="cq-price">' . esc_attr($params['display_price']) . '</p>
                         </div>
                     </div>
 
-                    <form id="coinqvest-checkout-form-' . $params['hashid'] . '" action="' . esc_url(admin_url('admin-post.php')) . '" method="POST">
+                    <form id="coinqvest-checkout-form-' . esc_attr($params['hashid']) . '" action="' . esc_url(admin_url('admin-post.php')) . '" method="POST">
 
                         <input type="hidden" name="action" value="submit_coinqvest_checkout">
 						' . wp_nonce_field( 'submit_coinqvest_checkout_8b%kj@' ) . '
-                        <input type="hidden" name="cq_checkout_id" value="' . $params['hashid'] . '">
-                        <input type="hidden" name="cq_user_name" value="' . $params['user_name'] . '">
+                        <input type="hidden" name="cq_checkout_id" value="' . esc_attr($params['hashid']) . '">
+                        <input type="hidden" name="cq_user_name" value="' . esc_attr($params['user_name']) . '">
 
                         <div class="cq-row cq-feedback-row cq-hide">
                             <div class="cq-col-12">
@@ -145,19 +145,19 @@ class Checkout_Form {
 
                         <div class="cq-row">
                             <div class="cq-col-6 cq-margin-right-4percent">
-                                <p class="cq-label">' . __('First name', 'coinqvest') . '</p>
-                                <input type="text" class="cq-input" name="cq_first_name" maxlength="32" value="' . $params['first_name'] .'">
+                                <p class="cq-label">' . esc_attr(__('First name', 'coinqvest')) . '</p>
+                                <input type="text" class="cq-input" name="cq_first_name" maxlength="32" value="' . esc_attr($params['first_name']) .'">
                             </div>
                             <div class="cq-col-6">
-                                <p class="cq-label">' . __('Last name', 'coinqvest') . '</p>
-                                <input type="text" class="cq-input" name="cq_last_name" maxlength="32" value="' . $params['last_name'] . '" >
+                                <p class="cq-label">' . esc_attr(__('Last name', 'coinqvest')) . '</p>
+                                <input type="text" class="cq-input" name="cq_last_name" maxlength="32" value="' . esc_attr($params['last_name']) . '" >
                             </div>
                         </div>
 
                         <div class="cq-row">
                             <div class="cq-col-12">
-                                <p class="cq-label">' . __('Email', 'coinqvest' ) . '</p>
-                                <input type="text" class="cq-input" name="cq_email" maxlength="64" value="' . $params['email'] .'" >
+                                <p class="cq-label">' . esc_attr(__('Email', 'coinqvest' )) . '</p>
+                                <input type="text" class="cq-input" name="cq_email" maxlength="64" value="' . esc_attr($params['email']) .'" >
                             </div>
                         </div>';
 
@@ -166,44 +166,44 @@ class Checkout_Form {
 						    $output .= '
 						    <div class="cq-row">
                                 <div class="cq-col-6 cq-margin-right-4percent">
-                                    <p class="cq-label">' . __('Company', 'coinqvest') . ' <span class="cq-tip">(' . __('optional', 'coinqvest') . ')</span></p>
+                                    <p class="cq-label">' . esc_attr(__('Company', 'coinqvest')) . ' <span class="cq-tip">(' . esc_attr(__('optional', 'coinqvest')) . ')</span></p>
                                     <input type="text" class="cq-input" name="cq_company" maxlength="64">
                                 </div>
                                 <div class="cq-col-6">
-                                    <p class="cq-label">' . __('Tax ID', 'coinqvest') . ' <span class="cq-tip">(' . __('optional', 'coinqvest') . ')</span></p>
+                                    <p class="cq-label">' . esc_attr(__('Tax ID', 'coinqvest')) . ' <span class="cq-tip">(' . esc_attr(__('optional', 'coinqvest')) . ')</span></p>
                                     <input type="text" class="cq-input" name="cq_tax_id" maxlength="32" >
                                 </div>
                             </div>
 
                             <div class="cq-row">
                                 <div class="cq-col-6 cq-margin-right-4percent">
-                                    <p class="cq-label">' . __('Address Line 1', 'coinqvest') . '</p>
+                                    <p class="cq-label">' . esc_attr(__('Address Line 1', 'coinqvest')) . '</p>
                                     <input type="text" class="cq-input" name="cq_adr1" maxlength="32">
                                 </div>
                                 <div class="cq-col-6">
-                                    <p class="cq-label">' . __('Address Line 2', 'coinqvest') . ' <span class="cq-tip">(' . __('optional', 'coinqvest') . ')</span></p>
+                                    <p class="cq-label">' . esc_attr(__('Address Line 2', 'coinqvest')) . ' <span class="cq-tip">(' . esc_attr(__('optional', 'coinqvest')) . ')</span></p>
                                     <input type="text" class="cq-input" name="cq_adr2" maxlength="32" >
                                 </div>
                             </div>
 
                             <div class="cq-row">
                                 <div class="cq-col-6 cq-margin-right-4percent">
-                                    <p class="cq-label">' . __('ZIP code (and State)', 'coinqvest') . '</p>
+                                    <p class="cq-label">' . esc_attr(__('ZIP code (and State)', 'coinqvest')) . '</p>
                                     <input type="text" class="cq-input" name="cq_zip" maxlength="12">
                                 </div>
                                 <div class="cq-col-6">
-                                    <p class="cq-label">' . __('City', 'coinqvest') . '</p>
+                                    <p class="cq-label">' . esc_attr(__('City', 'coinqvest')) . '</p>
                                     <input type="text" class="cq-input" name="cq_city" maxlength="64" >
                                 </div>
                             </div>
 
                             <div class="cq-row">
                                 <div class="cq-col-6 cq-margin-right-4percent">
-                                    <p class="cq-label">' . __('Country', 'coinqvest') . '</p>
+                                    <p class="cq-label">' . esc_attr(__('Country', 'coinqvest')) . '</p>
                                   	' . $countries . '
                                 </div>
                                 <div class="cq-col-6">
-                                    <p class="cq-label">' . __('Mobile number', 'coinqvest') . ' <span class="cq-tip">(' . __('optional', 'coinqvest') . ')</span></p>
+                                    <p class="cq-label">' . esc_attr(__('Mobile number', 'coinqvest')) . ' <span class="cq-tip">(' . esc_attr(__('optional', 'coinqvest')) . ')</span></p>
                                     <input type="text" class="cq-input" name="cq_mobile_number" maxlength="16" >
                                 </div>
                             </div>';
@@ -213,14 +213,14 @@ class Checkout_Form {
                         $output .= '
                         <div class="cq-row cq-show-button">
                             <div class="cq-col-12">
-                                <button class="cq-blue-button" type="submit">' . __('Pay Now', 'coinqvest') . '</button>
+                                <button class="cq-blue-button" type="submit">' . esc_attr(__('Pay Now', 'coinqvest')) . '</button>
                             </div>
                         </div>
 
                         <div class="cq-row cq-show-loader cq-hide">
                             <div class="cq-col-12">
                                 <div class="cq-gray-button">
-                                    <img src="' . $this->plugin_name_url . 'assets/images/ajax-loader-for-forms@2x.gif" width="18" height="18" class="cq-loader">
+                                    <img src="' . esc_url($this->plugin_name_url) . 'assets/images/ajax-loader-for-forms@2x.gif" width="18" height="18" class="cq-loader">
                                 </div>
                             </div>
                         </div>
@@ -229,10 +229,10 @@ class Checkout_Form {
 
                     <div class="cq-row">
                         <div class="cq-col-6 cq-margin-right-4percent cq-center-xs">
-                            <a href="#" rel="modal:close" class="cq-cancel">' . __('Cancel Payment', 'coinqvest') . '</a>
+                            <a href="#" rel="modal:close" class="cq-cancel">' . esc_attr(__('Cancel Payment', 'coinqvest')) . '</a>
                         </div>
                         <div class="cq-col-6 cq-center-xs">
-                            <img class="cq-logo" src="' . $this->plugin_name_url . 'assets/images/coinqvest-logo.png" width="100px">
+                            <img class="cq-logo" src="' . esc_url($this->plugin_name_url) . 'assets/images/coinqvest-logo.png" width="100px">
                             <div class="coinqvest-clear-both"></div>
                         </div>
                     </div>
@@ -243,7 +243,7 @@ class Checkout_Form {
 
         </div>
         
-        <script>jQuery("a[href=#coinqvest-' . $params['hashid'] . ']").click(function(e){e.preventDefault(),jQuery(this).modal({escapeClose:!1,clickClose:!1,modalClass:"coinqvest-modal",blockerClass:"coinqvest-jquery-modal"})});</script>';
+        <script>jQuery("a[href=#coinqvest-' . esc_attr($params['hashid']) . ']").click(function(e){e.preventDefault(),jQuery(this).modal({escapeClose:!1,clickClose:!1,modalClass:"coinqvest-modal",blockerClass:"coinqvest-jquery-modal"})});</script>';
 
 	    return $output;
 	}
@@ -255,11 +255,27 @@ class Checkout_Form {
 
 	public function process_checkout() {
 
-		/**
-		 * Input Validation
-		 */
+        /**
+         * Sanitize input parameters
+         */
 
-		$id = $_POST['cq_checkout_id'];
+        $id = absint($_POST['cq_checkout_id']);
+        $email = isset($_POST['cq_email']) ? sanitize_email($_POST['cq_email']) : null;
+        $first_name = isset($_POST['cq_first_name']) ? sanitize_text_field($_POST['cq_first_name']) : null;
+        $last_name = isset($_POST['cq_last_name']) ? sanitize_text_field($_POST['cq_last_name']) : null;
+        $user_name = isset($_POST['cq_user_name']) ? sanitize_text_field($_POST['cq_user_name']) : null;
+        $company = isset($_POST['cq_company']) ? sanitize_text_field($_POST['cq_company']) : null;
+        $tax_id = isset($_POST['cq_tax_id']) ? sanitize_text_field($_POST['cq_tax_id']) : null;
+        $adr1 = isset($_POST['cq_adr1']) ? sanitize_text_field($_POST['cq_adr1']) : null;
+        $adr2 = isset($_POST['cq_adr2']) ? sanitize_text_field($_POST['cq_adr2']) : null;
+        $zip = isset($_POST['cq_zip']) ? sanitize_text_field($_POST['cq_zip']) : null;
+        $city = isset($_POST['cq_city']) ? sanitize_text_field($_POST['cq_city']) : null;
+        $country_code = isset($_POST['cq_country']) ? sanitize_text_field($_POST['cq_country']) : null;
+        $mobile_number = isset($_POST['cq_mobile_number']) ? sanitize_text_field($_POST['cq_mobile_number']) : null;
+
+        /**
+         * Input Validation
+         */
 
 		// validate that button hashid exists
 		global $wpdb;
@@ -272,7 +288,7 @@ class Checkout_Form {
 			$log::write('[CQ Frontend Submit Checkout] [COINQVEST_checkout id="' . absint($id) . '"] doesn\'t exist.');
             Common_Helpers::renderResponse(array(
                 "success" => false,
-                "message" => sprintf(__('Payment button id %s does not exist.', 'coinqvest'), absint($id))
+                "message" => esc_attr(sprintf(__('Payment button id %s does not exist.', 'coinqvest'), absint($id)))
             ));
 		}
 
@@ -282,7 +298,7 @@ class Checkout_Form {
 			$log::write('[CQ Frontend Submit Checkout] [COINQVEST_checkout id="' . absint($id) . '"] is not active.');
             Common_Helpers::renderResponse(array(
                 "success" => false,
-                "message" => sprintf(__('Payment button id %s is inactive.', 'coinqvest'), absint($id))
+                "message" => esc_attr(sprintf(__('Payment button id %s is inactive.', 'coinqvest'), absint($id)))
             ));
 		}
 
@@ -308,37 +324,20 @@ class Checkout_Form {
 			if ($errors) {
                 Common_Helpers::renderResponse(array(
                     "success" => false,
-                    "message" => __('Please provide all highlighted fields.', 'coinqvest'),
+                    "message" => esc_attr(__('Please provide all highlighted fields.', 'coinqvest')),
                     "highlightFields" => $errors
                 ));
 			}
 
-			if (!is_email($_POST['cq_email'])) {
+			if (!is_email($email)) {
                 Common_Helpers::renderResponse(array(
                     "success" => false,
-                    "message" => __('Please provide a valid email address.', 'coinqvest'),
+                    "message" => esc_attr(__('Please provide a valid email address.', 'coinqvest')),
                     "highlightFields" => ['cq_email']
                 ));
 			}
 
 		}
-
-		/**
-		 * Sanitize input parameters
-		 */
-
-		$email = isset($_POST['cq_email']) ? $_POST['cq_email'] : null;
-		$first_name = isset($_POST['cq_first_name']) ? sanitize_text_field($_POST['cq_first_name']) : null;
-		$last_name = isset($_POST['cq_last_name']) ? sanitize_text_field($_POST['cq_last_name']) : null;
-		$user_name = isset($_POST['cq_user_name']) ? sanitize_text_field($_POST['cq_user_name']) : null;
-		$company = isset($_POST['cq_company']) ? sanitize_text_field($_POST['cq_company']) : null;
-		$tax_id = isset($_POST['cq_tax_id']) ? sanitize_text_field($_POST['cq_tax_id']) : null;
-		$adr1 = isset($_POST['cq_adr1']) ? sanitize_text_field($_POST['cq_adr1']) : null;
-		$adr2 = isset($_POST['cq_adr2']) ? sanitize_text_field($_POST['cq_adr2']) : null;
-		$zip = isset($_POST['cq_zip']) ? sanitize_text_field($_POST['cq_zip']) : null;
-		$city = isset($_POST['cq_city']) ? sanitize_text_field($_POST['cq_city']) : null;
-		$country_code = isset($_POST['cq_country']) ? sanitize_text_field($_POST['cq_country']) : null;
-		$mobile_number = isset($_POST['cq_mobile_number']) ? sanitize_text_field($_POST['cq_mobile_number']) : null;
 
 		/**
 		 * Init the COINQVEST API
@@ -379,7 +378,7 @@ class Checkout_Form {
 			if ($response->httpStatusCode != 200) {
                 Common_Helpers::renderResponse(array(
                     "success" => false,
-                    "message" => __('Failed to create customer. Please try again later.', 'coinqvest')
+                    "message" => esc_attr(__('Failed to create customer. Please try again later.', 'coinqvest'))
                 ));
 			}
 
@@ -419,7 +418,7 @@ class Checkout_Form {
 		if ($response->httpStatusCode != 200) {
             Common_Helpers::renderResponse(array(
                 "success" => false,
-                "message" => __('Failed to create checkout. Please try again later.', 'coinqvest')
+                "message" => esc_attr(__('Failed to create checkout. Please try again later.', 'coinqvest'))
             ));
 		}
 
@@ -433,7 +432,7 @@ class Checkout_Form {
 		if (isset($_POST['ajaxrequest']) && $_POST['ajaxrequest'] === 'true') {
             Common_Helpers::renderResponse(array(
                 "success" => true,
-                "message" => __('Success. You will be redirected to the checkout page.', 'coinqvest'),
+                "message" => esc_attr(__('Success. You will be redirected to the checkout page.', 'coinqvest')),
                 "redirect" => $url
             ));
 		}

@@ -99,7 +99,7 @@ class Payment_Buttons_List_Table extends Libraries\WP_List_Table  {
 
 	/** Text displayed when no data is available */
 	public function no_items() {
-		echo sprintf(__( 'No payment buttons available yet. <a href="%s">Create one here</a>.', $this->plugin_text_domain ), '/wp-admin/admin.php?page=coinqvest-add-payment-button');
+		echo esc_attr(__('No payment buttons available yet. Add a new one first.'));
 	}
 
 
@@ -115,7 +115,6 @@ class Payment_Buttons_List_Table extends Libraries\WP_List_Table  {
 			case 'cssclass':
 				return $item[ $column_name ];
 			case 'buttontext':
-				return '<span class="button">'.$item[ $column_name ].'</span>';
 			default:
 				return print_r( $item, true ); //Show the whole array for troubleshooting purposes
 		}
@@ -125,13 +124,12 @@ class Payment_Buttons_List_Table extends Libraries\WP_List_Table  {
 	function column_name( $item ) {
 
 		$delete_nonce = wp_create_nonce( 'cq_delete_item' );
-		$edit_nonce = wp_create_nonce( 'cq_edit_item' );
 
-		$title = '<strong>' . $item['name'] . '</strong>';
+		$title = '<strong>' . esc_attr($item['name']) . '</strong>';
 
 		$actions = [
-			'edit' => sprintf('<a href="/wp-admin/admin.php?page=coinqvest-edit-payment-button&id=%s">' . __('Edit', 'coinqvest') .'</a>', absint( $item['hashid'] ) ),
-			'delete' => sprintf( '<a href="?page=%s&action=%s&item=%s&_wpnonce=%s">' . __('Delete', 'coinqvest') .'</a>', esc_attr( $_REQUEST['page'] ), 'delete', absint( $item['hashid'] ), $delete_nonce )
+			'edit' => sprintf('<a href="/wp-admin/admin.php?page=coinqvest-edit-payment-button&id=%s">' . esc_attr(__('Edit', 'coinqvest')) .'</a>', absint( $item['hashid'] ) ),
+			'delete' => sprintf( '<a href="?page=%s&action=%s&item=%s&_wpnonce=%s">' . esc_attr(__('Delete', 'coinqvest')) .'</a>', esc_attr( $_REQUEST['page'] ), 'delete', absint( $item['hashid'] ), $delete_nonce )
 		];
 
 		return $title . $this->row_actions( $actions );
@@ -139,13 +137,13 @@ class Payment_Buttons_List_Table extends Libraries\WP_List_Table  {
 
 	/** Custom Method for shortcode column */
 	function column_shortcode( $item ) {
-		$shortcode =  '<input type="text" class="terminal" onfocus="this.select();" value="[COINQVEST_checkout id=&quot;' . $item['hashid']. '&quot;]" readonly="readonly" />';
+		$shortcode =  '<input type="text" class="terminal" onfocus="this.select();" value="[COINQVEST_checkout id=&quot;' . absint($item['hashid']). '&quot;]" readonly="readonly" />';
 		return $shortcode;
 	}
 
 	/** Custom Method for price column */
 	function column_price( $item ) {
-		return Common_Helpers::calculate_price($item['json']);
+		return esc_attr(Common_Helpers::calculate_price($item['json']));
 	}
 
 	/** Custom Method for status column */
@@ -153,16 +151,22 @@ class Payment_Buttons_List_Table extends Libraries\WP_List_Table  {
 		return ($item['status'] == 1) ? '<span class="active">active</span>' : '<span class="inactive">inactive</span>';
 	}
 
+    /** Custom Method for button text column */
+    function column_buttontext( $item ) {
+        $button_text = is_null($item['buttontext']) ? esc_attr(__('Buy Now', 'coinqvest')) : esc_attr($item['buttontext']);
+        return '<span class="button">'.$button_text.'</span>';
+    }
+
 	/** Associative array of columns */
 	function get_columns() {
 		$columns = [
-			'name'      => __( 'Name', $this->plugin_text_domain ),
-			'status'    => __( 'Status', $this->plugin_text_domain ),
-			'price'    => __( 'Price', $this->plugin_text_domain ),
-			'shortcode' => __( 'Shortcode', $this->plugin_text_domain ),
-			'buttontext'    => __( 'Button text', $this->plugin_text_domain ),
-			'cssclass'    => __( 'CSS class', $this->plugin_text_domain ),
-			'time'    => __( 'Time', $this->plugin_text_domain )
+			'name'      => esc_attr(__( 'Name', $this->plugin_text_domain )),
+			'status'    => esc_attr(__( 'Status', $this->plugin_text_domain )),
+			'price'    => esc_attr(__( 'Price', $this->plugin_text_domain )),
+			'shortcode' => esc_attr(__( 'Shortcode', $this->plugin_text_domain )),
+			'buttontext'    => esc_attr(__( 'Button text', $this->plugin_text_domain )),
+			'cssclass'    => esc_attr(__( 'CSS class', $this->plugin_text_domain )),
+			'time'    => esc_attr(__( 'Time', $this->plugin_text_domain ))
 		];
 
 		return $columns;
@@ -197,7 +201,7 @@ class Payment_Buttons_List_Table extends Libraries\WP_List_Table  {
 
 				if ($row->status == 1) {
 					$result = "error";
-					$message = __('Cannot be deleted when status is active', 'coinqvest');
+					$message = esc_attr(__('Cannot be deleted when status is active', 'coinqvest'));
 					$page = "coinqvest-payment-buttons";
 					$this->redirect = new Admin_Helpers();
 					$this->redirect->custom_redirect($result, $message, $page);
@@ -207,7 +211,7 @@ class Payment_Buttons_List_Table extends Libraries\WP_List_Table  {
 				self::delete_item( absint( $_GET['item'] ) );
 
 				$result = "success";
-				$message = __('Button successfully deleted', 'coinqvest');
+				$message = esc_attr(__('Button successfully deleted', 'coinqvest'));
 				$page = "coinqvest-payment-buttons";
 				$this->redirect = new Admin_Helpers();
 				$this->redirect->custom_redirect($result, $message, $page);

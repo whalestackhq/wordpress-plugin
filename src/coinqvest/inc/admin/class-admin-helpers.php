@@ -22,20 +22,24 @@ class Admin_Helpers {
 
 		if (isset( $_REQUEST['result']) ) {
 
+		    $html = '';
+
+		    $message = sanitize_text_field($_GET['message']);
+
 			if ($_REQUEST['result'] === "success") {
 
-				$html =	'<div class="notice notice-success is-dismissible"><p>'.$_GET['message'].'</p></div>';
+				$html =	'<div class="notice notice-success is-dismissible"><p>'.$message.'</p></div>';
 
 			} elseif ($_REQUEST['result'] === "error") {
 
-				$html =	'<div class="notice notice-error is-dismissible"><p>'.$_GET['message'].'</p></div>';
+				$html =	'<div class="notice notice-error is-dismissible"><p>'.$message.'</p></div>';
 
 			}
 
 			echo $html;
 
-		}
-		else {
+		}  else {
+
 			return;
 		}
 

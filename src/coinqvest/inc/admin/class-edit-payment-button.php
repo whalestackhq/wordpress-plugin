@@ -24,6 +24,8 @@ class Edit_Payment_Button {
 		    exit;
 		}
 
+        $button_text = !is_null($row->buttontext) ? $row->buttontext : null;
+
 		?>
 
         <div class="wrap">
@@ -65,7 +67,7 @@ class Edit_Payment_Button {
                     <tr>
                         <th scope="row"><?php _e('Button Text', 'coinqvest')?> <span class="optional">(<?php _e('optional', 'coinqvest')?>)</span></th>
                         <td>
-                            <input name="cq_button_text" type="text" id="cq_button_text" value="<?=$row->buttontext?>" placeholder="<?php _e('Buy Now', 'coinqvest')?>" class="regular-text" />
+                            <input name="cq_button_text" type="text" id="cq_button_text" value="<?=$button_text?>" placeholder="<?php _e('Buy Now', 'coinqvest')?>" class="regular-text" />
                             <p class="description"><?php _e('Customize the button text. Default is "Buy Now".', 'coinqvest')?></p>
                         </td>
                     </tr>
@@ -97,11 +99,30 @@ class Edit_Payment_Button {
 
 	public function submit_form_edit_payment_button() {
 
+        /**
+         * Sanitize input parameters
+         */
+
+        $id = absint($_POST['checkout_id']);
+        $name = !empty($_POST['cq_button_name']) ? sanitize_text_field($_POST['cq_button_name']) : null;
+        $css_class = !empty($_POST['cq_button_css_class']) ? $this->clean(sanitize_text_field($_POST['cq_button_css_class'])) : null;
+        $status = isset($_POST['cq_button_status']) ? 1 : 0;
+        $json = !empty($_POST['cq_button_json']) ? sanitize_text_field($_POST['cq_button_json']) : null;
+        $is_ajax = (isset( $_POST['ajaxrequest']) && $_POST['ajaxrequest'] === 'true') ? true : false;
+
+        if (!empty($_POST['cq_button_text'])) {
+            if ($_POST['cq_button_text'] == esc_attr(__('Buy Now', 'coinqvest'))) {
+                $button_text = null;
+            } else {
+                $button_text = sanitize_text_field($_POST['cq_button_text']);
+            }
+        } else {
+            $button_text = null;
+        }
+
 		/**
 		 * Input validation
 		 */
-
-		$id = $_POST['checkout_id'];
 
 		global $wpdb;
 		$table_name = $wpdb->prefix . 'coinqvest_payment_buttons';
@@ -109,10 +130,10 @@ class Edit_Payment_Button {
 
 		if (!$row) {
 			$result = "error";
-			$message = sprintf(__('Payment button id %s does not exist.', 'coinqvest'), absint($id));
+			$message = esc_attr(sprintf(__('Payment button id %s does not exist.', 'coinqvest'), absint($id)));
 			$page = "coinqvest-payment-buttons";
 
-			if (isset($_POST['ajaxrequest']) && $_POST['ajaxrequest'] === 'true') {
+            if ($is_ajax === true) {
                 Common_Helpers::renderResponse(array(
                     "success" => false,
                     "message" => $message
@@ -124,12 +145,12 @@ class Edit_Payment_Button {
 			exit;
 		}
 
-		if (empty($_POST['cq_button_name']) || empty($_POST['cq_button_json'])) {
+		if (is_null($name) || is_null($json)) {
 			$result = "error";
-			$message = __('Please fill in all fields.', 'coinqvest');
+            $message = esc_attr(__('Please provide button name and JSON object.', 'coinqvest'));
 			$page = "coinqvest-create-payment-button";
 
-			if (isset($_POST['ajaxrequest']) && $_POST['ajaxrequest'] === 'true') {
+            if ($is_ajax === true) {
                 Common_Helpers::renderResponse(array(
                     "success" => false,
                     "message" => $message
@@ -141,12 +162,12 @@ class Edit_Payment_Button {
 			exit;
 		}
 
-		if (strlen($_POST['cq_button_name']) > 56) {
+		if (strlen($name) > 56) {
 			$result = "error";
-			$message = sprintf(__('Name is too long. Max. %s characters.', 'coinqvest'), 56);
+			$message = esc_attr(sprintf(__('Name is too long. Max. %s characters.', 'coinqvest'), 56));
 			$page = "coinqvest-create-payment-button";
 
-			if (isset($_POST['ajaxrequest']) && $_POST['ajaxrequest'] === 'true') {
+            if ($is_ajax === true) {
                 Common_Helpers::renderResponse(array(
                     "success" => false,
                     "message" => $message
@@ -158,12 +179,12 @@ class Edit_Payment_Button {
 			exit;
 		}
 
-		if (isset($_POST['cq_button_text']) && strlen($_POST['cq_button_text']) > 50) {
+        if (!is_null($button_text) && strlen($button_text) > 50) {
 			$result = "error";
-			$message = sprintf(__('Button text is too long. Max. %s characters.', 'coinqvest'), 50);
+			$message = esc_attr(sprintf(__('Button text is too long. Max. %s characters.', 'coinqvest'), 50));
 			$page = "coinqvest-create-payment-button";
 
-			if (isset($_POST['ajaxrequest']) && $_POST['ajaxrequest'] === 'true') {
+            if ($is_ajax === true) {
                 Common_Helpers::renderResponse(array(
                     "success" => false,
                     "message" => $message
@@ -183,10 +204,10 @@ class Edit_Payment_Button {
 
 		if (empty($api_settings['api_key']) || empty($api_settings['api_secret'])) {
 			$result = "error";
-			$message = __('API key and API secret do not exist.', 'coinqvest');;
+			$message = esc_attr(__('API key and API secret do not exist.', 'coinqvest'));
 			$page = "coinqvest-create-payment-button";
 
-			if (isset($_POST['ajaxrequest']) && $_POST['ajaxrequest'] === 'true') {
+            if ($is_ajax === true) {
                 Common_Helpers::renderResponse(array(
                     "success" => false,
                     "message" => $message
@@ -199,17 +220,6 @@ class Edit_Payment_Button {
 		}
 
 		/**
-		 * Sanitize input parameters
-		 */
-
-		$name = sanitize_text_field($_POST['cq_button_name']);
-		$css_class = !empty($_POST['cq_button_css_class']) ? $this->clean(sanitize_text_field($_POST['cq_button_css_class'])) : '';
-		$button_text = !empty($_POST['cq_button_text']) ? sanitize_text_field($_POST['cq_button_text']) : __('Buy Now', 'coinqvest');
-		$status = isset($_POST['cq_button_status']) ? 1 : 0;
-		$json = sanitize_text_field($_POST['cq_button_json']);
-		$json = str_replace("\\", "", $json);
-
-		/**
 		 * JSON object validation
 		 */
 
@@ -219,18 +229,20 @@ class Edit_Payment_Button {
             true
 		);
 
+        $json = str_replace("\\", "", $json);
+
 		$response = $client->post('/checkout/validate', json_decode($json, true));
 
 		if ($response->httpStatusCode != 200) {
 
 			$result = "error";
-			$message = "Status Code: " . $response->httpStatusCode . " - " . $response->responseBody;
+			$message = esc_attr("Status Code: " . $response->httpStatusCode . " - " . $response->responseBody);
 			$page = "coinqvest-create-payment-button";
 
 			$log = new API\CQLoggingService();
 			$log::write("[CQ Add Payment Button] " . $message);
 
-			if (isset($_POST['ajaxrequest']) && $_POST['ajaxrequest'] === 'true') {
+            if ($is_ajax === true) {
                 Common_Helpers::renderResponse(array(
                     "success" => false,
                     "message" => $message
@@ -263,9 +275,9 @@ class Edit_Payment_Button {
 		);
 
 
-		$message = __('Payment button edited successfully.', 'coinqvest');
+		$message = esc_attr(__('Payment button edited successfully.', 'coinqvest'));
 
-		if (isset($_POST['ajaxrequest']) && $_POST['ajaxrequest'] === 'true') {
+        if ($is_ajax === true) {
             Common_Helpers::renderResponse(array(
                 "success" => true,
                 "message" => $message,

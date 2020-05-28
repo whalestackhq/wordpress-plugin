@@ -33,8 +33,8 @@ class Activator {
 				status smallint(1) DEFAULT 1 NOT NULL,
 				name tinytext NOT NULL,
 				json text NOT NULL,
-				cssclass varchar(100) DEFAULT '' NOT NULL,
-				buttontext varchar(50) DEFAULT '' NOT NULL,
+				cssclass varchar(100) DEFAULT NULL,
+				buttontext varchar(50) DEFAULT NULL,
 				PRIMARY KEY (id)
 			) $charset_collate;";
 
