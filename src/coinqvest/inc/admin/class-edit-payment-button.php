@@ -13,14 +13,14 @@ class Edit_Payment_Button {
 
 	public function render_edit_payment_button_page(){
 
-		$id = $_GET['id'];
+		$id = absint($_GET['id']);
 
 		global $wpdb;
 		$table_name = $wpdb->prefix . 'coinqvest_payment_buttons';
 		$row = $wpdb->get_row("SELECT name, hashid, status, cssclass, buttontext, json FROM ".$table_name." WHERE hashid = " . $id);
 
 		if (!$row) {
-			echo '<p class="coinqvest_payments_error_msg" style="color: #dc3232;">' . __('Requested button id doesn\'t exist.', 'coinqvest' ) . '</p>';
+			echo '<p class="coinqvest_payments_error_msg" style="color: #dc3232;">' . esc_html(__('Requested button id doesn\'t exist.', 'coinqvest' )) . '</p>';
 		    exit;
 		}
 
@@ -30,10 +30,10 @@ class Edit_Payment_Button {
 
         <div class="wrap">
 
-            <h2><?php _e('Edit Payment Button', 'coinqvest')?></h2>
+            <h2><?php echo esc_html(__('Edit Payment Button', 'coinqvest'))?></h2>
 
             <p>
-	            <?php _e('Build the JSON object according to the COINQVEST API documentation', 'coinqvest')?>: <br><a href="https://www.coinqvest.com/en/api-docs#post-checkout-hosted" target="_blank">https://www.coinqvest.com/en/api-docs#post-checkout-hosted</a>
+	            <?php echo esc_html(__('Build the JSON object according to the COINQVEST API documentation', 'coinqvest'))?>: <br><a href="https://www.coinqvest.com/en/api-docs#post-checkout-hosted" target="_blank">https://www.coinqvest.com/en/api-docs#post-checkout-hosted</a>
             </p>
 
             <div id="coinqvest_form_feedback"></div>
@@ -43,21 +43,21 @@ class Edit_Payment_Button {
                 <input type="hidden" name="action" value="coinqvest_admin_form_response">
                 <?php wp_nonce_field( 'editPaymentButton-dfs!%sd' ); ?>
                 <input type="hidden" name="task" value="edit_payment_button">
-                <input type="hidden" name="checkout_id" value="<?=$row->hashid?>">
+                <input type="hidden" name="checkout_id" value="<?=esc_attr($row->hashid)?>">
 
                 <table class="form-table" role="presentation">
 
                     <tr>
-                        <th scope="row"><?php _e('Button Name', 'coinqvest')?></th>
-                        <td><input name="cq_button_name" type="text" id="cq_button_name" value="<?=$row->name?>" class="regular-text" /></td>
+                        <th scope="row"><?php echo esc_html(__('Button Name', 'coinqvest'))?></th>
+                        <td><input name="cq_button_name" type="text" id="cq_button_name" value="<?=esc_attr($row->name)?>" class="regular-text" /></td>
                     </tr>
 
                     <tr>
-                        <th scope="row"><?php _e('JSON Object', 'coinqvest')?></th>
+                        <th scope="row"><?php echo esc_html(__('JSON Object', 'coinqvest'))?></th>
                         <td>
                             <textarea name="cq_button_json" rows="15" style="width:500px"><?=json_encode(json_decode($row->json), JSON_PRETTY_PRINT)?></textarea>
 
-                            <p class="description"><?php _e('Example of a minimal JSON object:', 'coinqvest')?></p>
+                            <p class="description"><?php echo esc_html(__('Example of a minimal JSON object:', 'coinqvest'))?></p>
 
                             <pre class="json"><?=Common_Helpers::pretty_json_example()?></pre>
 
@@ -65,29 +65,29 @@ class Edit_Payment_Button {
                     </tr>
 
                     <tr>
-                        <th scope="row"><?php _e('Button Text', 'coinqvest')?> <span class="optional">(<?php _e('optional', 'coinqvest')?>)</span></th>
+                        <th scope="row"><?php echo esc_html(__('Button Text', 'coinqvest'))?> <span class="optional">(<?php echo esc_html(__('optional', 'coinqvest'))?>)</span></th>
                         <td>
-                            <input name="cq_button_text" type="text" id="cq_button_text" value="<?=$button_text?>" placeholder="<?php _e('Buy Now', 'coinqvest')?>" class="regular-text" />
-                            <p class="description"><?php _e('Customize the button text. Default is "Buy Now".', 'coinqvest')?></p>
+                            <input name="cq_button_text" type="text" id="cq_button_text" value="<?=esc_attr($button_text)?>" placeholder="<?php echo esc_html(__('Buy Now', 'coinqvest'))?>" class="regular-text" />
+                            <p class="description"><?php echo esc_html(__('Customize the button text. Default is "Buy Now".', 'coinqvest'))?></p>
                         </td>
                     </tr>
 
                     <tr>
-                        <th scope="row"><?php _e('Button CSS Class', 'coinqvest')?> <span class="optional">(<?php _e('optional', 'coinqvest')?>)</span></th>
+                        <th scope="row"><?php echo esc_html(__('Button CSS Class', 'coinqvest'))?> <span class="optional">(<?php echo esc_html(__('optional', 'coinqvest'))?>)</span></th>
                         <td>
-                            <input name="cq_button_css_class" type="text" id="cq_button_css_class" value="<?=$row->cssclass?>" placeholder="my-custom-button-class" class="regular-text" />
-                            <p class="description"><?php _e('Customize the button style. Add a CSS class here.', 'coinqvest')?></p>
+                            <input name="cq_button_css_class" type="text" id="cq_button_css_class" value="<?=esc_attr($row->cssclass)?>" placeholder="my-custom-button-class" class="regular-text" />
+                            <p class="description"><?php echo esc_html(__('Customize the button style. Add a CSS class here.', 'coinqvest'))?></p>
                         </td>
                     </tr>
 
                     <tr>
-                        <th scope="row"><?php _e('Status', 'coinqvest')?></th>
-                        <td><input name="cq_button_status" type="checkbox" id="cq_button_status" <?=$row->status == 1 ? "checked" : null ?>  /> <?php _e('active', 'coinqvest')?></td>
+                        <th scope="row"><?php echo esc_html(__('Status', 'coinqvest'))?></th>
+                        <td><input name="cq_button_status" type="checkbox" id="cq_button_status" <?=$row->status == 1 ? "checked" : null ?>  /> <?php echo esc_html(__('active', 'coinqvest'))?></td>
                     </tr>
 
                 </table>
 
-                <p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="<?php _e('Save', 'coinqvest')?>"  /></p>
+                <p class="submit"><input type="submit" name="submit" id="submit" class="button button-primary" value="<?php echo esc_html(__('Save', 'coinqvest'))?>"  /></p>
 
             </form>
 
@@ -111,7 +111,7 @@ class Edit_Payment_Button {
         $is_ajax = (isset( $_POST['ajaxrequest']) && $_POST['ajaxrequest'] === 'true') ? true : false;
 
         if (!empty($_POST['cq_button_text'])) {
-            if ($_POST['cq_button_text'] == esc_attr(__('Buy Now', 'coinqvest'))) {
+            if ($_POST['cq_button_text'] == __('Buy Now', 'coinqvest')) {
                 $button_text = null;
             } else {
                 $button_text = sanitize_text_field($_POST['cq_button_text']);
@@ -130,7 +130,7 @@ class Edit_Payment_Button {
 
 		if (!$row) {
 			$result = "error";
-			$message = esc_attr(sprintf(__('Payment button id %s does not exist.', 'coinqvest'), absint($id)));
+			$message = esc_html(sprintf(__('Payment button id %s does not exist.', 'coinqvest'), $id));
 			$page = "coinqvest-payment-buttons";
 
             if ($is_ajax === true) {
@@ -147,7 +147,7 @@ class Edit_Payment_Button {
 
 		if (is_null($name) || is_null($json)) {
 			$result = "error";
-            $message = esc_attr(__('Please provide button name and JSON object.', 'coinqvest'));
+            $message = esc_html(__('Please provide button name and JSON object.', 'coinqvest'));
 			$page = "coinqvest-create-payment-button";
 
             if ($is_ajax === true) {
@@ -164,7 +164,7 @@ class Edit_Payment_Button {
 
 		if (strlen($name) > 56) {
 			$result = "error";
-			$message = esc_attr(sprintf(__('Name is too long. Max. %s characters.', 'coinqvest'), 56));
+			$message = esc_html(sprintf(__('Name is too long. Max. %s characters.', 'coinqvest'), 56));
 			$page = "coinqvest-create-payment-button";
 
             if ($is_ajax === true) {
@@ -181,7 +181,7 @@ class Edit_Payment_Button {
 
         if (!is_null($button_text) && strlen($button_text) > 50) {
 			$result = "error";
-			$message = esc_attr(sprintf(__('Button text is too long. Max. %s characters.', 'coinqvest'), 50));
+			$message = esc_html(sprintf(__('Button text is too long. Max. %s characters.', 'coinqvest'), 50));
 			$page = "coinqvest-create-payment-button";
 
             if ($is_ajax === true) {
@@ -204,7 +204,7 @@ class Edit_Payment_Button {
 
 		if (empty($api_settings['api_key']) || empty($api_settings['api_secret'])) {
 			$result = "error";
-			$message = esc_attr(__('API key and API secret do not exist.', 'coinqvest'));
+			$message = esc_html(__('API key and API secret do not exist.', 'coinqvest'));
 			$page = "coinqvest-create-payment-button";
 
             if ($is_ajax === true) {
@@ -230,13 +230,14 @@ class Edit_Payment_Button {
 		);
 
         $json = str_replace("\\", "", $json);
+        $json_array = json_decode($json, true);
 
-		$response = $client->post('/checkout/validate', json_decode($json, true));
+		$response = $client->post('/checkout/validate-for-wordpress', $json_array);
 
 		if ($response->httpStatusCode != 200) {
 
 			$result = "error";
-			$message = esc_attr("Status Code: " . $response->httpStatusCode . " - " . $response->responseBody);
+			$message = esc_html("Status Code: " . $response->httpStatusCode . " - " . $response->responseBody);
 			$page = "coinqvest-create-payment-button";
 
 			$log = new API\CQLoggingService();
@@ -255,6 +256,10 @@ class Edit_Payment_Button {
 
 		}
 
+        $response = json_decode($response->responseBody);
+
+        $currency = sanitize_text_field($json_array['charge']['currency']);
+
 		/**
 		 * Save to database
 		 */
@@ -267,6 +272,9 @@ class Edit_Payment_Button {
 			array(
 				'status' => $status,
 				'name' => $name,
+                'total' => $response->total,
+                'decimals' => $response->decimals,
+                'currency' => $currency,
 				'json' => $json,
                 'cssclass' => $css_class,
                 'buttontext' => $button_text
@@ -275,7 +283,7 @@ class Edit_Payment_Button {
 		);
 
 
-		$message = esc_attr(__('Payment button edited successfully.', 'coinqvest'));
+		$message = esc_html(__('Payment button edited successfully.', 'coinqvest'));
 
         if ($is_ajax === true) {
             Common_Helpers::renderResponse(array(

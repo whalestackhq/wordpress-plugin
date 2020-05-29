@@ -28,11 +28,11 @@ class Admin_Helpers {
 
 			if ($_REQUEST['result'] === "success") {
 
-				$html =	'<div class="notice notice-success is-dismissible"><p>'.$message.'</p></div>';
+				$html =	'<div class="notice notice-success is-dismissible"><p>'.esc_html($message).'</p></div>';
 
 			} elseif ($_REQUEST['result'] === "error") {
 
-				$html =	'<div class="notice notice-error is-dismissible"><p>'.$message.'</p></div>';
+				$html =	'<div class="notice notice-error is-dismissible"><p>'.esc_html($message).'</p></div>';
 
 			}
 

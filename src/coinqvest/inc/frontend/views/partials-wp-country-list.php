@@ -1,7 +1,7 @@
 <?php
 $countries = '
 <select class="cq-select" name="cq_country">
-    <option value="">' . esc_attr(__('Please select...', 'coinqvest')) . '</option>
+    <option value="">' . esc_html(__('Please select...', 'coinqvest')) . '</option>
     <option value="AB">Abkhazia</option>
     <option value="AF">Afghanistan</option>
     <option value="AL">Albania</option>

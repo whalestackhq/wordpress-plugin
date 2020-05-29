@@ -41,7 +41,7 @@ th span.optional {
     font-size: 11px;
 }
 
-.wp-list-table .column-price { width: 10%; }
+.wp-list-table .column-price { width: 15%; }
 .wp-list-table .column-shortcode { width: 25%; }
 .wp-list-table .column-status { width: 10%; }
 /*.wp-list-table .column-json { width: 30%; }*/

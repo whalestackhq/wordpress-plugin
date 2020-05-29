@@ -33,13 +33,13 @@ class Logs {
 
         <div class="wrap">
 
-            <h1><?php esc_attr(_e('COINQVEST Debug Log', 'coinqvest'))?></h1>
+            <h1><?php echo esc_html(__('COINQVEST Debug Log', 'coinqvest'))?></h1>
 
-            <p><?php esc_attr(_e('Errors log and debugging', 'coinqvest'))?></p>
+            <p><?php echo esc_html(__('Errors log and debugging', 'coinqvest'))?></p>
 
             <div class="logs">
 
-                <textarea class="terminal"><?=esc_attr($log_content)?></textarea>
+                <textarea class="terminal"><?=esc_html($log_content)?></textarea>
 
             </div>
 

@@ -16,8 +16,8 @@ class Payment_Buttons_List_Table extends Libraries\WP_List_Table  {
 		$this->plugin_text_domain = $plugin_text_domain;
 
 		parent::__construct( [
-			'singular' => __( 'Item', $this->plugin_text_domain ), //singular name of the listed records
-			'plural'   => __( 'Items', $this->plugin_text_domain ), //plural name of the listed records
+			'singular' => esc_html(__( 'Item', $this->plugin_text_domain )), //singular name of the listed records
+			'plural'   => esc_html(__( 'Items', $this->plugin_text_domain )), //plural name of the listed records
 			'ajax'     => false //does this table support ajax?
 		] );
 
@@ -68,7 +68,7 @@ class Payment_Buttons_List_Table extends Libraries\WP_List_Table  {
 
 		global $wpdb;
 
-		$sql = "SELECT hashid, name, status, json, time, cssclass, buttontext FROM {$wpdb->prefix}coinqvest_payment_buttons";
+		$sql = "SELECT * FROM {$wpdb->prefix}coinqvest_payment_buttons";
 
 		if ( ! empty( $_REQUEST['orderby'] ) ) {
 			$sql .= ' ORDER BY ' . esc_sql( $_REQUEST['orderby'] );
@@ -99,7 +99,7 @@ class Payment_Buttons_List_Table extends Libraries\WP_List_Table  {
 
 	/** Text displayed when no data is available */
 	public function no_items() {
-		echo esc_attr(__('No payment buttons available yet. Add a new one first.'));
+		echo esc_html(__('No payment buttons available yet. Add a new one first.'));
 	}
 
 
@@ -111,7 +111,7 @@ class Payment_Buttons_List_Table extends Libraries\WP_List_Table  {
 			case 'status':
 			case 'price':
 			case 'time':
-				return $item[ $column_name ];
+				return date('Y-m-d', strtotime($item[ $column_name ]));
 			case 'cssclass':
 				return $item[ $column_name ];
 			case 'buttontext':
@@ -125,11 +125,11 @@ class Payment_Buttons_List_Table extends Libraries\WP_List_Table  {
 
 		$delete_nonce = wp_create_nonce( 'cq_delete_item' );
 
-		$title = '<strong>' . esc_attr($item['name']) . '</strong>';
+		$title = '<strong>' . esc_html($item['name']) . '</strong>';
 
 		$actions = [
-			'edit' => sprintf('<a href="/wp-admin/admin.php?page=coinqvest-edit-payment-button&id=%s">' . esc_attr(__('Edit', 'coinqvest')) .'</a>', absint( $item['hashid'] ) ),
-			'delete' => sprintf( '<a href="?page=%s&action=%s&item=%s&_wpnonce=%s">' . esc_attr(__('Delete', 'coinqvest')) .'</a>', esc_attr( $_REQUEST['page'] ), 'delete', absint( $item['hashid'] ), $delete_nonce )
+			'edit' => sprintf('<a href="/wp-admin/admin.php?page=coinqvest-edit-payment-button&id=%s">' . esc_html(__('Edit', 'coinqvest')) .'</a>', absint( $item['hashid'] ) ),
+			'delete' => sprintf( '<a href="?page=%s&action=%s&item=%s&_wpnonce=%s">' . esc_html(__('Delete', 'coinqvest')) .'</a>', sanitize_text_field( $_REQUEST['page'] ), 'delete', absint( $item['hashid'] ), $delete_nonce )
 		];
 
 		return $title . $this->row_actions( $actions );
@@ -143,7 +143,8 @@ class Payment_Buttons_List_Table extends Libraries\WP_List_Table  {
 
 	/** Custom Method for price column */
 	function column_price( $item ) {
-		return esc_attr(Common_Helpers::calculate_price($item['json']));
+	    $price = number_format_i18n($item['total'], $item['decimals']) . ' ' . $item['currency'];
+		return $price;
 	}
 
 	/** Custom Method for status column */
@@ -153,20 +154,20 @@ class Payment_Buttons_List_Table extends Libraries\WP_List_Table  {
 
     /** Custom Method for button text column */
     function column_buttontext( $item ) {
-        $button_text = is_null($item['buttontext']) ? esc_attr(__('Buy Now', 'coinqvest')) : esc_attr($item['buttontext']);
-        return '<span class="button">'.$button_text.'</span>';
+        $button_text = is_null($item['buttontext']) ? __('Buy Now', 'coinqvest') : $item['buttontext'];
+        return '<span class="button">' . esc_html($button_text) . '</span>';
     }
 
 	/** Associative array of columns */
 	function get_columns() {
 		$columns = [
-			'name'      => esc_attr(__( 'Name', $this->plugin_text_domain )),
-			'status'    => esc_attr(__( 'Status', $this->plugin_text_domain )),
-			'price'    => esc_attr(__( 'Price', $this->plugin_text_domain )),
-			'shortcode' => esc_attr(__( 'Shortcode', $this->plugin_text_domain )),
-			'buttontext'    => esc_attr(__( 'Button text', $this->plugin_text_domain )),
-			'cssclass'    => esc_attr(__( 'CSS class', $this->plugin_text_domain )),
-			'time'    => esc_attr(__( 'Time', $this->plugin_text_domain ))
+			'name'      => esc_html(__( 'Name', $this->plugin_text_domain )),
+			'status'    => esc_html(__( 'Status', $this->plugin_text_domain )),
+			'price'    => esc_html(__( 'Price', $this->plugin_text_domain )),
+			'shortcode' => esc_html(__( 'Shortcode', $this->plugin_text_domain )),
+			'buttontext'    => esc_html(__( 'Button text', $this->plugin_text_domain )),
+			'cssclass'    => esc_html(__( 'CSS class', $this->plugin_text_domain )),
+			'time'    => esc_html(__( 'Time', $this->plugin_text_domain ))
 		];
 
 		return $columns;
@@ -187,31 +188,33 @@ class Payment_Buttons_List_Table extends Libraries\WP_List_Table  {
 		if ( 'delete' === $this->current_action() ) {
 
 			// In our file that handles the request, verify the nonce.
-			$nonce = esc_attr( $_REQUEST['_wpnonce'] );
+			$nonce = sanitize_text_field( $_REQUEST['_wpnonce'] );
 
 			if ( ! wp_verify_nonce( $nonce, 'cq_delete_item' ) ) {
 				die( 'Go get a life script kiddies' );
 			}
 			else {
 
+			    $id = absint( $_GET['item']);
+
 				// can only be deleted when status is inactive
 				global $wpdb;
 				$table_name = $wpdb->prefix . 'coinqvest_payment_buttons';
-				$row = $wpdb->get_row("SELECT hashid, status FROM ".$table_name." WHERE hashid = " . absint( $_GET['item']));
+				$row = $wpdb->get_row("SELECT hashid, status FROM ".$table_name." WHERE hashid = " . $id);
 
 				if ($row->status == 1) {
 					$result = "error";
-					$message = esc_attr(__('Cannot be deleted when status is active', 'coinqvest'));
+					$message = esc_html(__('Cannot be deleted when status is active', 'coinqvest'));
 					$page = "coinqvest-payment-buttons";
 					$this->redirect = new Admin_Helpers();
 					$this->redirect->custom_redirect($result, $message, $page);
 					exit;
 				}
 
-				self::delete_item( absint( $_GET['item'] ) );
+				self::delete_item($id);
 
 				$result = "success";
-				$message = esc_attr(__('Button successfully deleted', 'coinqvest'));
+				$message = esc_html(__('Button successfully deleted', 'coinqvest'));
 				$page = "coinqvest-payment-buttons";
 				$this->redirect = new Admin_Helpers();
 				$this->redirect->custom_redirect($result, $message, $page);

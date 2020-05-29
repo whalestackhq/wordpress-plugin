@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: COINQVEST v0.0.1\n"
-"POT-Creation-Date: 2020-05-28 12:51+0200\n"
+"POT-Creation-Date: 2020-05-29 14:25+0200\n"
 "PO-Revision-Date: 2020-05-23 10:41+0200\n"
 "Last-Translator: \n"
 "Language-Team: COINQVEST www.coinqvest.com\n"
@@ -66,7 +66,7 @@ msgstr ""
 
 #: admin/class-add-payment-button.php:65 admin/class-edit-payment-button.php:70
 #: admin/class-edit-payment-button.php:114
-#: admin/class-payment-buttons-list-table.php:156
+#: admin/class-payment-buttons-list-table.php:157
 #: frontend/class-checkout-form.php:70
 msgid "Buy Now"
 msgstr ""
@@ -84,7 +84,7 @@ msgid "Customize the button style. Add a CSS class here."
 msgstr ""
 
 #: admin/class-add-payment-button.php:81 admin/class-edit-payment-button.php:84
-#: admin/class-payment-buttons-list-table.php:164
+#: admin/class-payment-buttons-list-table.php:165
 msgid "Status"
 msgstr ""
 
@@ -118,7 +118,7 @@ msgstr ""
 msgid "API key and API secret don't exist."
 msgstr ""
 
-#: admin/class-add-payment-button.php:258
+#: admin/class-add-payment-button.php:266
 msgid "Payment button created successfully."
 msgstr ""
 
@@ -143,17 +143,15 @@ msgid "How it works:"
 msgstr ""
 
 #: admin/class-coinqvest-start.php:43
-#, php-format
-msgid "Go to %s and log in or sign up."
+msgid "Log in or sign up on COINQVEST."
 msgstr ""
 
 #: admin/class-coinqvest-start.php:46
-msgid "Find your API keys here"
+msgid "Get your API Keys."
 msgstr ""
 
 #: admin/class-coinqvest-start.php:49
-#, php-format
-msgid "Enter API key and secret on the %1$s settings page. %2$s"
+msgid "Enter API key and secret on the settings page."
 msgstr ""
 
 #: admin/class-coinqvest-start.php:52
@@ -165,8 +163,7 @@ msgid "Embed that payment button with the generated shortcode into your Wordpres
 msgstr ""
 
 #: admin/class-coinqvest-start.php:58
-#, php-format
-msgid "Manage all payments in your merchant account on %s. You will be notified by email about every new payment."
+msgid "Manage all payments in your merchant account on www.coinqvest.com. You will be notified by email about every new payment."
 msgstr ""
 
 #: admin/class-coinqvest-start.php:69
@@ -201,7 +198,7 @@ msgstr ""
 msgid "Build the JSON object according to the COINQVEST API documentation"
 msgstr ""
 
-#: admin/class-edit-payment-button.php:133 frontend/class-checkout-form.php:291
+#: admin/class-edit-payment-button.php:133 frontend/class-checkout-form.php:292
 #, php-format
 msgid "Payment button id %s does not exist."
 msgstr ""
@@ -210,7 +207,7 @@ msgstr ""
 msgid "API key and API secret do not exist."
 msgstr ""
 
-#: admin/class-edit-payment-button.php:278
+#: admin/class-edit-payment-button.php:286
 msgid "Payment button edited successfully."
 msgstr ""
 
@@ -242,35 +239,35 @@ msgstr ""
 msgid "Delete"
 msgstr ""
 
-#: admin/class-payment-buttons-list-table.php:163
+#: admin/class-payment-buttons-list-table.php:164
 msgid "Name"
 msgstr ""
 
-#: admin/class-payment-buttons-list-table.php:165
+#: admin/class-payment-buttons-list-table.php:166
 msgid "Price"
 msgstr ""
 
-#: admin/class-payment-buttons-list-table.php:166
+#: admin/class-payment-buttons-list-table.php:167
 msgid "Shortcode"
 msgstr ""
 
-#: admin/class-payment-buttons-list-table.php:167
+#: admin/class-payment-buttons-list-table.php:168
 msgid "Button text"
 msgstr ""
 
-#: admin/class-payment-buttons-list-table.php:168
+#: admin/class-payment-buttons-list-table.php:169
 msgid "CSS class"
 msgstr ""
 
-#: admin/class-payment-buttons-list-table.php:169
+#: admin/class-payment-buttons-list-table.php:170
 msgid "Time"
 msgstr ""
 
-#: admin/class-payment-buttons-list-table.php:204
+#: admin/class-payment-buttons-list-table.php:207
 msgid "Cannot be deleted when status is active"
 msgstr ""
 
-#: admin/class-payment-buttons-list-table.php:214
+#: admin/class-payment-buttons-list-table.php:217
 msgid "Button successfully deleted"
 msgstr ""
 
@@ -279,8 +276,7 @@ msgid "COINQVEST API and Global Settings"
 msgstr ""
 
 #: admin/class-settings.php:69
-#, php-format
-msgid "Go to %1$s and log in or sign up. You will find your API keys here: %2$s"
+msgid "Get your API Keys on www.coinqvest.com"
 msgstr ""
 
 #: admin/class-settings.php:82
@@ -463,28 +459,28 @@ msgstr ""
 msgid "Cancel Payment"
 msgstr ""
 
-#: frontend/class-checkout-form.php:301
+#: frontend/class-checkout-form.php:302
 #, php-format
 msgid "Payment button id %s is inactive."
 msgstr ""
 
-#: frontend/class-checkout-form.php:327
+#: frontend/class-checkout-form.php:328
 msgid "Please provide all highlighted fields."
 msgstr ""
 
-#: frontend/class-checkout-form.php:335
+#: frontend/class-checkout-form.php:336
 msgid "Please provide a valid email address."
 msgstr ""
 
-#: frontend/class-checkout-form.php:381
+#: frontend/class-checkout-form.php:382
 msgid "Failed to create customer. Please try again later."
 msgstr ""
 
-#: frontend/class-checkout-form.php:421
+#: frontend/class-checkout-form.php:422
 msgid "Failed to create checkout. Please try again later."
 msgstr ""
 
-#: frontend/class-checkout-form.php:435
+#: frontend/class-checkout-form.php:436
 msgid "Success. You will be redirected to the checkout page."
 msgstr ""
 
