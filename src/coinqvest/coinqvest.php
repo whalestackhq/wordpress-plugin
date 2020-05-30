@@ -8,6 +8,8 @@
  * Version: 0.0.1
  * License: Apache 2.0
  * License URI: https://www.apache.org/licenses/LICENSE-2.0
+ * Text domain: coinqvest
+ * Domain Path: /languages
  */
 
 namespace COINQVEST;
@@ -20,9 +22,9 @@ defined( 'ABSPATH' ) or exit;
 define( __NAMESPACE__ . '\NS', __NAMESPACE__ . '\\' );
 define( NS . 'PLUGIN_NAME', 'coinqvest' );
 define( NS . 'PLUGIN_VERSION', '0.0.1' );
-define( NS . 'PLUGIN_NAME_DIR', plugin_dir_path( __FILE__ ) ); // /Users/stefan/WebDev/coinqvest_wordpress/wp-content/plugins/COINQVEST/
-define( NS . 'PLUGIN_NAME_URL', plugin_dir_url( __FILE__ ) ); // http://wordpress.coinqvest.local/wp-content/plugins/COINQVEST/
-define( NS . 'PLUGIN_BASENAME', plugin_basename( __FILE__ ) ); // COINQVEST/coinqvest.php
+define( NS . 'PLUGIN_NAME_DIR', plugin_dir_path( __FILE__ ) );
+define( NS . 'PLUGIN_NAME_URL', plugin_dir_url( __FILE__ ) );
+define( NS . 'PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
 define( NS . 'PLUGIN_TEXT_DOMAIN', 'coinqvest' );
 
 /**

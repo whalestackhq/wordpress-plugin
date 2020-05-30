@@ -10,7 +10,7 @@ class Activator {
 
 		// Check PHP Version and deactivate & die if it doesn't meet minimum requirements.
 		if ( version_compare( PHP_VERSION, $min_php, '<' ) ) {
-					deactivate_plugins( plugin_basename( __FILE__ ) );
+            deactivate_plugins( plugin_basename( __FILE__ ) );
 			wp_die( 'This plugin requires a minimum PHP Version of ' . $min_php );
 		}
 
@@ -20,7 +20,7 @@ class Activator {
 
 		global $wpdb;
 		$charset_collate = $wpdb->get_charset_collate();
-		$table_name = $wpdb->prefix . 'coinqvest_payment_tries';
+		$table_name = $wpdb->prefix . 'coinqvest_payment_buttons';
 
 		$query = $wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like($table_name));
 
@@ -32,9 +32,12 @@ class Activator {
 				time datetime DEFAULT '0000-00-00 00:00:00' NOT NULL,
 				status smallint(1) DEFAULT 1 NOT NULL,
 				name tinytext NOT NULL,
+				total decimal(20,7) DEFAULT NULL,
+				decimals int(1) DEFAULT NULL,
+				currency varchar(5) DEFAULT NULL,
 				json text NOT NULL,
-				cssclass varchar(100) DEFAULT '' NOT NULL,
-				buttontext varchar(50) DEFAULT '' NOT NULL,
+				cssclass varchar(100) DEFAULT NULL,
+				buttontext varchar(50) DEFAULT NULL,
 				PRIMARY KEY (id)
 			) $charset_collate;";
 

@@ -1,8 +1,6 @@
 <?php
 namespace COINQVEST\Inc\Common;
 
-use COINQVEST\Inc\Libraries\API\CQLoggingService;
-
 class Common_Helpers {
 
 	public function get_coinqvest_credentials() {
@@ -24,32 +22,13 @@ class Common_Helpers {
 
 	}
 
-	public static function calculate_price($json) {
-
-		$json = json_decode($json, true);
-
-		$total = 0;
-		foreach ($json['charge']['lineItems'] as $lineItem) {
-
-			$quantity = (isset($lineItem['quantity']) ? $lineItem['quantity'] : 1);
-
-			$price = $lineItem['netAmount'] * $quantity;
-
-			$total += $price;
-		}
-
-		// todo: this should use our Format.js in the future. It's currently user locale but should inherit format from the currency settings instead.
-		return number_format_i18n($total, 2) . ' ' . $json['charge']['currency'];
-
-	}
-
 	public static function validate_required_form_fields($requiredFields, $params) {
 
 		$errors = array();
 		foreach ($requiredFields as $field) {
 
 			if (!$params[$field] || $params[$field] == '') {
-				$errors[] = $field;
+				$errors[] = esc_attr($field);
 			}
 
 		}
