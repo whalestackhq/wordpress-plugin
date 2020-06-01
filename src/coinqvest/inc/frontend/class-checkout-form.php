@@ -1,7 +1,7 @@
 <?php
 
 namespace COINQVEST\Inc\Frontend;
-use COINQVEST\Inc\Libraries\API;
+use COINQVEST\Inc\Libraries\Api;
 use COINQVEST\Inc\Common\Common_Helpers;
 
 class Checkout_Form {
@@ -35,14 +35,14 @@ class Checkout_Form {
 		$row = $wpdb->get_row("SELECT hashid, status, cssclass, buttontext, json, total, decimals, currency FROM " . $table_name . " WHERE hashid = " . $id);
 
 		if (!$row) {
-			$log = new API\CQLoggingService();
+			$log = new Api\CQLoggingService();
 			$log::write('[CQ Frontend Shortcode Display] [COINQVEST_checkout id="' . $id . '"] doesn\'t exist but is embedded on your website.');
 			return '<div class="coinqvest_payments_error_msg coinqvest-text-color-red">' . esc_html(__('Something is wrong with your COINQVEST checkout shortcode.', 'coinqvest' )) . '</div>';
 		}
 
 		// validate that button is active
 		if ($row->status != 1) {
-			$log = new API\CQLoggingService();
+			$log = new Api\CQLoggingService();
 			$log::write('[CQ Frontend Shortcode Display] [COINQVEST_checkout id="' . $id . '"] is not active but is embedded on your website.');
 			return '<p class="coinqvest-text-color-red">' . esc_html(__('Your COINQVEST checkout button is not active.', 'coinqvest' )) . '</p>';
 		}
@@ -285,7 +285,7 @@ class Checkout_Form {
 		$row = $wpdb->get_row("SELECT hashid, status, json FROM ".$table_name." WHERE hashid = " . $id);
 
 		if (!$row) {
-			$log = new API\CQLoggingService();
+			$log = new Api\CQLoggingService();
 			$log::write('[CQ Frontend Submit Checkout] [COINQVEST_checkout id="' . $id . '"] doesn\'t exist.');
             Common_Helpers::renderResponse(array(
                 "success" => false,
@@ -295,7 +295,7 @@ class Checkout_Form {
 
 		// validate that button is active
 		if ($row->status != 1) {
-			$log = new API\CQLoggingService();
+			$log = new Api\CQLoggingService();
 			$log::write('[CQ Frontend Submit Checkout] [COINQVEST_checkout id="' . $id . '"] is not active.');
             Common_Helpers::renderResponse(array(
                 "success" => false,
@@ -344,7 +344,7 @@ class Checkout_Form {
 		 * Init the COINQVEST API
 		 */
 
-		$client = new API\CQMerchantClient(
+		$client = new Api\CQMerchantClient(
 			$settings['api_key'],
 			$settings['api_secret'],
 			true

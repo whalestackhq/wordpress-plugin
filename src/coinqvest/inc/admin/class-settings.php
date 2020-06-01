@@ -17,13 +17,13 @@ class Settings {
         $settings = get_option('coinqvest_settings');
         $settings = unserialize($settings);
 
-        $api_key = $settings['api_key'];
-        $api_secret = $settings['api_secret'];
-        $webhook_url = $settings['webhook_url'];
-		$return_url = $settings['return_url'];
-		$cancel_url = $settings['cancel_url'];
-		$settlement_currency = $settings['settlement_currency'];
-		$customer_info = $settings['customer_info'];
+        $api_key = isset($settings['api_key']) ? $settings['api_key'] : null;
+        $api_secret = isset($settings['api_secret']) ? $settings['api_secret'] : null;
+        $webhook_url = isset($settings['webhook_url']) ? $settings['webhook_url'] : null;
+		$return_url = isset($settings['return_url']) ? $settings['return_url'] : null;
+		$cancel_url = isset($settings['cancel_url']) ? $settings['cancel_url'] : null;
+		$settlement_currency = isset($settings['settlement_currency']) ? $settings['settlement_currency'] : null;
+		$customer_info = isset($settings['customer_info']) ? $settings['customer_info'] : null;
 
 		$fiat_currencies = array();
 		if (!empty($api_key) && !empty($api_secret)) {

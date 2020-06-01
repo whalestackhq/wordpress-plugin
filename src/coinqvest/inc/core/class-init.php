@@ -100,6 +100,9 @@ class Init {
 
 		$plugin_public = new Frontend\Frontend( $this->get_plugin_name(), $this->get_version(), $this->get_plugin_text_domain(), $this->get_plugin_name_url() );
 
+        $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
+        $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+
 		// registers the checkout button short code
 		$this->loader->add_shortcode( 'COINQVEST_checkout', $plugin_public, 'coinqvest_render_shortcode_form');
 
@@ -110,9 +113,6 @@ class Init {
 		// when a form is submitted to admin-ajax.php
 		$this->loader->add_action( 'wp_ajax_nopriv_submit_coinqvest_checkout', $plugin_public, 'public_form_response_handler');
 		$this->loader->add_action( 'wp_ajax_submit_coinqvest_checkout', $plugin_public, 'public_form_response_handler');
-
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
-		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
 
 	}
 

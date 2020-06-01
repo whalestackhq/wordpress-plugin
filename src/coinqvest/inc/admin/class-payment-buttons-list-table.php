@@ -38,7 +38,7 @@ class Payment_Buttons_List_Table extends Libraries\WP_List_Table  {
 		$this->handle_table_actions();
 
 		if (isset($_REQUEST['wp_screen_options']['value'])) {
-			$_SESSION['cq-buttons-list-value'] = $_REQUEST['wp_screen_options']['value'];
+			$_SESSION['cq-buttons-list-value'] = sanitize_text_field($_REQUEST['wp_screen_options']['value']);
 		}
 		$items = isset($_SESSION['cq-buttons-list-value']) ? $_SESSION['cq-buttons-list-value'] : 20;
 

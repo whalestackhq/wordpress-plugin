@@ -1,5 +1,5 @@
 <?php
-namespace COINQVEST\Inc\Libraries\API;
+namespace COINQVEST\Inc\Libraries\Api;
 
 defined( 'ABSPATH' ) or exit;
 

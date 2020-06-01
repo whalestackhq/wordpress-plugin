@@ -4,7 +4,7 @@ namespace COINQVEST\Inc\Core;
 
 class Activator {
 
-	public function activate() {
+	public static function activate() {
 
 		$min_php = '5.6.0';
 
