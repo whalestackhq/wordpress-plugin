@@ -8,10 +8,10 @@ class Common_Helpers {
 		$api_settings = get_option('coinqvest_settings');
 		$api_settings = unserialize($api_settings);
 
-		$api_key = $api_settings['api_key'];
-		$api_secret = $api_settings['api_secret'];
+		$api_key = isset($api_settings['api_key']) ? $api_settings['api_key'] : null;
+		$api_secret = isset($api_settings['api_secret']) ? $api_settings['api_secret'] : null;
 
-		if (!isset($api_key) || !isset($api_secret)) {
+		if (is_null($api_key) || is_null($api_secret)) {
 			return null;
 		}
 
