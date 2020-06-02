@@ -4,11 +4,11 @@ namespace COINQVEST\Inc\Libraries\Api;
 defined( 'ABSPATH' ) or exit;
 
 /**
- * Class CQRESTClient
+ * Class CQ_Rest_Client
  *
  * The base class for the COINQVEST Merchant API client.
  */
-class CQRestClient {
+class CQ_Rest_Client {
 
     protected $scheme;
     protected $host;
@@ -33,7 +33,7 @@ class CQRestClient {
      * @param array $query
      * @param array $headers
      * @param array $customOptions
-     * @return CQRESTClientResponseObject
+     * @return CQ_Rest_Client_Response_Object
      */
     protected function sendRequest($endpoint, $requestType, $requestBody = array(), $sendAsJson = false, $query = array(), $headers = array(), $customOptions = array()) {
 
@@ -91,7 +91,7 @@ class CQRestClient {
             list($responseHeaders, $responseBody) = explode($separator, $response, 2);
         }
 
-        $restClientResponseObject = new CQRESTClientResponseObject(
+        $restClientResponseObject = new CQ_Rest_Client_Response_Object(
             $responseBody,
             $responseHeaders,
             curl_getinfo($ch, CURLINFO_HTTP_CODE),

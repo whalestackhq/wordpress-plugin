@@ -28,7 +28,7 @@ class Settings {
 		$fiat_currencies = array();
 		if (!empty($api_key) && !empty($api_secret)) {
 
-			$client = new API\CQMerchantClient(
+			$client = new Api\CQ_Merchant_Client(
 				$api_key,
 				$api_secret,
 				true
@@ -254,7 +254,7 @@ class Settings {
         /**
          * Init COINQVEST API
          */
-		$client = new API\CQMerchantClient(
+		$client = new Api\CQ_Merchant_Client(
 			$api_key,
 			$api_secret,
 			true

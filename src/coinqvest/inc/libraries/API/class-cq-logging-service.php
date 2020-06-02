@@ -4,11 +4,11 @@ namespace COINQVEST\Inc\Libraries\Api;
 defined( 'ABSPATH' ) or exit;
 
 /**
- * Class CQLoggingService
+ * Class CQ_Logging_Service
  *
  * A logging service
  */
-class CQLoggingService {
+class CQ_Logging_Service {
 
     /**
      * Writes to a log file and prepends current time stamp

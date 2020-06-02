@@ -4,12 +4,12 @@ namespace COINQVEST\Inc\Libraries\Api;
 defined( 'ABSPATH' ) or exit;
 
 /**
- * Class CQMerchantClient
+ * Class CQ_Merchant_Client
  *
  * PHP implementation of a REST client for the COINQVEST Merchant API
  * see https://www.coinqvest.com/en/api-docs
  */
-class CQMerchantClient extends CQRestClient {
+class CQ_Merchant_Client extends CQ_Rest_Client {
 
     /**
      * The API Key as given by https://www.coinqvest.com/en/api-settings
@@ -78,7 +78,7 @@ class CQMerchantClient extends CQRestClient {
      *
      * @param string $endpoint
      * @param array $params, a list of GET parameters to be included in the request
-     * @return CQRESTClientResponseObject
+     * @return CQ_Rest_Client_Response_Object
      */
     public function get($endpoint = '/', $params = array()) {
 
@@ -96,7 +96,7 @@ class CQMerchantClient extends CQRestClient {
      *
      * @param string $endpoint
      * @param array $params, an array representing the JSON payload to include in this request
-     * @return CQRESTClientResponseObject
+     * @return CQ_Rest_Client_Response_Object
      */
     public function post($endpoint = '/', $params = array()) {
 
@@ -113,7 +113,7 @@ class CQMerchantClient extends CQRestClient {
      *
      * @param string $endpoint
      * @param array $params, an array representing the JSON payload to include in this request
-     * @return CQRESTClientResponseObject
+     * @return CQ_Rest_Client_Response_Object
      */
     public function delete($endpoint = '/', $params = array()) {
 
@@ -131,7 +131,7 @@ class CQMerchantClient extends CQRestClient {
      *
      * @param string $endpoint
      * @param array $params, an array representing the JSON payload to include in this request
-     * @return CQRESTClientResponseObject
+     * @return CQ_Rest_Client_Response_Object
      */
     public function put($endpoint = '/', $params = array()) {
 
@@ -186,7 +186,7 @@ class CQMerchantClient extends CQRestClient {
             return;
         }
 
-        CQLoggingService::write($message);
+        CQ_Logging_Service::write($message);
 
     }
 

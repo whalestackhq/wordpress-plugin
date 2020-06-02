@@ -1,4 +1,4 @@
-=== COINQVEST ===
+=== COINQVEST Enterprise Cryptocurrency Payment Processing ===
 Contributors: coinqvest
 Tags: crypto, cryptocurrency, payments, payment gateway, payment processing, digital currencies, bitcoin, stellar, lumens, xlm, btc, eth, xrp, ltc, EUR, USD, CAD, NGN
 Requires at least: 4.9
@@ -33,7 +33,7 @@ Example: You sell an e-book for 20 USD on your website. Your user pays in Bitcoi
 
 = Docs and support =
 
-You can find the [documentation](https://www.coinqvest.com/en/api-docs#post-checkout-hosted), [Help Center](https://www.coinqvest.com/en/help-center#overview) and more detailed information about COINQVEST on [coinqvest.com](https://www.coinqvest.com/).
+You can find the [plugin guide](https://www.coinqvest.com/en/blog/a-guide-to-cryptocurrency-payment-processing-with-coinqvest-and-wordpress-b0f7246517c9), [API documentation](https://www.coinqvest.com/en/api-docs#post-checkout-hosted), [Help Center](https://www.coinqvest.com/en/help-center#overview) and more detailed information about COINQVEST on [coinqvest.com](https://www.coinqvest.com/).
 
 == Installation ==
 
@@ -58,12 +58,14 @@ You can find the [documentation](https://www.coinqvest.com/en/api-docs#post-chec
 
 Do you have questions or issues with COINQVEST? Feel free to contact us anytime!
 
-* [Docs](https://www.coinqvest.com/en/api-docs#post-checkout-hosted)
+* [Plugin Guide](https://www.coinqvest.com/en/blog/a-guide-to-cryptocurrency-payment-processing-with-coinqvest-and-wordpress-b0f7246517c9)
+* [API Docs](https://www.coinqvest.com/en/api-docs#post-checkout-hosted)
 * [Help Center](https://www.coinqvest.com/en/help-center#overview)
 
 == Screenshots ==
 
-[https://www.coinqvest.com/images/scf-images/create-checkout.jpg Merchant Dashboard]
-[https://www.coinqvest.com/images/scf-images/hosted-checkout.jpg Hosted Checkout Page]
-[https://www.coinqvest.com/images/scf-images/create-customer.jpg Transaction Records and Invoicing]
-[https://www.coinqvest.com/images/scf-images/create-withdrawal.jpg Instant Withdrawals]
+1. Checkout Modal Options (Minimal and Tax Compliant)
+2. Hosted Checkout Page
+3. COINQVEST Merchant Dashboard
+4. COINQVEST Transaction Records and Invoicing
+5. COINQVEST Instant Withdrawals

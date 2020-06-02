@@ -223,13 +223,13 @@ class Edit_Payment_Button {
 		 * JSON object validation
 		 */
 
-		$client = new API\CQMerchantClient(
+		$client = new Api\CQ_Merchant_Client(
 			$api_settings['api_key'],
 			$api_settings['api_secret'],
             true
 		);
 
-        $json = str_replace("\\", "", $json);
+        $json = stripslashes($json);
         $json_array = json_decode($json, true);
 
 		$response = $client->post('/checkout/validate-for-wordpress', $json_array);
@@ -240,7 +240,7 @@ class Edit_Payment_Button {
 			$message = esc_html("Status Code: " . $response->httpStatusCode . " - " . $response->responseBody);
 			$page = "coinqvest-create-payment-button";
 
-			$log = new API\CQLoggingService();
+			$log = new Api\CQ_Logging_Service();
 			$log::write("[CQ Add Payment Button] " . $message);
 
             if ($is_ajax === true) {

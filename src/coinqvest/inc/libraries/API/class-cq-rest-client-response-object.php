@@ -4,11 +4,11 @@ namespace COINQVEST\Inc\Libraries\Api;
 defined( 'ABSPATH' ) or exit;
 
 /**
- * Class CQRESTClientResponseObject
+ * Class CQ_Rest_Client_Response_Object
  *
- * An instance of this class is returned by the get, post, put or delete methods in CQMerchantClient
+ * An instance of this class is returned by the get, post, put or delete methods in CQ_Merchant_Client
  */
-class CQRESTClientResponseObject {
+class CQ_Rest_Client_Response_Object {
 
     /**
      * Contains the HTTP response in plain text. Usually this is a JSON string

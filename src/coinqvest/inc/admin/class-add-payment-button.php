@@ -104,8 +104,9 @@ class Add_Payment_Button {
         $css_class = !empty($_POST['cq_button_css_class']) ? $this->clean(sanitize_text_field($_POST['cq_button_css_class'])) : null;
         $button_text = !empty($_POST['cq_button_text']) ? sanitize_text_field($_POST['cq_button_text']) : null;
         $status = isset($_POST['cq_button_status']) ? 1 : 0;
-        $json = !empty($_POST['cq_button_json']) ? sanitize_text_field($_POST['cq_button_json']) : null;
+        $json = !empty($_POST['cq_button_json']) ? sanitize_textarea_field($_POST['cq_button_json']) : null;
         $is_ajax = (isset( $_POST['ajaxrequest']) && $_POST['ajaxrequest'] === 'true') ? true : false;
+
 
 		/**
 		 * Input validation
@@ -191,13 +192,13 @@ class Add_Payment_Button {
 		 * JSON object validation
 		 */
 
-		$client = new API\CQMerchantClient(
+		$client = new Api\CQ_Merchant_Client(
 			$api_settings['api_key'],
 			$api_settings['api_secret'],
             true
 		);
 
-        $json = str_replace("\\", "", $json);
+        $json = stripslashes($json);
         $json_array = json_decode($json, true);
 
 		$response = $client->post('/checkout/validate-for-wordpress', $json_array);
@@ -208,7 +209,7 @@ class Add_Payment_Button {
 			$message = esc_html("Status Code: " . $response->httpStatusCode . " - " . $response->responseBody);
 			$page = "coinqvest-add-payment-button";
 
-			$log = new API\CQLoggingService();
+			$log = new Api\CQ_Logging_Service();
 			$log::write("[CQ Add Payment Button] " . $message);
 
             if ($is_ajax === true) {
