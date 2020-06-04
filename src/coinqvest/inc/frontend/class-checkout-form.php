@@ -203,7 +203,7 @@ class Checkout_Form {
                                   	' . $countries . '
                                 </div>
                                 <div class="cq-col-6">
-                                    <p class="cq-label">' . esc_html(__('Phone Number', 'coinqvest')) . ' <span class="cq-tip">(' . esc_html(__('optional', 'coinqvest')) . ')</span></p>
+                                    <p class="cq-label">' . esc_html(__('Phone number', 'coinqvest')) . ' <span class="cq-tip">(' . esc_html(__('optional', 'coinqvest')) . ')</span></p>
                                     <input type="text" class="cq-input" name="cq_phone_number" maxlength="16" >
                                 </div>
                             </div>';

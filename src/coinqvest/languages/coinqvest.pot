@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: COINQVEST v0.0.1\n"
-"POT-Creation-Date: 2020-05-29 14:25+0200\n"
+"POT-Creation-Date: 2020-06-04 09:48+0200\n"
 "PO-Revision-Date: 2020-05-23 10:41+0200\n"
 "Last-Translator: \n"
 "Language-Team: COINQVEST www.coinqvest.com\n"
@@ -97,28 +97,28 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#: admin/class-add-payment-button.php:116
+#: admin/class-add-payment-button.php:117
 #: admin/class-edit-payment-button.php:150
 msgid "Please provide button name and JSON object."
 msgstr ""
 
-#: admin/class-add-payment-button.php:133
+#: admin/class-add-payment-button.php:134
 #: admin/class-edit-payment-button.php:167
 #, php-format
 msgid "Name is too long. Max. %s characters."
 msgstr ""
 
-#: admin/class-add-payment-button.php:150
+#: admin/class-add-payment-button.php:151
 #: admin/class-edit-payment-button.php:184
 #, php-format
 msgid "Button text is too long. Max. %s characters."
 msgstr ""
 
-#: admin/class-add-payment-button.php:173
+#: admin/class-add-payment-button.php:174
 msgid "API key and API secret don't exist."
 msgstr ""
 
-#: admin/class-add-payment-button.php:266
+#: admin/class-add-payment-button.php:267
 msgid "Payment button created successfully."
 msgstr ""
 
@@ -448,7 +448,7 @@ msgid "Country"
 msgstr ""
 
 #: frontend/class-checkout-form.php:206
-msgid "Mobile number"
+msgid "Phone number"
 msgstr ""
 
 #: frontend/class-checkout-form.php:206

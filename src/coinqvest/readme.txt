@@ -69,3 +69,9 @@ Do you have questions or issues with COINQVEST? Feel free to contact us anytime!
 3. COINQVEST Merchant Dashboard
 4. COINQVEST Transaction Records and Invoicing
 5. COINQVEST Instant Withdrawals
+
+== Changelog ==
+
+= 0.0.2 =
+
+* field mobile_number changed to phone_number
