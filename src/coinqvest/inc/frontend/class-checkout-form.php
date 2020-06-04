@@ -272,7 +272,7 @@ class Checkout_Form {
         $city = isset($_POST['cq_city']) ? sanitize_text_field($_POST['cq_city']) : null;
         $country_code = isset($_POST['cq_country']) ? sanitize_text_field($_POST['cq_country']) : null;
         $phone_number = isset($_POST['cq_phone_number']) ? sanitize_text_field($_POST['cq_phone_number']) : null;
-        $is_ajax = (isset( $_POST['ajaxrequest']) && $_POST['ajaxrequest'] === 'true') ? true : false;
+        $is_ajax = isset( $_POST['ajaxrequest']) && $_POST['ajaxrequest'] === 'true';
 
         /**
          * Input Validation
