@@ -203,8 +203,8 @@ class Checkout_Form {
                                   	' . $countries . '
                                 </div>
                                 <div class="cq-col-6">
-                                    <p class="cq-label">' . esc_html(__('Mobile number', 'coinqvest')) . ' <span class="cq-tip">(' . esc_html(__('optional', 'coinqvest')) . ')</span></p>
-                                    <input type="text" class="cq-input" name="cq_mobile_number" maxlength="16" >
+                                    <p class="cq-label">' . esc_html(__('Phone Number', 'coinqvest')) . ' <span class="cq-tip">(' . esc_html(__('optional', 'coinqvest')) . ')</span></p>
+                                    <input type="text" class="cq-input" name="cq_phone_number" maxlength="16" >
                                 </div>
                             </div>';
 
@@ -271,8 +271,8 @@ class Checkout_Form {
         $zip = isset($_POST['cq_zip']) ? sanitize_text_field($_POST['cq_zip']) : null;
         $city = isset($_POST['cq_city']) ? sanitize_text_field($_POST['cq_city']) : null;
         $country_code = isset($_POST['cq_country']) ? sanitize_text_field($_POST['cq_country']) : null;
-        $mobile_number = isset($_POST['cq_mobile_number']) ? sanitize_text_field($_POST['cq_mobile_number']) : null;
-        $is_ajax = (isset( $_POST['ajaxrequest']) && $_POST['ajaxrequest'] === 'true') ? true : false;
+        $phone_number = isset($_POST['cq_phone_number']) ? sanitize_text_field($_POST['cq_phone_number']) : null;
+        $is_ajax = isset( $_POST['ajaxrequest']) && $_POST['ajaxrequest'] === 'true';
 
         /**
          * Input Validation
@@ -368,7 +368,7 @@ class Checkout_Form {
                 'zip' => $zip,
                 'city' => $city,
                 'countrycode' => $country_code,
-				'mobilenumber' => $mobile_number,
+				'phonenumber' => $phone_number,
 				'taxid' => $tax_id,
 				'meta' => array(
 					'source' => 'Wordpress',

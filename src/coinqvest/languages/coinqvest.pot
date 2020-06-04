@@ -451,6 +451,10 @@ msgstr ""
 msgid "Mobile number"
 msgstr ""
 
+#: frontend/class-checkout-form.php:206
+msgid "Phone Number"
+msgstr ""
+
 #: frontend/class-checkout-form.php:216
 msgid "Pay Now"
 msgstr ""
