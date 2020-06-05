@@ -16,16 +16,17 @@ COINQVEST provides digital currency checkouts that automatically go from Bitcoin
 
 = Key features =
 
-* Accept Bitcoin (BTC), Ethereum (ETH), Ripple (XRP), Stellar Lumens (XLM) and Litecoin (LTC) payments from your users.
-* Get instantly settled in your preferred local currency (USD, EUR, CAD, NGN). View all supported [fiat currencies](https://www.coinqvest.com/en/fiat-currency-integrations).
-* No e-commerce setup required to integrate directly on your WordPress site.
-* Create a custom shortcode and embed in any page, post or widget.
-* Price in your local currency.
-* No chargebacks, you control refunds.
-* No currency volatility risks due to instant conversions and settlement.
-* Control tax compliance levels (none, minimal, compliant).
-* Custom payment button text available.
-* Custom payment button CSS class available.
+* Accepts Bitcoin (BTC), Ethereum (ETH), Ripple (XRP), Stellar Lumens (XLM) and Litecoin (LTC) payments from customers.
+* Instantly settles in your preferred national currency (USD, EUR, CAD, NGN).
+* Doesn't require any e-commerce setup on your WordPress site.
+* Embeds a payment button in any page, post or widget of your WordPress site.
+* Sets the product price in your national currency.
+* Eliminates chargebacks and gives you control over refunds.
+* Eliminates currency volatility risks due to instant conversions and settlement.
+* Controls tax compliance levels (none, minimal, compliant).
+* Provides custom payment button text.
+* Provides custom payment button CSS classes available.
+* Translates the plugin into any required language.
 
 = Use case =
 
