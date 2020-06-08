@@ -88,6 +88,9 @@ class Init {
 		// displays success and error notices in the admin area (for POST form submits)
 		$this->loader->add_action( 'admin_notices', $plugin_admin, 'print_plugin_admin_notices');
 
+        // adds a settings link to the plugin
+        $this->loader->add_filter( 'plugin_action_links_' . $this->get_plugin_basename(), $plugin_admin, 'coinqvest_settings_link');
+
 	}
 
 	/**
@@ -151,5 +154,9 @@ class Init {
 	public function get_plugin_name_url() {
 		return $this->plugin_name_url;
 	}
+
+    public function get_plugin_basename() {
+        return $this->plugin_basename;
+    }
 
 }

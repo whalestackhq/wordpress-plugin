@@ -33,7 +33,7 @@ class Frontend {
 	 * Register the JavaScript for the public-facing side of the site.
 	 */
 	public function enqueue_scripts() {
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/coinqvest.modal.min.js', array( 'jquery' ), $this->version, false );
+        wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/coinqvest.modal.min.js', array( 'jquery' ), $this->version, false );
 
 		$params = array ( 'ajaxurl' => admin_url( 'admin-ajax.php' ) );
 		wp_enqueue_script( 'coinqvest_ajax_handle', plugin_dir_url( __FILE__ ) . 'js/coinqvest-frontend-ajax-handler.js', array( 'jquery' ), $this->version, false );

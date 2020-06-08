@@ -3,9 +3,9 @@
 /**
  * Plugin Name: COINQVEST
  * Description: Enterprise Cryptocurrency Payment Processor - Accept Bitcoin (BTC), Ethereum (ETH), Ripple (XRP), Stellar Lumens (XLM) and Litecoin (LTC) from your clients and instantly settle in your preferred payout currency like USD, EUR, CAD, NGN.
- * Author: COINQVEST Ltd.
+ * Author: COINQVEST
  * Author URI: https://www.coinqvest.com/
- * Version: 0.0.2
+ * Version: 0.0.3
  * License: Apache 2.0
  * License URI: https://www.apache.org/licenses/LICENSE-2.0
  * Text domain: coinqvest
