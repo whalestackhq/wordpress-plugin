@@ -175,4 +175,13 @@ class Admin {
 
 	}
 
+    public function coinqvest_settings_link($links) {
+        $plugin_links = array(
+            '<a href="admin.php?page=coinqvest-settings">' . esc_html__( 'Settings', 'coinqvest' ) . '</a>',
+        );
+        return array_merge($plugin_links, $links);
+    }
+
+
+
 }

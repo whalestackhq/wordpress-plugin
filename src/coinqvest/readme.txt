@@ -73,6 +73,11 @@ Do you have questions or issues with COINQVEST? Feel free to contact us anytime!
 
 == Changelog ==
 
+= 0.0.3 =
+
+* Fixed incompatibility with Bootstrap modal
+* Added plugin settings link
+
 = 0.0.2 =
 
-* field mobile_number changed to phone_number
+* Field mobile_number changed to phone_number

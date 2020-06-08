@@ -114,8 +114,8 @@ class Checkout_Form {
 		include("views/partials-wp-country-list.php");
 
 	    $output = '
-        <div id="coinqvest-checkout-button">
-            <a class="button ' . esc_attr($params['css_class']) . '" href="#coinqvest-' . esc_attr($params['hashid']) . '">' . esc_html($params['button_text']) . '</a>
+        <div class="coinqvest-checkout-button">
+            <a class="button ' . esc_attr($params['css_class']) . '" href="#coinqvest-' . esc_attr($params['hashid']) . '" rel="cqmodal:open">' . esc_html($params['button_text']) . '</a>
         </div>
 
         <div id="coinqvest-' . esc_attr($params['hashid']) . '" class="coinqvest-modal">
@@ -229,7 +229,7 @@ class Checkout_Form {
 
                     <div class="cq-row">
                         <div class="cq-col-6 cq-margin-right-4percent cq-center-xs">
-                            <a href="#" rel="modal:close" class="cq-cancel">' . esc_html(__('Cancel Payment', 'coinqvest')) . '</a>
+                            <a href="#" rel="cqmodal:close" class="cq-cancel">' . esc_html(__('Cancel Payment', 'coinqvest')) . '</a>
                         </div>
                         <div class="cq-col-6 cq-center-xs">
                             <img class="cq-logo" src="' . esc_url($this->plugin_name_url) . 'assets/images/coinqvest-logo.png" width="100px">
@@ -243,7 +243,7 @@ class Checkout_Form {
 
         </div>
         
-        <script>jQuery("a[href=#coinqvest-' . esc_attr($params['hashid']) . ']").click(function(e){e.preventDefault(),jQuery(this).modal({escapeClose:!1,clickClose:!1,modalClass:"coinqvest-modal",blockerClass:"coinqvest-jquery-modal"})});</script>';
+        <script>jQuery("a[href=#coinqvest-' . $params['hashid'] . ']").click(function(e){e.preventDefault(),jQuery(this).coinqvest_modal()});</script>';
 
 	    return $output;
 	}
