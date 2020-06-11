@@ -16,7 +16,7 @@ class Internationalization_i18n {
 	/**
 	 * Initialize the class and set its properties
 	 */
-	public function __construct( $plugin_text_domain ) {
+	public function __construct($plugin_text_domain) {
 
 		$this->text_domain = $plugin_text_domain;
 
@@ -30,7 +30,7 @@ class Internationalization_i18n {
 		load_plugin_textdomain(
 			$this->text_domain,
 			false,
-			dirname( dirname (dirname ( plugin_basename( __FILE__ ) ) ) ) . '/languages/'
+			dirname(dirname(dirname(plugin_basename(__FILE__ )))) . '/languages/'
 		);
 	}
 }

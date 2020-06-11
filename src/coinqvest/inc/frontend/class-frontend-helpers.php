@@ -2,7 +2,7 @@
 namespace COINQVEST\Inc\Frontend;
 class Frontend_Helpers {
 
-	public function custom_redirect( $result, $message, $page ) {
+	public function custom_redirect($result, $message, $page) {
 
 		wp_redirect(
 			esc_url_raw(

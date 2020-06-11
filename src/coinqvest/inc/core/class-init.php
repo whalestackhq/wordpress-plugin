@@ -53,9 +53,9 @@ class Init {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new Internationalization_i18n( $this->plugin_text_domain );
+		$plugin_i18n = new Internationalization_i18n($this->plugin_text_domain);
 
-		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
+		$this->loader->add_action('plugins_loaded', $plugin_i18n, 'load_plugin_textdomain');
 
 	}
 
@@ -69,27 +69,27 @@ class Init {
 	 */
 	private function define_admin_hooks() {
 
-		$plugin_admin = new Admin\Admin( $this->get_plugin_name(), $this->get_version(), $this->get_plugin_text_domain(), $this->get_plugin_name_url() );
+		$plugin_admin = new Admin\Admin($this->get_plugin_name(), $this->get_version(), $this->get_plugin_text_domain(), $this->get_plugin_name_url());
 
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
+		$this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_styles');
+		$this->loader->add_action('admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts');
 
 		// Add a top-level admin menu for our plugin
-		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_plugin_admin_menu' );
+		$this->loader->add_action('admin_menu', $plugin_admin, 'add_plugin_admin_menu');
 		
 		// when a form is submitted to admin-post.php
-		$this->loader->add_action( 'admin_post_nopriv_coinqvest_admin_form_response', $plugin_admin, 'admin_form_response_handler');
-		$this->loader->add_action( 'admin_post_coinqvest_admin_form_response', $plugin_admin, 'admin_form_response_handler');
+		$this->loader->add_action('admin_post_nopriv_coinqvest_admin_form_response', $plugin_admin, 'admin_form_response_handler');
+		$this->loader->add_action('admin_post_coinqvest_admin_form_response', $plugin_admin, 'admin_form_response_handler');
 
 		// when a form is submitted to admin-ajax.php
-		$this->loader->add_action( 'wp_ajax_nopriv_coinqvest_admin_form_response', $plugin_admin, 'admin_form_response_handler');
-		$this->loader->add_action( 'wp_ajax_coinqvest_admin_form_response', $plugin_admin, 'admin_form_response_handler');
+		$this->loader->add_action('wp_ajax_nopriv_coinqvest_admin_form_response', $plugin_admin, 'admin_form_response_handler');
+		$this->loader->add_action('wp_ajax_coinqvest_admin_form_response', $plugin_admin, 'admin_form_response_handler');
 
 		// displays success and error notices in the admin area (for POST form submits)
-		$this->loader->add_action( 'admin_notices', $plugin_admin, 'print_plugin_admin_notices');
+		$this->loader->add_action('admin_notices', $plugin_admin, 'print_plugin_admin_notices');
 
         // adds a settings link to the plugin
-        $this->loader->add_filter( 'plugin_action_links_' . $this->get_plugin_basename(), $plugin_admin, 'coinqvest_settings_link');
+        $this->loader->add_filter('plugin_action_links_' . $this->get_plugin_basename(), $plugin_admin, 'coinqvest_settings_link');
 
 	}
 
@@ -101,21 +101,21 @@ class Init {
 	 */
 	private function define_public_hooks() {
 
-		$plugin_public = new Frontend\Frontend( $this->get_plugin_name(), $this->get_version(), $this->get_plugin_text_domain(), $this->get_plugin_name_url() );
+		$plugin_public = new Frontend\Frontend($this->get_plugin_name(), $this->get_version(), $this->get_plugin_text_domain(), $this->get_plugin_name_url());
 
-        $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
-        $this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
+        $this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_styles');
+        $this->loader->add_action('wp_enqueue_scripts', $plugin_public, 'enqueue_scripts');
 
 		// registers the checkout button short code
-		$this->loader->add_shortcode( 'COINQVEST_checkout', $plugin_public, 'coinqvest_render_shortcode_form');
+		$this->loader->add_shortcode('COINQVEST_checkout', $plugin_public, 'coinqvest_render_shortcode_form');
 
 		// when a form is submitted to admin-post.php
-		$this->loader->add_action( 'admin_post_nopriv_submit_coinqvest_checkout', $plugin_public, 'public_form_response_handler');
-		$this->loader->add_action( 'admin_post_submit_coinqvest_checkout', $plugin_public, 'public_form_response_handler');
+		$this->loader->add_action('admin_post_nopriv_submit_coinqvest_checkout', $plugin_public, 'public_form_response_handler');
+		$this->loader->add_action('admin_post_submit_coinqvest_checkout', $plugin_public, 'public_form_response_handler');
 
 		// when a form is submitted to admin-ajax.php
-		$this->loader->add_action( 'wp_ajax_nopriv_submit_coinqvest_checkout', $plugin_public, 'public_form_response_handler');
-		$this->loader->add_action( 'wp_ajax_submit_coinqvest_checkout', $plugin_public, 'public_form_response_handler');
+		$this->loader->add_action('wp_ajax_nopriv_submit_coinqvest_checkout', $plugin_public, 'public_form_response_handler');
+		$this->loader->add_action('wp_ajax_submit_coinqvest_checkout', $plugin_public, 'public_form_response_handler');
 
 	}
 

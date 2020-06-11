@@ -13,7 +13,7 @@ class Frontend {
 	/**
 	 * Initialize the class and set its properties.
 	 */
-	public function __construct( $plugin_name, $version, $plugin_text_domain, $plugin_name_url ) {
+	public function __construct($plugin_name, $version, $plugin_text_domain, $plugin_name_url) {
 
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
@@ -26,18 +26,18 @@ class Frontend {
 	 * Register the stylesheets for the public-facing side of the site.
 	 */
 	public function enqueue_styles() {
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/coinqvest.modal.css', array(), $this->version, 'all' );
+		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/coinqvest.modal.css', array(), $this->version, 'all');
 	}
 
 	/**
 	 * Register the JavaScript for the public-facing side of the site.
 	 */
 	public function enqueue_scripts() {
-        wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/coinqvest.modal.min.js', array( 'jquery' ), $this->version, false );
+        wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/coinqvest.modal.min.js', array('jquery'), $this->version, false);
 
-		$params = array ( 'ajaxurl' => admin_url( 'admin-ajax.php' ) );
-		wp_enqueue_script( 'coinqvest_ajax_handle', plugin_dir_url( __FILE__ ) . 'js/coinqvest-frontend-ajax-handler.js', array( 'jquery' ), $this->version, false );
-		wp_localize_script( 'coinqvest_ajax_handle', 'params', $params );
+		$params = array ('ajaxurl' => admin_url('admin-ajax.php' ) );
+		wp_enqueue_script('coinqvest_ajax_handle', plugin_dir_url( __FILE__ ) . 'js/coinqvest-frontend-ajax-handler.js', array('jquery'), $this->version, false);
+		wp_localize_script('coinqvest_ajax_handle', 'params', $params);
 	}
 
 	/**
@@ -57,7 +57,7 @@ class Frontend {
 	public function public_form_response_handler() {
 
 		$nonce = $_POST['_wpnonce'];
-        if ( ! wp_verify_nonce( $nonce, 'submit_coinqvest_checkout_8b%kj@' ) ) {
+        if (!wp_verify_nonce( $nonce, 'submit_coinqvest_checkout_8b%kj@')) {
             exit; // Get out of here, the nonce is rotten!
         }
 

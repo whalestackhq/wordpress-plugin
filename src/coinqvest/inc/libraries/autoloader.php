@@ -14,26 +14,26 @@
  * @since   1.1.0
  */
 
-spl_autoload_register( function( $class_name ) {
+spl_autoload_register(function($class_name) {
 
 		// If the specified $class_name does not include our namespace, duck out.
-		if ( false === strpos( $class_name, 'COINQVEST' ) ) {
+		if (false === strpos($class_name, 'COINQVEST')) {
 			return;
 		}
 
 		// Split the class name into an array to read the namespace and class.
-		$file_parts = explode( '\\', $class_name );
+		$file_parts = explode('\\', $class_name);
 
 		// Do a reverse loop through $file_parts to build the path to the file.
 		$namespace = '';
-		for ( $i = count( $file_parts ) - 1; $i > 0; $i-- ) {
+		for ($i = count($file_parts) - 1; $i > 0; $i--) {
 
 			// Read the current component of the file part.
-			$current = strtolower( $file_parts[ $i ] );
-			$current = str_ireplace( '_', '-', $current );
+			$current = strtolower($file_parts[ $i ]);
+			$current = str_ireplace('_', '-', $current);
 
 			// If we're at the first entry, then we're at the filename.
-			if ( count( $file_parts ) - 1 === $i ) {
+			if (count($file_parts) - 1 === $i) {
 
 				/*
 				 If 'interface' is contained in the parts of the file name, then
@@ -41,10 +41,10 @@ spl_autoload_register( function( $class_name ) {
 				 * Otherwise, just set the $file_name equal to that of the class
 				 * filename structure.
 				 */
-				if ( strpos( strtolower( $file_parts[ count( $file_parts ) - 1 ] ), 'interface' ) ) {
+				if (strpos(strtolower($file_parts[count($file_parts) - 1]), 'interface')) {
 
 					// Grab the name of the interface from its qualified name.
-					$interface_name = explode( '_', $file_parts[ count( $file_parts ) - 1 ] );
+					$interface_name = explode('_', $file_parts[count($file_parts) - 1]);
 					$interface_name = $interface_name[0];
 
 					$file_name = "interface-$interface_name.php";
@@ -58,15 +58,15 @@ spl_autoload_register( function( $class_name ) {
 		}
 
 		// Now build a path to the file using mapping to the file location.
-		$filepath  = trailingslashit( untrailingslashit( plugin_dir_path( dirname( __DIR__ ) ) ) . $namespace );
+		$filepath  = trailingslashit(untrailingslashit(plugin_dir_path(dirname(__DIR__))) . $namespace);
 		$filepath .= $file_name;
 
 		// If the file exists in the specified path, then include it.
-		if ( file_exists( $filepath ) ) {
-			include_once( $filepath );
+		if (file_exists($filepath)) {
+			include_once($filepath);
 		} else {
 			wp_die(
-				esc_html( 'The file attempting to be loaded at ' . $filepath . ' does not exist.' )
+				esc_html('The file attempting to be loaded at ' . $filepath . ' does not exist.')
 			);
 		}
 	}

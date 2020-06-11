@@ -9,9 +9,9 @@ class Activator {
 		$min_php = '5.6.0';
 
 		// Check PHP Version and deactivate & die if it doesn't meet minimum requirements.
-		if ( version_compare( PHP_VERSION, $min_php, '<' ) ) {
-            deactivate_plugins( plugin_basename( __FILE__ ) );
-			wp_die( 'This plugin requires a minimum PHP Version of ' . $min_php );
+		if (version_compare( PHP_VERSION, $min_php, '<' )) {
+		    deactivate_plugins(plugin_basename( __FILE__ ));
+		    wp_die( 'This plugin requires a minimum PHP Version of ' . $min_php);
 		}
 
 		/**
@@ -22,7 +22,7 @@ class Activator {
 		$charset_collate = $wpdb->get_charset_collate();
 		$table_name = $wpdb->prefix . 'coinqvest_payment_buttons';
 
-		$query = $wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like($table_name));
+		$query = $wpdb->prepare('SHOW TABLES LIKE %s', $wpdb->esc_like($table_name));
 
 		if (!$wpdb->get_var($query) == $table_name ) {
 
@@ -41,15 +41,15 @@ class Activator {
 				PRIMARY KEY (id)
 			) $charset_collate;";
 
-			require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-			dbDelta( $sql );
+			require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+			dbDelta($sql);
 
 		}
 
 
 		$table_name = $wpdb->prefix . 'coinqvest_logs';
 
-		$query = $wpdb->prepare( 'SHOW TABLES LIKE %s', $wpdb->esc_like($table_name));
+		$query = $wpdb->prepare('SHOW TABLES LIKE %s', $wpdb->esc_like($table_name));
 
 		if (!$wpdb->get_var($query) == $table_name ) {
 
@@ -60,8 +60,8 @@ class Activator {
 				PRIMARY KEY (id)
 			) $charset_collate;";
 
-			require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-			dbDelta( $sql );
+			require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+			dbDelta($sql);
 		}
 
 

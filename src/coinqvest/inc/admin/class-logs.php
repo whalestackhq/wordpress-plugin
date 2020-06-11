@@ -13,7 +13,7 @@ class Logs {
 		global $wpdb;
 		$table_name = $wpdb->prefix . 'coinqvest_logs';
 
-		$rows = $wpdb->get_results("SELECT message, time FROM ".$table_name." WHERE id > 0 ORDER BY id DESC LIMIT 50");
+		$rows = $wpdb->get_results("SELECT message, time FROM " . $table_name . " WHERE id > 0 ORDER BY id DESC LIMIT 50");
 
 		$log_content = '';
 		foreach ($rows as $row) {

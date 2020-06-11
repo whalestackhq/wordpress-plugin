@@ -73,6 +73,11 @@ Do you have questions or issues with COINQVEST? Feel free to contact us anytime!
 
 == Changelog ==
 
+= 0.0.4 =
+
+* Fixed version number
+* Code cleanup
+
 = 0.0.3 =
 
 * Fixed incompatibility with Bootstrap modal
