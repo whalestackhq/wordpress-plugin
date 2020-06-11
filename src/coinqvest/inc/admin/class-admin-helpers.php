@@ -2,7 +2,7 @@
 namespace COINQVEST\Inc\Admin;
 class Admin_Helpers {
 
-	public function custom_redirect( $result, $message, $page ) {
+	public function custom_redirect($result, $message, $page) {
 
 		wp_redirect(
 			esc_url_raw(
@@ -11,7 +11,7 @@ class Admin_Helpers {
 						"result" => $result,
 						"message" => $message
 					),
-					admin_url('admin.php?page=' . $page )
+					admin_url('admin.php?page=' . $page)
 				)
 			)
 		);
@@ -20,7 +20,7 @@ class Admin_Helpers {
 
 	public function print_plugin_admin_notices() {
 
-		if (isset( $_REQUEST['result']) ) {
+		if (isset($_REQUEST['result'])) {
 
 		    $html = '';
 
@@ -28,11 +28,11 @@ class Admin_Helpers {
 
 			if ($_REQUEST['result'] === "success") {
 
-				$html =	'<div class="notice notice-success is-dismissible"><p>'.esc_html($message).'</p></div>';
+				$html =	'<div class="notice notice-success is-dismissible"><p>' . esc_html($message) . '</p></div>';
 
 			} elseif ($_REQUEST['result'] === "error") {
 
-				$html =	'<div class="notice notice-error is-dismissible"><p>'.esc_html($message).'</p></div>';
+				$html =	'<div class="notice notice-error is-dismissible"><p>' . esc_html($message) . '</p></div>';
 
 			}
 

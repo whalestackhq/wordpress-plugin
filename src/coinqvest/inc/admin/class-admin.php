@@ -28,16 +28,16 @@ class Admin {
 	 * Register the stylesheets for the admin area.
 	 */
 	public function enqueue_styles() {
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/coinqvest-admin.css', array(), $this->version, 'all' );
+		wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/coinqvest-admin.css', array(), $this->version, 'all');
 	}
 
 	/**
 	 * Register the JavaScript for the admin area.
 	 */
 	public function enqueue_scripts() {
-		$params = array ( 'ajaxurl' => admin_url( 'admin-ajax.php' ) );
-		wp_enqueue_script( 'coinqvest_ajax_handle', plugin_dir_url( __FILE__ ) . 'js/coinqvest-admin-ajax-handler.js', array( 'jquery' ), $this->version, false );
-		wp_localize_script( 'coinqvest_ajax_handle', 'params', $params );
+		$params = array ('ajaxurl' => admin_url('admin-ajax.php'));
+		wp_enqueue_script('coinqvest_ajax_handle', plugin_dir_url(__FILE__) . 'js/coinqvest-admin-ajax-handler.js', array('jquery'), $this->version, false);
+		wp_localize_script('coinqvest_ajax_handle', 'params', $params);
 	}
 	
 	/**
@@ -45,14 +45,12 @@ class Admin {
 	 */
 	public function add_plugin_admin_menu() {
 
-		add_menu_page( 'COINQVEST', 'COINQVEST', 'manage_options', 'coinqvest', array( $this, 'start_coinqvest' ), $this->plugin_name_url . 'assets/images/favicon-22x22.png' );
-		$page_hook = add_submenu_page( 'coinqvest', 'COINQVEST Payment Buttons', 'Payment Buttons', 'manage_options', 'coinqvest-payment-buttons', array( $this, 'payment_buttons' ) );
-		add_submenu_page( 'coinqvest', 'COINQVEST Create New Payment Button', 'Add Payment Button', 'manage_options', 'coinqvest-add-payment-button', array($this, 'add_payment_button') );
-
-		add_submenu_page( null, 'COINQVEST Edit Payment Button', 'Edit Payment Button', 'manage_options', 'coinqvest-edit-payment-button', array($this, 'edit_payment_button') );
-
-		add_submenu_page( 'coinqvest', 'COINQVEST Logs', 'Logs', 'manage_options', 'coinqvest-logs', array($this, 'logs') );
-		add_submenu_page( 'coinqvest', 'COINQVEST Settings', 'Settings', 'manage_options', 'coinqvest-settings', array($this, 'settings') );
+		add_menu_page('COINQVEST', 'COINQVEST', 'manage_options', 'coinqvest', array($this, 'start_coinqvest'), $this->plugin_name_url . 'assets/images/favicon-22x22.png');
+		$page_hook = add_submenu_page('coinqvest', 'COINQVEST Payment Buttons', 'Payment Buttons', 'manage_options', 'coinqvest-payment-buttons', array($this, 'payment_buttons'));
+		add_submenu_page('coinqvest', 'COINQVEST Create New Payment Button', 'Add Payment Button', 'manage_options', 'coinqvest-add-payment-button', array($this, 'add_payment_button'));
+		add_submenu_page(null, 'COINQVEST Edit Payment Button', 'Edit Payment Button', 'manage_options', 'coinqvest-edit-payment-button', array($this, 'edit_payment_button'));
+		add_submenu_page('coinqvest', 'COINQVEST Logs', 'Logs', 'manage_options', 'coinqvest-logs', array($this, 'logs'));
+		add_submenu_page('coinqvest', 'COINQVEST Settings', 'Settings', 'manage_options', 'coinqvest-settings', array($this, 'settings'));
 
 		/*
 		 * The $page_hook_suffix can be combined with the load-($page_hook) action hook
@@ -60,7 +58,7 @@ class Admin {
 		 * 
 		 * The callback below will be called when the respective page is loaded
 		 */
-		add_action( 'load-'.$page_hook, array( $this, 'payment_buttons_screen_options' ) );
+		add_action('load-'.$page_hook, array($this, 'payment_buttons_screen_options'));
 
 	}
 
@@ -69,7 +67,7 @@ class Admin {
 	 */
 	public function admin_form_response_handler() {
 
-		if ( !is_user_logged_in() ) {
+		if (!is_user_logged_in()) {
 			exit;
 		}
 
@@ -80,7 +78,7 @@ class Admin {
 
 			case 'submit_api_settings':
 
-				if ( ! wp_verify_nonce( $nonce, 'submitApiSettings-23iyj@h!' ) ) {
+				if (!wp_verify_nonce($nonce, 'submitApiSettings-23iyj@h!')) {
 					exit;
 				}
 				$this->settings = new Settings();
@@ -89,7 +87,7 @@ class Admin {
 
 			case 'submit_global_settings':
 
-				if ( ! wp_verify_nonce( $nonce, 'submitGlobalSettings-abg3@9' ) ) {
+				if (!wp_verify_nonce($nonce, 'submitGlobalSettings-abg3@9')) {
 					exit;
 				}
 				$this->settings = new Settings();
@@ -98,7 +96,7 @@ class Admin {
 
 			case 'add_payment_button':
 
-				if ( ! wp_verify_nonce( $nonce, 'addPaymentButton-dfs!%sd' ) ) {
+				if (!wp_verify_nonce($nonce, 'addPaymentButton-dfs!%sd')) {
 					exit;
 				}
 				$this->add_payment_button = new Add_Payment_Button();
@@ -107,7 +105,7 @@ class Admin {
 
 			case 'edit_payment_button':
 
-				if ( ! wp_verify_nonce( $nonce, 'editPaymentButton-dfs!%sd' ) ) {
+				if (!wp_verify_nonce($nonce, 'editPaymentButton-dfs!%sd')) {
 					exit;
 				}
 				$this->edit_payment_button = new Edit_Payment_Button();
@@ -158,26 +156,26 @@ class Admin {
 	public function payment_buttons(){
 		$this->payment_buttons_list_table->prepare_items();
 		// render the payment buttons list table
-		include_once( 'views/partials-wp-payment-buttons-display.php' );
+		include_once('views/partials-wp-payment-buttons-display.php');
 	}
 
 	public function payment_buttons_screen_options() {
 
-		$arguments	=	array(
-						'label'		=>	__( 'Items Per Page', $this->plugin_text_domain ),
-						'default'	=>	20,
-						'option'	=>	'items_per_page'
-					);
+		$arguments = array(
+            'label' => __('Items Per Page', $this->plugin_text_domain),
+            'default' => 20,
+            'option' =>	'items_per_page'
+        );
 
-		add_screen_option( 'per_page', $arguments );
+		add_screen_option('per_page', $arguments);
 
-		$this->payment_buttons_list_table = new Payment_Buttons_List_Table( $this->plugin_text_domain );
+		$this->payment_buttons_list_table = new Payment_Buttons_List_Table($this->plugin_text_domain);
 
 	}
 
     public function coinqvest_settings_link($links) {
         $plugin_links = array(
-            '<a href="admin.php?page=coinqvest-settings">' . esc_html__( 'Settings', 'coinqvest' ) . '</a>',
+            '<a href="admin.php?page=coinqvest-settings">' . esc_html(__('Settings', 'coinqvest')) . '</a>',
         );
         return array_merge($plugin_links, $links);
     }

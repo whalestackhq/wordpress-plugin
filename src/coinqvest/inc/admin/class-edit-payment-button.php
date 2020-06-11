@@ -17,7 +17,7 @@ class Edit_Payment_Button {
 
 		global $wpdb;
 		$table_name = $wpdb->prefix . 'coinqvest_payment_buttons';
-		$row = $wpdb->get_row("SELECT name, hashid, status, cssclass, buttontext, json FROM ".$table_name." WHERE hashid = " . $id);
+		$row = $wpdb->get_row("SELECT name, hashid, status, cssclass, buttontext, json FROM " . $table_name . " WHERE hashid = " . $id);
 
 		if (!$row) {
 			echo '<p class="coinqvest_payments_error_msg" style="color: #dc3232;">' . esc_html(__('Requested button id doesn\'t exist.', 'coinqvest' )) . '</p>';
@@ -108,7 +108,7 @@ class Edit_Payment_Button {
         $css_class = !empty($_POST['cq_button_css_class']) ? $this->clean(sanitize_text_field($_POST['cq_button_css_class'])) : null;
         $status = isset($_POST['cq_button_status']) ? 1 : 0;
         $json = !empty($_POST['cq_button_json']) ? sanitize_text_field($_POST['cq_button_json']) : null;
-        $is_ajax = (isset( $_POST['ajaxrequest']) && $_POST['ajaxrequest'] === 'true') ? true : false;
+        $is_ajax = (isset($_POST['ajaxrequest']) && $_POST['ajaxrequest'] === 'true') ? true : false;
 
         if (!empty($_POST['cq_button_text'])) {
             if ($_POST['cq_button_text'] == __('Buy Now', 'coinqvest')) {
@@ -126,7 +126,7 @@ class Edit_Payment_Button {
 
 		global $wpdb;
 		$table_name = $wpdb->prefix . 'coinqvest_payment_buttons';
-		$row = $wpdb->get_row("SELECT name, hashid, status, cssclass, buttontext, json FROM ".$table_name." WHERE hashid = " . $id);
+		$row = $wpdb->get_row("SELECT name, hashid, status, cssclass, buttontext, json FROM " . $table_name . " WHERE hashid = " . $id);
 
 		if (!$row) {
 			$result = "error";

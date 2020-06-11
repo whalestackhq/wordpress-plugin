@@ -239,7 +239,7 @@ class Add_Payment_Button {
 		$wpdb->insert(
 			$table_name,
 			array(
-				'time' => current_time( 'mysql' ),
+				'time' => current_time('mysql'),
 				'status' => $status,
 				'name' => $name,
 				'total' => $response->total,

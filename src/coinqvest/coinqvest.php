@@ -5,7 +5,7 @@
  * Description: Enterprise Cryptocurrency Payment Processor - Accept Bitcoin (BTC), Ethereum (ETH), Ripple (XRP), Stellar Lumens (XLM) and Litecoin (LTC) from your clients and instantly settle in your preferred payout currency like USD, EUR, CAD, NGN.
  * Author: COINQVEST
  * Author URI: https://www.coinqvest.com/
- * Version: 0.0.3
+ * Version: 0.0.4
  * License: Apache 2.0
  * License URI: https://www.apache.org/licenses/LICENSE-2.0
  * Text domain: coinqvest
@@ -14,18 +14,18 @@
 
 namespace COINQVEST;
 
-defined( 'ABSPATH' ) or exit;
+defined('ABSPATH') or exit;
 
 /**
  * Define Constants
  */
-define( __NAMESPACE__ . '\NS', __NAMESPACE__ . '\\' );
-define( NS . 'PLUGIN_NAME', 'coinqvest' );
-define( NS . 'PLUGIN_VERSION', '0.0.1' );
-define( NS . 'PLUGIN_NAME_DIR', plugin_dir_path( __FILE__ ) );
-define( NS . 'PLUGIN_NAME_URL', plugin_dir_url( __FILE__ ) );
-define( NS . 'PLUGIN_BASENAME', plugin_basename( __FILE__ ) );
-define( NS . 'PLUGIN_TEXT_DOMAIN', 'coinqvest' );
+define(__NAMESPACE__ . '\NS', __NAMESPACE__ . '\\');
+define(NS . 'PLUGIN_NAME', 'coinqvest');
+define(NS . 'PLUGIN_VERSION', '0.0.4');
+define(NS . 'PLUGIN_NAME_DIR', plugin_dir_path( __FILE__ ));
+define(NS . 'PLUGIN_NAME_URL', plugin_dir_url( __FILE__ ));
+define(NS . 'PLUGIN_BASENAME', plugin_basename( __FILE__ ));
+define(NS . 'PLUGIN_TEXT_DOMAIN', 'coinqvest');
 
 /**
  * Autoload Classes

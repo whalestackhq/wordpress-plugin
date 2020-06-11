@@ -37,14 +37,14 @@ class Checkout_Form {
 		if (!$row) {
 			$log = new Api\CQ_Logging_Service();
 			$log::write('[CQ Frontend Shortcode Display] [COINQVEST_checkout id="' . $id . '"] doesn\'t exist but is embedded on your website.');
-			return '<div class="coinqvest_payments_error_msg coinqvest-text-color-red">' . esc_html(__('Something is wrong with your COINQVEST checkout shortcode.', 'coinqvest' )) . '</div>';
+			return '<div class="coinqvest_payments_error_msg coinqvest-text-color-red">' . esc_html(__('Something is wrong with your COINQVEST checkout shortcode.', 'coinqvest')) . '</div>';
 		}
 
 		// validate that button is active
 		if ($row->status != 1) {
 			$log = new Api\CQ_Logging_Service();
 			$log::write('[CQ Frontend Shortcode Display] [COINQVEST_checkout id="' . $id . '"] is not active but is embedded on your website.');
-			return '<p class="coinqvest-text-color-red">' . esc_html(__('Your COINQVEST checkout button is not active.', 'coinqvest' )) . '</p>';
+			return '<p class="coinqvest-text-color-red">' . esc_html(__('Your COINQVEST checkout button is not active.', 'coinqvest')) . '</p>';
 		}
 
 		/**
@@ -282,7 +282,7 @@ class Checkout_Form {
 		global $wpdb;
 		$table_name = $wpdb->prefix . 'coinqvest_payment_buttons';
 
-		$row = $wpdb->get_row("SELECT hashid, status, json FROM ".$table_name." WHERE hashid = " . $id);
+		$row = $wpdb->get_row("SELECT hashid, status, json FROM " . $table_name . " WHERE hashid = " . $id);
 
 		if (!$row) {
 			$log = new Api\CQ_Logging_Service();

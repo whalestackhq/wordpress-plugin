@@ -9,7 +9,7 @@
     <div id="payment-buttons-list-table">
         <div id="payment-buttons-post-body">
             <form id="payment-buttons-list-form" method="get">
-                <input type="hidden" name="page" value="<?php echo sanitize_text_field($_REQUEST['page']) ?>" />
+                <input type="hidden" name="page" value="<?php echo sanitize_text_field($_REQUEST['page'])?>" />
 				<?php
 				$this->payment_buttons_list_table->display();
 				?>
