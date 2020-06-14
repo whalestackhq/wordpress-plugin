@@ -57,5 +57,23 @@ class Common_Helpers {
 
     }
 
+    public static function format_display_price($total, $currency, $decimals) {
+
+        if (in_array($currency, array('BTC', 'ETH', 'LTC', 'XRP', 'XLM'))) {
+
+            // remove trailing zeros
+            $total = floatval($total);
+
+            // count number of decimals
+            $no_of_decimals = strlen(substr(strrchr($total, "."), 1));
+
+            return number_format_i18n($total, $no_of_decimals) . ' ' . $currency;
+
+        }
+
+        return number_format_i18n($total, $decimals) . ' ' . $currency;
+
+    }
+
 
 }

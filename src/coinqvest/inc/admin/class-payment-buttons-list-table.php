@@ -143,7 +143,7 @@ class Payment_Buttons_List_Table extends Libraries\WP_List_Table  {
 
 	/** Custom Method for price column */
 	function column_price($item) {
-	    $price = number_format_i18n($item['total'], $item['decimals']) . ' ' . $item['currency'];
+	    $price = Common_Helpers::format_display_price($item['total'], $item['currency'], $item['decimals']);
 		return $price;
 	}
 

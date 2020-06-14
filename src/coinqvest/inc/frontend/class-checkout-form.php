@@ -69,7 +69,7 @@ class Checkout_Form {
 		$params['css_class'] = !empty($row->cssclass) ? $row->cssclass : null;
         $params['button_text'] = is_null($row->buttontext) ? __('Buy Now', 'coinqvest') : $row->buttontext;
 		$params['customer_info'] = $customer_info;
-		$params['display_price'] = number_format_i18n($row->total, $row->decimals) . ' ' . $row->currency;
+        $params['display_price'] = Common_Helpers::format_display_price($row->total, $row->currency, $row->decimals);
 
 		/**
 		 * Render the checkout form
@@ -90,7 +90,6 @@ class Checkout_Form {
         return $html;
 
 	}
-
 
 	public function render_checkout_button($params) {
 

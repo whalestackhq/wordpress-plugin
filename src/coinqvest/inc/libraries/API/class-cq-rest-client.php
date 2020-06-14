@@ -1,7 +1,7 @@
 <?php
 namespace COINQVEST\Inc\Libraries\Api;
 
-defined( 'ABSPATH' ) or exit;
+defined('ABSPATH') or exit;
 
 /**
  * Class CQ_Rest_Client

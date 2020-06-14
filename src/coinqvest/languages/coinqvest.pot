@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: COINQVEST v0.0.1\n"
-"POT-Creation-Date: 2020-06-08 13:24+0200\n"
+"POT-Creation-Date: 2020-06-14 12:19+0200\n"
 "PO-Revision-Date: 2020-05-23 10:41+0200\n"
 "Last-Translator: \n"
 "Language-Team: COINQVEST www.coinqvest.com\n"
@@ -58,9 +58,9 @@ msgstr ""
 #: admin/class-edit-payment-button.php:68
 #: admin/class-edit-payment-button.php:76 admin/class-settings.php:114
 #: admin/class-settings.php:122 admin/class-settings.php:130
-#: admin/class-settings.php:140 frontend/class-checkout-form.php:169
-#: frontend/class-checkout-form.php:173 frontend/class-checkout-form.php:184
-#: frontend/class-checkout-form.php:206
+#: admin/class-settings.php:140 frontend/class-checkout-form.php:168
+#: frontend/class-checkout-form.php:172 frontend/class-checkout-form.php:183
+#: frontend/class-checkout-form.php:205
 msgid "optional"
 msgstr ""
 
@@ -122,8 +122,12 @@ msgstr ""
 msgid "Payment button created successfully."
 msgstr ""
 
-#: admin/class-admin.php:167
+#: admin/class-admin.php:165
 msgid "Items Per Page"
+msgstr ""
+
+#: admin/class-admin.php:178
+msgid "Settings"
 msgstr ""
 
 #: admin/class-coinqvest-start.php:23
@@ -135,54 +139,54 @@ msgid "Supported digital currencies: Bitcoin (BTC), Ethereum (ETH), Ripple (XRP)
 msgstr ""
 
 #: admin/class-coinqvest-start.php:27
-msgid "Supported payout currencies: USD, EUR, CAD, NGN"
+msgid "Supported payout currencies: USD, EUR, CAD, NGN, BRL"
 msgstr ""
 
-#: admin/class-coinqvest-start.php:39
+#: admin/class-coinqvest-start.php:38
 msgid "How it works:"
 msgstr ""
 
-#: admin/class-coinqvest-start.php:43
+#: admin/class-coinqvest-start.php:42
 msgid "Log in or sign up on COINQVEST."
 msgstr ""
 
-#: admin/class-coinqvest-start.php:46
+#: admin/class-coinqvest-start.php:45
 msgid "Get your API Keys."
 msgstr ""
 
-#: admin/class-coinqvest-start.php:49
+#: admin/class-coinqvest-start.php:48
 msgid "Enter API key and secret on the settings page."
 msgstr ""
 
-#: admin/class-coinqvest-start.php:52
+#: admin/class-coinqvest-start.php:51
 msgid "Create a new payment button"
 msgstr ""
 
-#: admin/class-coinqvest-start.php:55
+#: admin/class-coinqvest-start.php:54
 msgid "Embed that payment button with the generated shortcode into your Wordpress page or theme."
 msgstr ""
 
-#: admin/class-coinqvest-start.php:58
+#: admin/class-coinqvest-start.php:57
 msgid "Manage all payments in your merchant account on www.coinqvest.com. You will be notified by email about every new payment."
 msgstr ""
 
-#: admin/class-coinqvest-start.php:69
+#: admin/class-coinqvest-start.php:68
 msgid "COINQVEST Resources"
 msgstr ""
 
-#: admin/class-coinqvest-start.php:72
+#: admin/class-coinqvest-start.php:71
 msgid "API documentation"
 msgstr ""
 
-#: admin/class-coinqvest-start.php:72
+#: admin/class-coinqvest-start.php:71
 msgid "Hosted Checkouts"
 msgstr ""
 
-#: admin/class-coinqvest-start.php:73
+#: admin/class-coinqvest-start.php:72
 msgid "Blog"
 msgstr ""
 
-#: admin/class-coinqvest-start.php:74
+#: admin/class-coinqvest-start.php:73
 msgid "Help Center"
 msgstr ""
 
@@ -198,7 +202,7 @@ msgstr ""
 msgid "Build the JSON object according to the COINQVEST API documentation"
 msgstr ""
 
-#: admin/class-edit-payment-button.php:133 frontend/class-checkout-form.php:292
+#: admin/class-edit-payment-button.php:133 frontend/class-checkout-form.php:291
 #, php-format
 msgid "Payment button id %s does not exist."
 msgstr ""
@@ -263,11 +267,11 @@ msgstr ""
 msgid "Time"
 msgstr ""
 
-#: admin/class-payment-buttons-list-table.php:207
+#: admin/class-payment-buttons-list-table.php:208
 msgid "Cannot be deleted when status is active"
 msgstr ""
 
-#: admin/class-payment-buttons-list-table.php:217
+#: admin/class-payment-buttons-list-table.php:218
 msgid "Button successfully deleted"
 msgstr ""
 
@@ -407,80 +411,80 @@ msgstr ""
 msgid "Your COINQVEST checkout button is not active."
 msgstr ""
 
-#: frontend/class-checkout-form.php:148
+#: frontend/class-checkout-form.php:147
 msgid "First name"
 msgstr ""
 
-#: frontend/class-checkout-form.php:152
+#: frontend/class-checkout-form.php:151
 msgid "Last name"
 msgstr ""
 
-#: frontend/class-checkout-form.php:159
+#: frontend/class-checkout-form.php:158
 msgid "Email"
 msgstr ""
 
-#: frontend/class-checkout-form.php:169
+#: frontend/class-checkout-form.php:168
 msgid "Company"
 msgstr ""
 
-#: frontend/class-checkout-form.php:173
+#: frontend/class-checkout-form.php:172
 msgid "Tax ID"
 msgstr ""
 
-#: frontend/class-checkout-form.php:180
+#: frontend/class-checkout-form.php:179
 msgid "Address Line 1"
 msgstr ""
 
-#: frontend/class-checkout-form.php:184
+#: frontend/class-checkout-form.php:183
 msgid "Address Line 2"
 msgstr ""
 
-#: frontend/class-checkout-form.php:191
+#: frontend/class-checkout-form.php:190
 msgid "ZIP code (and State)"
 msgstr ""
 
-#: frontend/class-checkout-form.php:195
+#: frontend/class-checkout-form.php:194
 msgid "City"
 msgstr ""
 
-#: frontend/class-checkout-form.php:202
+#: frontend/class-checkout-form.php:201
 msgid "Country"
 msgstr ""
 
-#: frontend/class-checkout-form.php:206
+#: frontend/class-checkout-form.php:205
 msgid "Phone number"
 msgstr ""
 
-#: frontend/class-checkout-form.php:216
+#: frontend/class-checkout-form.php:215
 msgid "Pay Now"
 msgstr ""
 
-#: frontend/class-checkout-form.php:232
+#: frontend/class-checkout-form.php:231
 msgid "Cancel Payment"
 msgstr ""
 
-#: frontend/class-checkout-form.php:302
+#: frontend/class-checkout-form.php:301
 #, php-format
 msgid "Payment button id %s is inactive."
 msgstr ""
 
-#: frontend/class-checkout-form.php:328
+#: frontend/class-checkout-form.php:327
 msgid "Please provide all highlighted fields."
 msgstr ""
 
-#: frontend/class-checkout-form.php:336
+#: frontend/class-checkout-form.php:335
 msgid "Please provide a valid email address."
 msgstr ""
 
-#: frontend/class-checkout-form.php:382
+#: frontend/class-checkout-form.php:381
 msgid "Failed to create customer. Please try again later."
 msgstr ""
 
-#: frontend/class-checkout-form.php:422
+#: frontend/class-checkout-form.php:421
 msgid "Failed to create checkout. Please try again later."
 msgstr ""
 
-#: frontend/class-checkout-form.php:436
+#: frontend/class-checkout-form.php:435
 msgid "Success. You will be redirected to the checkout page."
 msgstr ""
 
