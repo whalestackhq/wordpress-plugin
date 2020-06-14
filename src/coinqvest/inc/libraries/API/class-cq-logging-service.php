@@ -1,7 +1,7 @@
 <?php
 namespace COINQVEST\Inc\Libraries\Api;
 
-defined( 'ABSPATH' ) or exit;
+defined('ABSPATH') or exit;
 
 /**
  * Class CQ_Logging_Service
@@ -24,10 +24,9 @@ class CQ_Logging_Service {
 		    $table_name,
 		    array(
 			    'message' => $message,
-		    	'time' => current_time( 'mysql' )
+		    	'time' => current_time('mysql')
 		    )
 	    );
-
     }
 
 }
