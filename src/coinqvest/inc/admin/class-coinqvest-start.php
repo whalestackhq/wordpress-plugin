@@ -39,10 +39,10 @@ class Coinqvest_Start {
 								<div class="inside">
                                     <ol>
                                         <li>
-                                            <a href="https://www.coinqvest.com?utm_source=<?php echo esc_html($_SERVER['SERVER_NAME'])?>" target="_blank"><?php echo esc_html(sprintf(__('Log in or sign up on COINQVEST.', 'coinqvest')))?></a>
+                                            <a href="https://www.coinqvest.com?utm_source=wordpress&utm_medium=<?php echo esc_html($_SERVER['SERVER_NAME'])?>" target="_blank"><?php echo esc_html(sprintf(__('Log in or sign up on COINQVEST.', 'coinqvest')))?></a>
                                         </li>
                                         <li>
-                                            <a href="https://www.coinqvest.com/en/api-settings?utm_source=<?php echo esc_html($_SERVER['SERVER_NAME'])?>" target="_blank"><?php echo esc_html(sprintf(__('Get your API Keys.', 'coinqvest')))?></a>
+                                            <a href="https://www.coinqvest.com/en/api-settings?utm_source=wordpress&utm_medium=<?php echo esc_html($_SERVER['SERVER_NAME'])?>" target="_blank"><?php echo esc_html(sprintf(__('Get your API Keys.', 'coinqvest')))?></a>
                                         </li>
                                         <li>
                                             <a href="<?=esc_url(admin_url('admin.php?page=coinqvest-settings'))?>"><?php echo esc_html(__('Enter API key and secret on the settings page.', 'coinqvest'))?></a>
@@ -68,9 +68,9 @@ class Coinqvest_Start {
 								<h2 class="hndle"><span><?php echo esc_html(__('COINQVEST Resources', 'coinqvest'))?></span></h2>
 								<div class="inside">
                                     <ul>
-                                        <li>- <?php echo esc_html(__('API documentation', 'coinqvest'))?> -> <a href="https://www.coinqvest.com/en/api-docs#post-checkout-hosted?utm_source=<?php echo esc_html($_SERVER['SERVER_NAME'])?>" target="_blank"><?php echo esc_html(__('Hosted Checkouts', 'coinqvest'))?></a></li>
-                                        <li>- <a href="https://www.coinqvest.com/en/blog?utm_source=<?php echo esc_html($_SERVER['SERVER_NAME'])?>" target="_blank"><?php echo esc_html(__('Blog', 'coinqvest'))?></a></li>
-                                        <li>- <a href="https://www.coinqvest.com/en/help-center#overview?utm_source=<?php echo esc_html($_SERVER['SERVER_NAME'])?>" target="_blank"><?php echo esc_html(__('Help Center', 'coinqvest'))?></a></li>
+                                        <li>- <?php echo esc_html(__('API Documentation', 'coinqvest'))?> -> <a href="https://www.coinqvest.com/en/api-docs#post-checkout-hosted?utm_source=wordpress&utm_medium=<?php echo esc_html($_SERVER['SERVER_NAME'])?>" target="_blank"><?php echo esc_html(__('Hosted Checkouts', 'coinqvest'))?></a></li>
+                                        <li>- <a href="https://www.coinqvest.com/en/blog/how-to-accept-bitcoin-stellar-lumens-and-other-cryptocurrencies-with-coinqvest-for-wordpress-b0f7246517c9?utm_source=wordpress&utm_medium=<?php echo esc_html($_SERVER['SERVER_NAME'])?>" target="_blank"><?php echo esc_html(__('Installation Guide', 'coinqvest'))?></a></li>
+                                        <li>- <a href="https://www.coinqvest.com/en/help-center#overview?utm_source=wordpress&utm_medium=<?php echo esc_html($_SERVER['SERVER_NAME'])?>" target="_blank"><?php echo esc_html(__('Help Center', 'coinqvest'))?></a></li>
                                     </ul>
 								</div>
 							</div>

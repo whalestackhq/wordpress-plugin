@@ -35,13 +35,13 @@ Example: You sell an e-book for 20 USD on your website. Your user pays in Bitcoi
 
 = Docs and support =
 
-You can find the [plugin guide](https://www.coinqvest.com/en/blog/a-guide-to-cryptocurrency-payment-processing-with-coinqvest-and-wordpress-b0f7246517c9?utm_source=wordpress.org), [API documentation](https://www.coinqvest.com/en/api-docs#post-checkout-hosted?utm_source=wordpress.org), [Help Center](https://www.coinqvest.com/en/help-center#overview?utm_source=wordpress.org) and more detailed information about COINQVEST on [coinqvest.com](https://www.coinqvest.com/?utm_source=wordpress.org).
+You can find the [plugin guide](https://www.coinqvest.com/en/blog/a-guide-to-cryptocurrency-payment-processing-with-coinqvest-and-wordpress-b0f7246517c9), [API documentation](https://www.coinqvest.com/en/api-docs#post-checkout-hosted), [Help Center](https://www.coinqvest.com/en/help-center#overview) and more detailed information about COINQVEST on [coinqvest.com](https://www.coinqvest.com/).
 
 == Installation ==
 
 = Requirements =
 
-* A COINQVEST merchant account -> Sign up [here](http://www.coinqvest.com?utm_source=wordpress.org)
+* A COINQVEST merchant account -> Sign up [here](http://www.coinqvest.com)
 
 = Plugin installation =
 
@@ -51,18 +51,18 @@ You can find the [plugin guide](https://www.coinqvest.com/en/blog/a-guide-to-cry
 
 = Plugin configuration =
 
-1. Get your [API key and secret](https://www.coinqvest.com/en/api-settings?utm_source=wordpress.org) from your COINQVEST merchant account.
+1. Get your [API key and secret](https://www.coinqvest.com/en/api-settings) from your COINQVEST merchant account.
 1. Enter API key and secret into the COINQVEST plugin settings page.
 1. Create a new payment button and copy the generated shortcode into your page, post or widget.
-1. Manage all payments in your [merchant account](https://www.coinqvest.com?utm_source=wordpress.org). You will be notified by email about every new payment.
+1. Manage all payments in your [merchant account](https://www.coinqvest.com). You will be notified by email about every new payment.
 
 == Frequently Asked Questions ==
 
 Do you have questions or issues with COINQVEST? Feel free to contact us anytime!
 
-* [Plugin Guide](https://www.coinqvest.com/en/blog/a-guide-to-cryptocurrency-payment-processing-with-coinqvest-and-wordpress-b0f7246517c9?utm_source=wordpress.org)
-* [API Docs](https://www.coinqvest.com/en/api-docs#post-checkout-hosted?utm_source=wordpress.org)
-* [Help Center](https://www.coinqvest.com/en/help-center#overview?utm_source=wordpress.org)
+* [Plugin Guide](https://www.coinqvest.com/en/blog/a-guide-to-cryptocurrency-payment-processing-with-coinqvest-and-wordpress-b0f7246517c9)
+* [API Docs](https://www.coinqvest.com/en/api-docs#post-checkout-hosted)
+* [Help Center](https://www.coinqvest.com/en/help-center#overview)
 
 == Screenshots ==
 
