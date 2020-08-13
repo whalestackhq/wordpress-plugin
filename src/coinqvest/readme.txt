@@ -2,7 +2,7 @@
 Contributors: coinqvest
 Tags: crypto, cryptocurrency, payments, payment gateway, payment processing, digital currencies, bitcoin, stellar, lumens, xlm, btc, eth, xrp, ltc, EUR, USD, CAD, NGN, BRL
 Requires at least: 3.9
-Tested up to: 5.4
+Tested up to: 5.5
 Stable tag: 0.1
 Requires PHP: 5.6
 License: Apache 2.0
@@ -35,13 +35,13 @@ Example: You sell an e-book for 20 USD on your website. Your user pays in Bitcoi
 
 = Docs and support =
 
-You can find the [plugin guide](https://www.coinqvest.com/en/blog/a-guide-to-cryptocurrency-payment-processing-with-coinqvest-and-wordpress-b0f7246517c9), [API documentation](https://www.coinqvest.com/en/api-docs#post-checkout-hosted), [Help Center](https://www.coinqvest.com/en/help-center#overview) and more detailed information about COINQVEST on [coinqvest.com](https://www.coinqvest.com/).
+You can find the [plugin guide](https://www.coinqvest.com/en/blog/a-guide-to-cryptocurrency-payment-processing-with-coinqvest-and-wordpress-b0f7246517c9?utm_source=wordpress.org), [API documentation](https://www.coinqvest.com/en/api-docs#post-checkout-hosted?utm_source=wordpress.org), [Help Center](https://www.coinqvest.com/en/help-center#overview?utm_source=wordpress.org) and more detailed information about COINQVEST on [coinqvest.com](https://www.coinqvest.com/?utm_source=wordpress.org).
 
 == Installation ==
 
 = Requirements =
 
-* A COINQVEST merchant account -> Sign up [here](http://www.coinqvest.com)
+* A COINQVEST merchant account -> Sign up [here](http://www.coinqvest.com?utm_source=wordpress.org)
 
 = Plugin installation =
 
@@ -51,18 +51,18 @@ You can find the [plugin guide](https://www.coinqvest.com/en/blog/a-guide-to-cry
 
 = Plugin configuration =
 
-1. Get your [API key and secret](https://www.coinqvest.com/en/api-settings) from your COINQVEST merchant account.
+1. Get your [API key and secret](https://www.coinqvest.com/en/api-settings?utm_source=wordpress.org) from your COINQVEST merchant account.
 1. Enter API key and secret into the COINQVEST plugin settings page.
 1. Create a new payment button and copy the generated shortcode into your page, post or widget.
-1. Manage all payments in your [merchant account](https://www.coinqvest.com). You will be notified by email about every new payment.
+1. Manage all payments in your [merchant account](https://www.coinqvest.com?utm_source=wordpress.org). You will be notified by email about every new payment.
 
 == Frequently Asked Questions ==
 
 Do you have questions or issues with COINQVEST? Feel free to contact us anytime!
 
-* [Plugin Guide](https://www.coinqvest.com/en/blog/a-guide-to-cryptocurrency-payment-processing-with-coinqvest-and-wordpress-b0f7246517c9)
-* [API Docs](https://www.coinqvest.com/en/api-docs#post-checkout-hosted)
-* [Help Center](https://www.coinqvest.com/en/help-center#overview)
+* [Plugin Guide](https://www.coinqvest.com/en/blog/a-guide-to-cryptocurrency-payment-processing-with-coinqvest-and-wordpress-b0f7246517c9?utm_source=wordpress.org)
+* [API Docs](https://www.coinqvest.com/en/api-docs#post-checkout-hosted?utm_source=wordpress.org)
+* [Help Center](https://www.coinqvest.com/en/help-center#overview?utm_source=wordpress.org)
 
 == Screenshots ==
 
@@ -73,6 +73,10 @@ Do you have questions or issues with COINQVEST? Feel free to contact us anytime!
 5. COINQVEST Instant Withdrawals
 
 == Changelog ==
+
+= 0.0.6 =
+
+* Tested for WordPress version 5.5
 
 = 0.0.5 =
 

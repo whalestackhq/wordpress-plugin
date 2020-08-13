@@ -27,7 +27,7 @@ class Add_Payment_Button {
             <?php } ?>
 
             <p>
-	            <?php echo esc_html(__('Provide a name and a JSON object, according to the COINQVEST API documentation', 'coinqvest'))?>: <br><a href="https://www.coinqvest.com/en/api-docs#post-checkout-hosted" target="_blank">https://www.coinqvest.com/en/api-docs#post-checkout-hosted</a>
+	            <?php echo esc_html(__('Provide a name and a JSON object, according to the COINQVEST API documentation', 'coinqvest'))?>: <br><a href="https://www.coinqvest.com/en/api-docs#post-checkout-hosted?utm_source=<?php echo esc_html($_SERVER['SERVER_NAME'])?>" target="_blank">https://www.coinqvest.com/en/api-docs#post-checkout-hosted</a>
             </p>
 
             <div id="coinqvest_form_feedback"></div>

@@ -66,7 +66,7 @@ class Settings {
 
             <h3><?php echo esc_html(__( 'API Settings', 'coinqvest' ))?></h3>
 
-            <p><a href="https://www.coinqvest.com/en/api-settings" target="_blank"><?php echo esc_html(sprintf(__('Get your API Keys on www.coinqvest.com', 'coinqvest')))?></a></p>
+            <p><a href="https://www.coinqvest.com/en/api-settings?utm_source=<?php echo esc_html($_SERVER['SERVER_NAME'])?>" target="_blank"><?php echo esc_html(sprintf(__('Get your API Keys on www.coinqvest.com', 'coinqvest')))?></a></p>
 
             <div id="coinqvest_form_feedback"></div>
 
