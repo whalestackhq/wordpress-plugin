@@ -2,7 +2,7 @@
 Contributors: coinqvest
 Tags: crypto, cryptocurrency, payments, payment gateway, payment processing, digital currencies, bitcoin, stellar, lumens, xlm, btc, eth, xrp, ltc, EUR, USD, CAD, NGN, BRL
 Requires at least: 3.9
-Tested up to: 5.4
+Tested up to: 5.5
 Stable tag: 0.1
 Requires PHP: 5.6
 License: Apache 2.0
@@ -73,6 +73,10 @@ Do you have questions or issues with COINQVEST? Feel free to contact us anytime!
 5. COINQVEST Instant Withdrawals
 
 == Changelog ==
+
+= 0.0.6 =
+
+* Tested for WordPress version 5.5
 
 = 0.0.5 =
 
