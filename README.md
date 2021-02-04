@@ -8,10 +8,11 @@ Key Features
 ------------
 
 * Accepts Bitcoin (BTC), Ethereum (ETH), Ripple (XRP), Stellar Lumens (XLM) and Litecoin (LTC) payments from customers.
-* Instantly settles in your preferred national currency (USD, EUR, CAD, NGN, BRL).
+* Instantly settles in your preferred national currency (USD, EUR, NGN, BRL).
 * Doesn't require any e-commerce setup on your WordPress site.
 * Embeds a payment button in any page, post or widget of your WordPress site.
 * Sets the product price in your national currency.
+* Sets the checkout language in your preferred language.
 * Eliminates chargebacks and gives you control over refunds.
 * Eliminates currency volatility risks due to instant conversions and settlement.
 * Controls tax compliance levels (none, minimal, compliant).

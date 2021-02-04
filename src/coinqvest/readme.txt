@@ -1,9 +1,9 @@
 === COINQVEST - Bitcoin and other cryptocurrency payment processing ===
 Contributors: coinqvest
-Tags: crypto, cryptocurrency, payments, payment gateway, payment processing, digital currencies, bitcoin, stellar, lumens, xlm, btc, eth, xrp, ltc, EUR, USD, CAD, NGN, BRL
+Tags: crypto, cryptocurrency, payments, payment gateway, payment processing, digital currencies, bitcoin, stellar, lumens, xlm, btc, eth, xrp, ltc, EUR, USD, NGN, BRL
 Requires at least: 3.9
-Tested up to: 5.5
-Stable tag: 0.1
+Tested up to: 5.6
+Stable tag: 1.0
 Requires PHP: 5.6
 License: Apache 2.0
 License URI: https://www.apache.org/licenses/LICENSE-2.0
@@ -12,15 +12,16 @@ Accept digital currencies from your clients and settle instantly in your preferr
 
 == Description ==
 
-COINQVEST provides digital currency checkouts that automatically go from Bitcoin to your bank account, in minutes. COINQVEST helps you programmatically accept and settle payments in new digital currencies while staying compliant, keeping your accountants and tax authorities happy. With COINQVEST, sales can be denominated and settled in your local fiat currency (e.g. EUR, USD, CAD, BRL or NGN) regardless of whether your customers pay in Bitcoin, Ethereum or Stellar Lumens.
+COINQVEST provides digital currency checkouts that automatically go from Bitcoin to your bank account, in minutes. COINQVEST helps you programmatically accept and settle payments in new digital currencies while staying compliant, keeping your accountants and tax authorities happy. With COINQVEST, sales can be denominated and settled in your local fiat currency (e.g. EUR, USD, BRL or NGN) regardless of whether your customers pay in Bitcoin, Ethereum or Stellar Lumens.
 
 = Key features =
 
 * Accepts Bitcoin (BTC), Ethereum (ETH), Ripple (XRP), Stellar Lumens (XLM) and Litecoin (LTC) payments from customers.
-* Instantly settles in your preferred national currency (USD, EUR, CAD, NGN, BRL).
+* Instantly settles in your preferred national currency (USD, EUR, NGN, BRL).
 * Doesn't require any e-commerce setup on your WordPress site.
 * Embeds a payment button in any page, post or widget of your WordPress site.
 * Sets the product price in your national currency.
+* Sets the checkout language in your preferred language.
 * Eliminates chargebacks and gives you control over refunds.
 * Eliminates currency volatility risks due to instant conversions and settlement.
 * Controls tax compliance levels (none, minimal, compliant).
@@ -73,6 +74,11 @@ Do you have questions or issues with COINQVEST? Feel free to contact us anytime!
 5. COINQVEST Instant Withdrawals
 
 == Changelog ==
+
+= 1.0.0 =
+
+* Added cryptocurrencies as settlement currencies
+* Added language selector for checkout page
 
 = 0.0.6 =
 
