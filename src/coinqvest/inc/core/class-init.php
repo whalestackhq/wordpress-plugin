@@ -159,4 +159,11 @@ class Init {
         return $this->plugin_basename;
     }
 
+    public function get_plugin_data() {
+        global $wp_version;
+        $wp = 'WP ' . $wp_version;
+        $cq = 'CQ ' . $this->get_version();
+        return $wp . ', ' . $cq;
+    }
+
 }

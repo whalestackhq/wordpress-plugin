@@ -23,9 +23,13 @@ class Settings {
 		$return_url = isset($settings['return_url']) ? $settings['return_url'] : null;
 		$cancel_url = isset($settings['cancel_url']) ? $settings['cancel_url'] : null;
 		$settlement_currency = isset($settings['settlement_currency']) ? $settings['settlement_currency'] : null;
+        $checkout_language = isset($settings['checkout_language']) ? $settings['checkout_language'] : null;
 		$customer_info = isset($settings['customer_info']) ? $settings['customer_info'] : null;
 
-		$fiat_currencies = array();
+		$currencies = array();
+		$checkout_languages = array();
+        $checkout_languages['auto'] = 'Automatic';
+
 		if (!empty($api_key) && !empty($api_secret)) {
 
 			$client = new Api\CQ_Merchant_Client(
@@ -34,27 +38,53 @@ class Settings {
 				true
 			);
 
+            /**
+             * Get fiat currencies
+             */
+
 			$response = $client->get('/fiat-currencies');
-			$fiat_currencies = json_decode($response->responseBody);
 
-			if ($response->httpStatusCode != 200) {
+            if ($response->httpStatusCode == 200) {
 
-				$result = "error";
-				$message = esc_html("Status Code: " . $response->httpStatusCode . " - " . $response->responseBody);
-				$page = "coinqvest-settings";
+                $fiats = json_decode($response->responseBody);
 
-				if (isset($_POST['ajaxrequest']) && $_POST['ajaxrequest'] === 'true') {
-                    Common_Helpers::renderResponse(array(
-                        "success" => false,
-                        "message" => $message
-                    ));
-				} else {
-					$this->redirect = new Admin_Helpers();
-					$this->redirect->custom_redirect($result, $message, $page);
-				}
-				exit;
+                foreach ($fiats->fiatCurrencies as $currency) {
+                    $currencies[$currency->assetCode] = esc_html($currency->assetName);
+                }
 
-			}
+            }
+
+            /**
+             * Get blockchains
+             */
+
+            $response = $client->get('/blockchains');
+
+            if ($response->httpStatusCode == 200) {
+
+                $chains = json_decode($response->responseBody);
+
+                foreach ($chains->blockchains as $blockchain) {
+                    $currencies[$blockchain->nativeAssetCode] = esc_html($blockchain->nativeAssetName);
+                }
+
+            }
+
+            /**
+             * Get checkout page languages
+             */
+
+            $response = $client->get('/languages');
+
+            if ($response->httpStatusCode == 200) {
+
+                $languages = json_decode($response->responseBody);
+
+                foreach ($languages->languages as $language) {
+                    $checkout_languages[$language->languageCode] = esc_html($language->name);
+                }
+
+            }
 
         }
 
@@ -134,7 +164,7 @@ class Settings {
                         </td>
                     </tr>
 
-                    <?php if (!empty($fiat_currencies)) { ?>
+                    <?php if (!empty($currencies)) { ?>
 
                     <tr>
                         <th scope="row"><?php echo esc_html(__('Settlement Currency', 'coinqvest'))?> <span class="optional">(<?php echo esc_html(__('optional', 'coinqvest'))?>)</span></th>
@@ -143,9 +173,9 @@ class Settings {
 
                                 <option value="0" <?=($settlement_currency == "0") ? 'selected="selected"' : null?>>=== <?php echo esc_html(__('Select currency', 'coinqvest'))?> ===</option>
 
-                                <?php foreach ($fiat_currencies->fiatCurrencies as $currency) { ?>
+                                <?php foreach ($currencies as $key => $value) { ?>
 
-                                <option value="<?=esc_attr($currency->assetCode)?>" <?=($settlement_currency == $currency->assetCode) ? 'selected="selected"' : null?>><?=esc_html($currency->assetCode)?> - <?=esc_html($currency->assetName)?></option>
+                                <option value="<?=esc_attr($key)?>" <?=($settlement_currency == $key) ? 'selected="selected"' : null?>><?=esc_html($key)?> - <?=esc_html($value)?></option>
 
                                 <?php } ?>
 
@@ -154,6 +184,29 @@ class Settings {
                             <p class="description"><?php echo esc_html(__('The currency that the crypto payments get converted to. If you don\'t choose a currency here, the settlement currency will be the billing currency.', 'coinqvest'))?></p>
                         </td>
                     </tr>
+
+                    <?php } ?>
+
+                    <?php if (!empty($checkout_languages)) { ?>
+
+                        <tr>
+                            <th scope="row"><?php echo esc_html(__('Checkout Language', 'coinqvest'))?> <span class="optional">(<?php echo esc_html(__('optional', 'coinqvest'))?>)</span></th>
+                            <td>
+                                <select name="cq_checkout_language" id="cq_checkout_language">
+
+                                    <option value="0" <?=($checkout_language == "0") ? 'selected="selected"' : null?>>=== <?php echo esc_html(__('Select language', 'coinqvest'))?> ===</option>
+
+                                    <?php foreach ($checkout_languages as $key => $value) { ?>
+
+                                        <option value="<?=esc_attr($key)?>" <?=($checkout_language == $key) ? 'selected="selected"' : null?>><?=esc_html($key)?> - <?=esc_html($value)?></option>
+
+                                    <?php } ?>
+
+                                </select>
+
+                                <p class="description"><?php echo esc_html(__('The language that your checkout page will display in. Choose \'auto\' to automatically detect the customer\'s main browser language. Fallback language code is \'en\'.', 'coinqvest'))?></p>
+                            </td>
+                        </tr>
 
                     <?php } ?>
 
@@ -310,6 +363,7 @@ class Settings {
 		$cancel_url = !empty($_POST['cq_cancel_url']) ? esc_url_raw($_POST['cq_cancel_url']) : null;
 		$return_url =  !empty($_POST['cq_return_url']) ? esc_url_raw($_POST['cq_return_url']) : null;
 		$settlement_currency =  sanitize_text_field($_POST['cq_settlement_currency']);
+        $checkout_language =  sanitize_text_field($_POST['cq_checkout_language']);
 		$customer_info = sanitize_text_field($_POST['cq_customer_info']);
         $is_ajax = (isset( $_POST['ajaxrequest']) && $_POST['ajaxrequest'] === 'true') ? true : false;
 
@@ -318,6 +372,7 @@ class Settings {
 			"cancel_url" => $cancel_url,
 			"return_url" => $return_url,
             "settlement_currency" => $settlement_currency,
+            "checkout_language" => $checkout_language,
             "customer_info" => $customer_info
 		);
 

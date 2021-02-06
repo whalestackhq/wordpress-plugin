@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: COINQVEST v0.0.1\n"
-"POT-Creation-Date: 2020-06-14 12:19+0200\n"
+"POT-Creation-Date: 2021-02-04 20:11+0100\n"
 "PO-Revision-Date: 2020-05-23 10:41+0200\n"
 "Last-Translator: \n"
 "Language-Team: COINQVEST www.coinqvest.com\n"
@@ -26,7 +26,7 @@ msgstr ""
 msgid "Please enter your API key and API secret first before you can create a payment button:"
 msgstr ""
 
-#: admin/class-add-payment-button.php:26 admin/class-settings.php:67
+#: admin/class-add-payment-button.php:26 admin/class-settings.php:97
 msgid "API Settings"
 msgstr ""
 
@@ -56,11 +56,11 @@ msgstr ""
 
 #: admin/class-add-payment-button.php:63 admin/class-add-payment-button.php:73
 #: admin/class-edit-payment-button.php:68
-#: admin/class-edit-payment-button.php:76 admin/class-settings.php:114
-#: admin/class-settings.php:122 admin/class-settings.php:130
-#: admin/class-settings.php:140 frontend/class-checkout-form.php:168
-#: frontend/class-checkout-form.php:172 frontend/class-checkout-form.php:183
-#: frontend/class-checkout-form.php:205
+#: admin/class-edit-payment-button.php:76 admin/class-settings.php:144
+#: admin/class-settings.php:152 admin/class-settings.php:160
+#: admin/class-settings.php:170 admin/class-settings.php:193
+#: frontend/class-checkout-form.php:168 frontend/class-checkout-form.php:172
+#: frontend/class-checkout-form.php:183 frontend/class-checkout-form.php:205
 msgid "optional"
 msgstr ""
 
@@ -93,7 +93,7 @@ msgid "active"
 msgstr ""
 
 #: admin/class-add-payment-button.php:87 admin/class-edit-payment-button.php:90
-#: admin/class-settings.php:93 admin/class-settings.php:179
+#: admin/class-settings.php:123 admin/class-settings.php:232
 msgid "Save"
 msgstr ""
 
@@ -139,7 +139,7 @@ msgid "Supported digital currencies: Bitcoin (BTC), Ethereum (ETH), Ripple (XRP)
 msgstr ""
 
 #: admin/class-coinqvest-start.php:27
-msgid "Supported payout currencies: USD, EUR, CAD, NGN, BRL"
+msgid "Supported payout currencies: USD, EUR, NGN, BRL and above digital currencies"
 msgstr ""
 
 #: admin/class-coinqvest-start.php:38
@@ -175,7 +175,7 @@ msgid "COINQVEST Resources"
 msgstr ""
 
 #: admin/class-coinqvest-start.php:71
-msgid "API documentation"
+msgid "API Documentation"
 msgstr ""
 
 #: admin/class-coinqvest-start.php:71
@@ -183,7 +183,7 @@ msgid "Hosted Checkouts"
 msgstr ""
 
 #: admin/class-coinqvest-start.php:72
-msgid "Blog"
+msgid "Installation Guide"
 msgstr ""
 
 #: admin/class-coinqvest-start.php:73
@@ -275,119 +275,131 @@ msgstr ""
 msgid "Button successfully deleted"
 msgstr ""
 
-#: admin/class-settings.php:65
+#: admin/class-settings.php:95
 msgid "COINQVEST API and Global Settings"
 msgstr ""
 
-#: admin/class-settings.php:69
+#: admin/class-settings.php:99
 msgid "Get your API Keys on www.coinqvest.com"
 msgstr ""
 
-#: admin/class-settings.php:82
+#: admin/class-settings.php:112
 msgid "API Key"
 msgstr ""
 
-#: admin/class-settings.php:87
+#: admin/class-settings.php:117
 msgid "API Secret"
 msgstr ""
 
-#: admin/class-settings.php:99
+#: admin/class-settings.php:129
 msgid "Global Settings"
 msgstr ""
 
-#: admin/class-settings.php:101
+#: admin/class-settings.php:131
 msgid "Global settings overwrite JSON parameters in payment buttons."
 msgstr ""
 
-#: admin/class-settings.php:114
+#: admin/class-settings.php:144
 msgid "Return URL"
 msgstr ""
 
-#: admin/class-settings.php:117
+#: admin/class-settings.php:147
 msgid "Specifies where to send the customer when the payment successfully completed."
 msgstr ""
 
-#: admin/class-settings.php:122
+#: admin/class-settings.php:152
 msgid "Cancel URL"
 msgstr ""
 
-#: admin/class-settings.php:125
+#: admin/class-settings.php:155
 msgid "Specifies where to send the customer when he wishes to cancel the checkout process."
 msgstr ""
 
-#: admin/class-settings.php:130
+#: admin/class-settings.php:160
 msgid "Webhook URL"
 msgstr ""
 
-#: admin/class-settings.php:133
+#: admin/class-settings.php:163
 msgid "A webhook URL on your server that listens for payment events."
 msgstr ""
 
-#: admin/class-settings.php:140
+#: admin/class-settings.php:170
 msgid "Settlement Currency"
 msgstr ""
 
-#: admin/class-settings.php:144
+#: admin/class-settings.php:174
 msgid "Select currency"
 msgstr ""
 
-#: admin/class-settings.php:154
+#: admin/class-settings.php:184
 msgid "The currency that the crypto payments get converted to. If you don't choose a currency here, the settlement currency will be the billing currency."
 msgstr ""
 
-#: admin/class-settings.php:161
+#: admin/class-settings.php:193
+msgid "Checkout Language"
+msgstr ""
+
+#: admin/class-settings.php:197
+msgid "Select language"
+msgstr ""
+
+#: admin/class-settings.php:207
+msgid "The language that your checkout page will display in. Choose 'auto' to automatically detect the customer's main browser language. Fallback language code is 'en'."
+msgstr ""
+
+#: admin/class-settings.php:214
 msgid "Required customer info"
 msgstr ""
 
-#: admin/class-settings.php:164
+#: admin/class-settings.php:217
 msgid "None"
 msgstr ""
 
-#: admin/class-settings.php:165
+#: admin/class-settings.php:218
 msgid "Minimal"
 msgstr ""
 
-#: admin/class-settings.php:166
+#: admin/class-settings.php:219
 msgid "Compliant"
 msgstr ""
 
-#: admin/class-settings.php:169
+#: admin/class-settings.php:222
 msgid "Defines what customer data to collect. Main purpose is to connect a payment to a customer and staying tax compliant."
 msgstr ""
 
-#: admin/class-settings.php:170
+#: admin/class-settings.php:223
 msgid "- None: No customer data required. You will receive the payment amount, but will not know from whom. Can be used for donations."
 msgstr ""
 
-#: admin/class-settings.php:171
+#: admin/class-settings.php:224
 msgid "- Minimal (default): Email and firstname + lastname"
 msgstr ""
 
-#: admin/class-settings.php:172
+#: admin/class-settings.php:225
 msgid "- Compliant: All data that is required to generate invoices"
 msgstr ""
 
-#: admin/class-settings.php:205
+#: admin/class-settings.php:258
 msgid "Please provide API Key and API Secret"
 msgstr ""
 
-#: admin/class-settings.php:222
+#: admin/class-settings.php:275
 msgid "API key seems to be wrong. Please double check."
 msgstr ""
 
-#: admin/class-settings.php:239
+#: admin/class-settings.php:292
 msgid "API secret seems to be wrong. Please double check."
 msgstr ""
 
-#: admin/class-settings.php:268
+#: admin/class-settings.php:321
 msgid "API key and/or API secret are wrong."
 msgstr ""
 
-#: admin/class-settings.php:292
+#: admin/class-settings.php:345
 msgid "API settings saved successfully."
 msgstr ""
 
-#: admin/class-settings.php:327
+#: admin/class-settings.php:382
 msgid "Global settings saved successfully."
 msgstr ""
 
@@ -480,11 +492,11 @@ msgstr ""
 msgid "Failed to create customer. Please try again later."
 msgstr ""
 
-#: frontend/class-checkout-form.php:421
+#: frontend/class-checkout-form.php:425
 msgid "Failed to create checkout. Please try again later."
 msgstr ""
 
-#: frontend/class-checkout-form.php:435
+#: frontend/class-checkout-form.php:439
 msgid "Success. You will be redirected to the checkout page."
 msgstr ""
 

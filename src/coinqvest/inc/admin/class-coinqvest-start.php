@@ -24,7 +24,7 @@ class Coinqvest_Start {
 					<p class="fontSize16">
 						<?php echo esc_html(__('Supported digital currencies: Bitcoin (BTC), Ethereum (ETH), Ripple (XRP), Stellar Lumens (XLM), Litecoin (LTC)', 'coinqvest'))?>
                         <br />
-						<?php echo esc_html(__('Supported payout currencies: USD, EUR, CAD, NGN, BRL', 'coinqvest'))?>
+						<?php echo esc_html(__('Supported payout currencies: USD, EUR, NGN, BRL and above digital currencies', 'coinqvest'))?>
                     </p>
 				</div>
 			</div>

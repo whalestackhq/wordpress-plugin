@@ -400,6 +400,10 @@ class Checkout_Form {
 			$checkout['settlementCurrency'] = $settings['settlement_currency'];
 		}
 
+        if (isset($settings['checkout_language']) && $settings['checkout_language'] != "0") {
+            $checkout['checkoutLanguage'] = $settings['checkout_language'];
+        }
+
 		if (isset($settings['webhook_url']) && !empty($settings['webhook_url'])) {
 			$checkout['webhook'] = $settings['webhook_url'];
 		}
