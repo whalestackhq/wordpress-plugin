@@ -204,22 +204,16 @@ class Payment_Buttons_List_Table extends Libraries\WP_List_Table  {
 				$row = $wpdb->get_row("SELECT hashid, status FROM " . $table_name . " WHERE hashid = " . $id);
 
 				if ($row->status == 1) {
-					$result = "error";
 					$message = esc_html(__('Cannot be deleted when status is active', 'coinqvest'));
 					$page = "coinqvest-payment-buttons";
-					$this->redirect = new Admin_Helpers();
-					$this->redirect->custom_redirect($result, $message, $page);
-					exit;
+                    Admin_Helpers::renderAdminErrorMessage($message, $page, false);
 				}
 
 				self::delete_item($id);
 
-				$result = "success";
 				$message = esc_html(__('Button successfully deleted', 'coinqvest'));
 				$page = "coinqvest-payment-buttons";
-				$this->redirect = new Admin_Helpers();
-				$this->redirect->custom_redirect($result, $message, $page);
-				exit;
+                Admin_Helpers::renderAdminSuccessMessage($message, $page, false);
 			}
 
 		}
@@ -231,7 +225,7 @@ class Payment_Buttons_List_Table extends Libraries\WP_List_Table  {
 	 *
 	 * @param int $id item ID
 	 */
-	public static function delete_item($id) {
+	private static function delete_item($id) {
 
 		global $wpdb;
 

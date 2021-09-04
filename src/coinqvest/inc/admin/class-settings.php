@@ -6,7 +6,7 @@ use COINQVEST\Inc\Common\Common_Helpers;
 
 class Settings {
 
-	private $redirect;
+	private $page = "coinqvest-settings";
 
 	public function __construct(  ) {
 
@@ -43,15 +43,11 @@ class Settings {
              */
 
 			$response = $client->get('/fiat-currencies');
-
             if ($response->httpStatusCode == 200) {
-
                 $fiats = json_decode($response->responseBody);
-
                 foreach ($fiats->fiatCurrencies as $currency) {
                     $currencies[$currency->assetCode] = esc_html($currency->assetName);
                 }
-
             }
 
             /**
@@ -59,15 +55,11 @@ class Settings {
              */
 
             $response = $client->get('/blockchains');
-
             if ($response->httpStatusCode == 200) {
-
                 $chains = json_decode($response->responseBody);
-
                 foreach ($chains->blockchains as $blockchain) {
                     $currencies[$blockchain->nativeAssetCode] = esc_html($blockchain->nativeAssetName);
                 }
-
             }
 
             /**
@@ -75,15 +67,11 @@ class Settings {
              */
 
             $response = $client->get('/languages');
-
             if ($response->httpStatusCode == 200) {
-
                 $languages = json_decode($response->responseBody);
-
                 foreach ($languages->languages as $language) {
                     $checkout_languages[$language->languageCode] = esc_html($language->name);
                 }
-
             }
 
         }
@@ -254,84 +242,31 @@ class Settings {
          */
 
 		if (is_null($api_key) || is_null($api_secret)) {
-			$result = "error";
 			$message = esc_html(__('Please provide API Key and API Secret', 'coinqvest'));
-			$page = "coinqvest-settings";
-
-			if ($is_ajax === true) {
-                Common_Helpers::renderResponse(array(
-                    "success" => false,
-                    "message" => $message
-                ));
-			} else {
-				$this->redirect = new Admin_Helpers();
-				$this->redirect->custom_redirect($result, $message, $page);
-            }
-			exit;
+            Admin_Helpers::renderAdminErrorMessage($message, $this->page, $is_ajax);
 		}
 
 		if (strlen($api_key) != 12) {
-			$result = "error";
 			$message = esc_html(__('API key seems to be wrong. Please double check.', 'coinqvest'));
-			$page = "coinqvest-settings";
-
-            if ($is_ajax === true) {
-                Common_Helpers::renderResponse(array(
-                    "success" => false,
-                    "message" => $message
-                ));
-			} else {
-				$this->redirect = new Admin_Helpers();
-				$this->redirect->custom_redirect($result, $message, $page);
-			}
-			exit;
+            Admin_Helpers::renderAdminErrorMessage($message, $this->page, $is_ajax);
 		}
 
 		if (strlen($api_secret) != 29) {
-			$result = "error";
 			$message = esc_html(__('API secret seems to be wrong. Please double check.', 'coinqvest'));
-			$page = "coinqvest-settings";
-
-            if ($is_ajax === true) {
-                Common_Helpers::renderResponse(array(
-                    "success" => false,
-                    "message" => $message
-                ));
-			} else {
-				$this->redirect = new Admin_Helpers();
-				$this->redirect->custom_redirect($result, $message, $page);
-			}
-			exit;
+            Admin_Helpers::renderAdminErrorMessage($message, $this->page, $is_ajax);
 		}
 
         /**
          * Init COINQVEST API
          */
-		$client = new Api\CQ_Merchant_Client(
-			$api_key,
-			$api_secret,
-			true
-		);
+
+		$client = new Api\CQ_Merchant_Client($api_key, $api_secret, true);
 
 		$response = $client->get('/auth-test');
 
 		if ($response->httpStatusCode != 200) {
-
-            $result = "error";
             $message = esc_html(__('API key and/or API secret are wrong.', 'coinqvest'));
-            $page = "coinqvest-settings";
-
-            if ($is_ajax === true) {
-                Common_Helpers::renderResponse(array(
-                    "success" => false,
-                    "message" => $message
-                ));
-            } else {
-                $this->redirect = new Admin_Helpers();
-                $this->redirect->custom_redirect($result, $message, $page);
-            }
-            exit;
-
+            Admin_Helpers::renderAdminErrorMessage($message, $this->page, $is_ajax);
         }
 
 		$settings = array(
@@ -341,20 +276,8 @@ class Settings {
 
 		$this->build_settings_string($settings);
 
-		$result = "success";
 		$message = esc_html(__('API settings saved successfully.', 'coinqvest'));
-		$page = "coinqvest-settings";
-
-        if ($is_ajax === true) {
-            Common_Helpers::renderResponse(array(
-                "success" => true,
-                "message" => $message
-            ));
-		} else {
-			$this->redirect = new Admin_Helpers();
-			$this->redirect->custom_redirect($result, $message, $page);
-		}
-		exit;
+        Admin_Helpers::renderAdminSuccessMessage($message, $this->page, $is_ajax);
 	}
 
 	public function submit_form_global_settings() {
@@ -378,20 +301,8 @@ class Settings {
 
 		$this->build_settings_string($settings);
 
-		$result = "success";
 		$message = esc_html(__('Global settings saved successfully.', 'coinqvest'));
-		$page = "coinqvest-settings";
-
-        if ($is_ajax === true) {
-            Common_Helpers::renderResponse(array(
-                "success" => true,
-                "message" => $message
-            ));
-		} else {
-			$this->redirect = new Admin_Helpers();
-			$this->redirect->custom_redirect($result, $message, $page);
-		}
-		exit;
+        Admin_Helpers::renderAdminSuccessMessage($message, $this->page, $is_ajax);
 
 	}
 

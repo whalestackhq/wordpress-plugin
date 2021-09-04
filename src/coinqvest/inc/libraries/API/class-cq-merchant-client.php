@@ -85,8 +85,8 @@ class CQ_Merchant_Client extends CQ_Rest_Client {
         $method = 'GET';
         $authHeaders = $this->buildAuthHeaders($endpoint, $method, $params);
         $response = parent::sendRequest($endpoint, $method, array(), false, $params, $authHeaders, $this->buildCustomOptions());
-        $this->log("[CQMerchantClient][get] Request: GET $endpoint Params: " . json_encode($params) . " Auth Headers: " . json_encode($authHeaders));
-        $this->log("[CQMerchantClient][get] Response: " . json_encode($response));
+        $this->log("[CQMerchantClient][get] Request: GET $endpoint Params: " . json_encode($params));
+        $this->log("[CQMerchantClient][get] Response: " . $response->httpStatusCode . ", " . json_encode($response->responseBody));
         return $response;
 
     }
@@ -103,8 +103,8 @@ class CQ_Merchant_Client extends CQ_Rest_Client {
 	    $method = 'POST';
         $authHeaders = $this->buildAuthHeaders($endpoint, $method, $params);
         $response = $this->sendRequest($endpoint, $method, $params, true, array(), $authHeaders, $this->buildCustomOptions());
-        $this->log("[CQMerchantClient][post] Request: POST $endpoint Params: " . json_encode($params) . " Auth Headers: " . json_encode($authHeaders));
-        $this->log("[CQMerchantClient][post] Response: " . json_encode($response));
+        $this->log("[CQMerchantClient][post] Request: POST $endpoint Params: " . json_encode($params));
+        $this->log("[CQMerchantClient][post] Response: " . $response->httpStatusCode . ", "  . json_encode($response->responseBody));
         return $response;
     }
 
@@ -120,8 +120,8 @@ class CQ_Merchant_Client extends CQ_Rest_Client {
         $method = 'DELETE';
         $authHeaders = $this->buildAuthHeaders($endpoint, $method, $params);
         $response = $this->sendRequest($endpoint, $method, $params, true, array(), $authHeaders, $this->buildCustomOptions());
-        $this->log("[CQMerchantClient][delete] Request: DELETE $endpoint Params: " . json_encode($params) . " Auth Headers: " . json_encode($authHeaders));
-        $this->log("[CQMerchantClient][delete] Response: " . json_encode($response));
+        $this->log("[CQMerchantClient][delete] Request: DELETE $endpoint Params: " . json_encode($params));
+        $this->log("[CQMerchantClient][delete] Response: " . $response->httpStatusCode . ", " . json_encode($response->responseBody));
         return $response;
 
     }
@@ -138,8 +138,8 @@ class CQ_Merchant_Client extends CQ_Rest_Client {
         $method = 'PUT';
         $authHeaders = $this->buildAuthHeaders($endpoint, $method, $params);
         $response = $this->sendRequest($endpoint, $method, $params, true, array(), $authHeaders, $this->buildCustomOptions());
-        $this->log("[CQMerchantClient][put] Request: PUT $endpoint Params: " . json_encode($params) . " Auth Headers: " . json_encode($authHeaders));
-        $this->log("[CQMerchantClient][put] Response: " . json_encode($response));
+        $this->log("[CQMerchantClient][put] Request: PUT $endpoint Params: " . json_encode($params));
+        $this->log("[CQMerchantClient][put] Response: " . $response->httpStatusCode . ", " . json_encode($response->responseBody));
         return $response;
 
     }

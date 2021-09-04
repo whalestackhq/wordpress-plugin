@@ -8,7 +8,8 @@ Key Features
 ------------
 
 * Accepts Bitcoin (BTC), Ethereum (ETH), Ripple (XRP), Stellar Lumens (XLM) and Litecoin (LTC) payments from customers.
-* Instantly settles in your preferred national currency (USD, EUR, NGN, BRL).
+* Instantly settles in your preferred national currency (USD, EUR, ARS, BRL, NGN).
+* Sets the product price in your national currency - 45 fiat currencies are available, see full list [here](https://www.coinqvest.com/en/api-docs#get-exchange-rate-global).
 * Doesn't require any e-commerce setup on your WordPress site.
 * Embeds a payment button in any page, post or widget of your WordPress site.
 * Sets the product price in your national currency.
