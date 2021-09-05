@@ -449,7 +449,7 @@ class Checkout_Form {
              */
 
             $newLineItem = array(
-                'description' => 'Currency Exchange ' . $baseCurrency . '/' . $checkout['settlementCurrency'] . ' at Rate ' . $exchangeRate,
+                'description' => esc_html(sprintf(__('Currency Exchange %1s/%2s at Rate %3s', 'coinqvest'), $checkout['settlementCurrency'], $baseCurrency, $exchangeRate)),
                 'netAmount' => 0
             );
             if (isset($checkout['charge']['shippingCostItems'])) {

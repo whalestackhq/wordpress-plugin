@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: COINQVEST v0.0.1\n"
-"POT-Creation-Date: 2021-09-04 15:42+0200\n"
+"POT-Creation-Date: 2021-09-05 19:32+0200\n"
 "PO-Revision-Date: 2020-05-23 10:41+0200\n"
 "Last-Translator: \n"
 "Language-Team: COINQVEST www.coinqvest.com\n"
@@ -217,7 +217,7 @@ msgstr ""
 msgid "API key and API secret do not exist."
 msgstr ""
 
-#: admin/class-edit-payment-button.php:263
+#: admin/class-edit-payment-button.php:262
 msgid "Payment button edited successfully."
 msgstr ""
 
@@ -508,6 +508,11 @@ msgstr ""
 
 #: frontend/class-checkout-form.php:437
 msgid "Conversion problem. Please contact the vendor."
+msgstr ""
+
+#: frontend/class-checkout-form.php:452
+#, php-format
+msgid "Currency Exchange %1s/%2s at Rate %3s"
 msgstr ""
 
 #: frontend/class-checkout-form.php:466
