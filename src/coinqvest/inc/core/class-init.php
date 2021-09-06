@@ -16,7 +16,9 @@ class Init {
 	// define the core functionality of the plugin.
 	public function __construct() {
 
-		$this->plugin_name = CQ\PLUGIN_NAME;
+        ini_set('serialize_precision', 14);
+
+        $this->plugin_name = CQ\PLUGIN_NAME;
 		$this->version = CQ\PLUGIN_VERSION;
 		$this->plugin_basename = CQ\PLUGIN_BASENAME;
 		$this->plugin_text_domain = CQ\PLUGIN_TEXT_DOMAIN;

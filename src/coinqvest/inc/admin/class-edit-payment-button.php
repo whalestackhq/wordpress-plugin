@@ -2,13 +2,12 @@
 namespace COINQVEST\Inc\Admin;
 use COINQVEST\Inc\Libraries\API;
 use COINQVEST\Inc\Common\Common_Helpers;
+use COINQVEST\Inc\Libraries\Api\CQ_Logging_Service;
 
 class Edit_Payment_Button {
 
-	private $redirect;
-
 	public function __construct() {
-
+        ini_set('serialize_precision', 7);
 	}
 
 	public function render_edit_payment_button_page(){
@@ -99,13 +98,15 @@ class Edit_Payment_Button {
 
 	public function submit_form_edit_payment_button() {
 
+        $page = "coinqvest-edit-payment-button";
+
         /**
          * Sanitize input parameters
          */
 
         $id = absint($_POST['checkout_id']);
         $name = !empty($_POST['cq_button_name']) ? sanitize_text_field($_POST['cq_button_name']) : null;
-        $css_class = !empty($_POST['cq_button_css_class']) ? $this->clean(sanitize_text_field($_POST['cq_button_css_class'])) : null;
+        $css_class = !empty($_POST['cq_button_css_class']) ? Common_Helpers::clean(sanitize_text_field($_POST['cq_button_css_class'])) : null;
         $status = isset($_POST['cq_button_status']) ? 1 : 0;
         $json = !empty($_POST['cq_button_json']) ? sanitize_text_field($_POST['cq_button_json']) : null;
         $is_ajax = (isset($_POST['ajaxrequest']) && $_POST['ajaxrequest'] === 'true') ? true : false;
@@ -129,142 +130,117 @@ class Edit_Payment_Button {
 		$row = $wpdb->get_row("SELECT name, hashid, status, cssclass, buttontext, json FROM " . $table_name . " WHERE hashid = " . $id);
 
 		if (!$row) {
-			$result = "error";
 			$message = esc_html(sprintf(__('Payment button id %s does not exist.', 'coinqvest'), $id));
 			$page = "coinqvest-payment-buttons";
-
-            if ($is_ajax === true) {
-                Common_Helpers::renderResponse(array(
-                    "success" => false,
-                    "message" => $message
-                ));
-			} else {
-				$this->redirect = new Admin_Helpers();
-				$this->redirect->custom_redirect($result, $message, $page);
-			}
-			exit;
+            Admin_Helpers::renderAdminErrorMessage($message, $page, $is_ajax);
 		}
 
 		if (is_null($name) || is_null($json)) {
-			$result = "error";
             $message = esc_html(__('Please provide button name and JSON object.', 'coinqvest'));
-			$page = "coinqvest-create-payment-button";
-
-            if ($is_ajax === true) {
-                Common_Helpers::renderResponse(array(
-                    "success" => false,
-                    "message" => $message
-                ));
-			} else {
-				$this->redirect = new Admin_Helpers();
-				$this->redirect->custom_redirect($result, $message, $page);
-			}
-			exit;
+            Admin_Helpers::renderAdminErrorMessage($message, $page, $is_ajax);
 		}
 
 		if (strlen($name) > 56) {
-			$result = "error";
 			$message = esc_html(sprintf(__('Name is too long. Max. %s characters.', 'coinqvest'), 56));
-			$page = "coinqvest-create-payment-button";
-
-            if ($is_ajax === true) {
-                Common_Helpers::renderResponse(array(
-                    "success" => false,
-                    "message" => $message
-                ));
-			} else {
-				$this->redirect = new Admin_Helpers();
-				$this->redirect->custom_redirect($result, $message, $page);
-			}
-			exit;
+            Admin_Helpers::renderAdminErrorMessage($message, $page, $is_ajax);
 		}
 
         if (!is_null($button_text) && strlen($button_text) > 50) {
-			$result = "error";
 			$message = esc_html(sprintf(__('Button text is too long. Max. %s characters.', 'coinqvest'), 50));
-			$page = "coinqvest-create-payment-button";
-
-            if ($is_ajax === true) {
-                Common_Helpers::renderResponse(array(
-                    "success" => false,
-                    "message" => $message
-                ));
-			} else {
-				$this->redirect = new Admin_Helpers();
-				$this->redirect->custom_redirect($result, $message, $page);
-			}
-			exit;
+            Admin_Helpers::renderAdminErrorMessage($message, $page, $is_ajax);
 		}
 
 		/**
 		 * Load API key and secret
 		 */
+
 		$api_settings = get_option('coinqvest_settings');
 		$api_settings = unserialize($api_settings);
 
 		if (empty($api_settings['api_key']) || empty($api_settings['api_secret'])) {
-			$result = "error";
 			$message = esc_html(__('API key and API secret do not exist.', 'coinqvest'));
-			$page = "coinqvest-create-payment-button";
-
-            if ($is_ajax === true) {
-                Common_Helpers::renderResponse(array(
-                    "success" => false,
-                    "message" => $message
-                ));
-			} else {
-				$this->redirect = new Admin_Helpers();
-				$this->redirect->custom_redirect($result, $message, $page);
-			}
-			exit;
+            Admin_Helpers::renderAdminErrorMessage($message, $page, $is_ajax);
 		}
 
-		/**
-		 * JSON object validation
-		 */
+        /**
+         * Init COINQVEST API
+         */
 
-		$client = new Api\CQ_Merchant_Client(
-			$api_settings['api_key'],
-			$api_settings['api_secret'],
-            true
-		);
+		$client = new Api\CQ_Merchant_Client($api_settings['api_key'], $api_settings['api_secret'], true);
 
         $json = stripslashes($json);
         $json_array = json_decode($json, true);
+        $baseCurrency = sanitize_text_field($json_array['charge']['currency']);
+        $exchangeRate = null;
 
-		$response = $client->post('/checkout/validate-for-wordpress', $json_array);
+        /**
+         * Check if billing currency is a supported fiat or blockchain currency
+         * If not, require a settlement currency
+         * The settlement currency will then be used as the new billing currency
+         */
+
+        $isFiat = Common_Helpers::isFiat($client, $baseCurrency);
+        $isBlockchain = Common_Helpers::isBlockchain($client, $baseCurrency);
+
+        if (!$isFiat && !$isBlockchain) {
+
+            if (!isset($json_array['settlementCurrency'])) {
+                $message = esc_html("Please define a parameter \"settlementCurrency\". See example ") . "<a href='https://www.coinqvest.com/en/api-docs#post-checkout-hosted' target='_blank'>here</a>.";
+                Admin_Helpers::renderAdminErrorMessage($message, $page, $is_ajax);
+            }
+
+            /**
+             * Get the exchange rate between billing and settlement currency
+             */
+
+            $pair = array(
+                'baseCurrency' => $baseCurrency,
+                'quoteCurrency' => $json_array['settlementCurrency']
+            );
+
+            $response = $client->get('/exchange-rate-global', $pair);
+
+            if ($response->httpStatusCode != 200) {
+                $message = esc_html("Status Code: " . $response->httpStatusCode . " - " . $response->responseBody);
+                Admin_Helpers::renderAdminErrorMessage($message, $page, $is_ajax);
+            }
+
+            $response = json_decode($response->responseBody);
+            $exchangeRate = $response->exchangeRate;
+
+            if ($exchangeRate == null || $exchangeRate == 0) {
+                $message = esc_html(sprintf(__('Could not convert %1s to %2s. Please choose a different settlement currency.', 'coinqvest'), $baseCurrency, $json_array['settlementCurrency']));
+                Admin_Helpers::renderAdminErrorMessage($message, $page, $is_ajax);
+            }
+
+            /**
+             * Override the charge object with new currency values
+             */
+
+            $json_array = Common_Helpers::overrideCheckoutValues($json_array, $exchangeRate);
+
+        }
+
+        /**
+         * Validate the charge
+         */
+
+        $response = $client->post('/checkout/validate-for-wordpress', $json_array);
 
 		if ($response->httpStatusCode != 200) {
-
-			$result = "error";
 			$message = esc_html("Status Code: " . $response->httpStatusCode . " - " . $response->responseBody);
-			$page = "coinqvest-create-payment-button";
-
-			$log = new Api\CQ_Logging_Service();
-			$log::write("[CQ Add Payment Button] " . $message);
-
-            if ($is_ajax === true) {
-                Common_Helpers::renderResponse(array(
-                    "success" => false,
-                    "message" => $message
-                ));
-			} else {
-				$this->redirect = new Admin_Helpers();
-				$this->redirect->custom_redirect($result, $message, $page);
-			}
-			exit;
-
+            Admin_Helpers::renderAdminErrorMessage($message, $page, $is_ajax);
 		}
 
         $response = json_decode($response->responseBody);
-
-        $currency = sanitize_text_field($json_array['charge']['currency']);
 
 		/**
 		 * Save to database
 		 */
 
-		global $wpdb;
+        $total = is_null($exchangeRate) ? Common_Helpers::numberFormat($response->total, $response->decimals) : Common_Helpers::numberFormat($response->total * $exchangeRate, $response->decimals);
+
+        global $wpdb;
 		$table_name = $wpdb->prefix . 'coinqvest_payment_buttons';
 
 		$wpdb->update(
@@ -272,9 +248,9 @@ class Edit_Payment_Button {
 			array(
 				'status' => $status,
 				'name' => $name,
-                'total' => $response->total,
+                'total' => $total,
                 'decimals' => $response->decimals,
-                'currency' => $currency,
+                'currency' => $baseCurrency,
 				'json' => $json,
                 'cssclass' => $css_class,
                 'buttontext' => $button_text
@@ -284,26 +260,7 @@ class Edit_Payment_Button {
 
 
 		$message = esc_html(__('Payment button edited successfully.', 'coinqvest'));
+        Admin_Helpers::renderAdminSuccessMessage($message, $page, $is_ajax);
 
-        if ($is_ajax === true) {
-            Common_Helpers::renderResponse(array(
-                "success" => true,
-                "message" => $message,
-                "redirect" => "/wp-admin/admin.php?page=coinqvest-payment-buttons"
-            ));
-		} else {
-			$result = "success";
-			$page = "coinqvest-payment-buttons";
-			$this->redirect = new Admin_Helpers();
-			$this->redirect->custom_redirect($result, $message, $page);
-		}
-		exit;
-
-	}
-
-
-	public function clean($string) {
-		$string = preg_replace('/[^A-Za-z0-9\-_\s]/', '', $string); // Removes special chars except - and _ and blanks
-		return $string;
 	}
 }

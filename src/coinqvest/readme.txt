@@ -1,26 +1,26 @@
-=== COINQVEST - Bitcoin and Other Cryptocurrency Payment Processing ===
+=== COINQVEST - Bitcoin & Ethereum cryptocurrency Payment Processing and Gateway ===
 Contributors: coinqvest
-Tags: crypto, cryptocurrency, payments, payment gateway, payment processing, digital currencies, bitcoin, stellar, lumens, xlm, btc, eth, xrp, ltc, EUR, USD, NGN, BRL
+Tags: crypto, cryptocurrency, payments, payment gateway, payment processing, digital currencies, bitcoin, ethereum, ether, litecoin, ripple, stellar, lumens, xlm, btc, eth, xrp, ltc, EUR, USD, NGN, BRL
 Requires at least: 3.9
-Tested up to: 5.6
-Stable tag: 1.0
+Tested up to: 5.8
+Stable tag: 1.1
 Requires PHP: 5.6
 License: Apache 2.0
 License URI: https://www.apache.org/licenses/LICENSE-2.0
 
-Accept digital currencies from your clients and settle instantly in your preferred local payout currency.
-
 == Description ==
 
-COINQVEST provides digital currency checkouts that automatically go from Bitcoin to your bank account, in minutes. COINQVEST helps you programmatically accept and settle payments in new digital currencies while staying compliant, keeping your accountants and tax authorities happy. With COINQVEST, sales can be denominated and settled in your local fiat currency (e.g. EUR, USD, BRL or NGN) regardless of whether your customers pay in Bitcoin, Ethereum or Stellar Lumens.
+COINQVEST provides digital currency checkouts that automatically go from Bitcoin to your bank account or crypto wallet. COINQVEST helps online merchants and e-commerce shops programmatically accept and settle payments in new digital currencies while staying compliant, keeping their accountants and tax authorities happy. With COINQVEST, online businesses can denominate and settle sales in a national currency (e.g. EUR, USD, ARS, BRL or NGN) regardless of whether their customers pay in Bitcoin, Ethereum or Stellar Lumens.
+
+The COINQVEST crypto payment gateway supports 45 billing currencies and easily lets you add a crypto payment option to your website or online shop to sell digital content, services, products and much more in your national currency.
 
 = Key features =
 
 * Accepts Bitcoin (BTC), Ethereum (ETH), Ripple (XRP), Stellar Lumens (XLM) and Litecoin (LTC) payments from customers.
-* Instantly settles in your preferred national currency (USD, EUR, NGN, BRL).
+* Instantly settles in your preferred national currency (USD, EUR, ARS, BRL, NGN) or above crypto currencies.
+* Sets the product price in your national currency - 45 fiat currencies are available, see full list [here](https://www.coinqvest.com/en/api-docs#get-exchange-rate-global).
 * Doesn't require any e-commerce setup on your WordPress site.
 * Embeds a payment button in any page, post or widget of your WordPress site.
-* Sets the product price in your national currency.
 * Sets the checkout language in your preferred language.
 * Eliminates chargebacks and gives you control over refunds.
 * Eliminates currency volatility risks due to instant conversions and settlement.
@@ -30,13 +30,17 @@ COINQVEST provides digital currency checkouts that automatically go from Bitcoin
 * Provides custom payment button CSS classes available.
 * Translates the plugin into any required language.
 
+= Supported Currencies =
+
+Argentine Peso (ARS), Australian Dollar (AUD), Bahraini Dinar (BHD), Bangladeshi Taka (BDT), Bermudian Dollar (BMD), Bitcoin (BTC), Brazilian Real (BRL), British Pound (GBP), Canadian Dollar (CAD), Chilean Peso (CLP), Chinese Yuan (CNY), Czech Koruna (CZK), Danish Krone (DKK), Emirati Dirham (AED), Ethereum (ETH), Euro (EUR), Hong Kong Dollar (HKD), Hungarian Forint (HUF), Indian Rupee (INR), Indonesian Rupiah (IDR), Israeli Shekel (ILS), Japanese Yen (JPY), Korean Won (KRW), Kuwaiti Dinar (KWD), Litecoin (LTC), Malaysian Ringgit (MYR), Mexican Peso (MXN), Myanmar Kyat (MMK), New Zealand Dollar (NZD), Nigerian Naira (NGN), Norwegian Krone (NOK), Pakistani Rupee (PKR), Philippine Peso (PHP), Polish Zloty (PLN), Ripple (XRP), Russian Ruble (RUB), Saudi Arabian Riyal (SAR), Singapore Dollar (SGD), South African Rand (ZAR), Sri Lankan Rupee (LKR), Stellar (XLM), Swedish Krona (SEK), Swiss Franc (CHF), Taiwan Dollar (TWD), Thai Baht (THB), Turkish Lira (TRY), Ukrainian Hryvnia (UAH), US Dollar (USD), Venezuelan Bolivar (VEF), Vietnamese Dong (VND)
+
 = Use case =
 
 Example: You sell an e-book for 20 USD on your website. Your user pays in Bitcoin and you will receive 20 USD in your bank account. Within minutes. All you need is to implement the COINQVEST checkout button into your WordPress site.
 
 = Docs and support =
 
-You can find the [plugin guide](https://www.coinqvest.com/en/blog/a-guide-to-cryptocurrency-payment-processing-with-coinqvest-and-wordpress-b0f7246517c9), [API documentation](https://www.coinqvest.com/en/api-docs#post-checkout-hosted), [Help Center](https://www.coinqvest.com/en/help-center#overview) and more detailed information about COINQVEST on [coinqvest.com](https://www.coinqvest.com/).
+You can find the [plugin guide](https://www.coinqvest.com/en/blog/how-to-accept-bitcoin-stellar-lumens-and-other-cryptocurrencies-with-coinqvest-for-wordpress-b0f7246517c9), [API documentation](https://www.coinqvest.com/en/api-docs#post-checkout-hosted), [Help Center](https://www.coinqvest.com/en/help-center#overview) and more detailed information about COINQVEST on [coinqvest.com](https://www.coinqvest.com/).
 
 == Installation ==
 
@@ -74,6 +78,11 @@ Do you have questions or issues with COINQVEST? Feel free to contact us anytime!
 5. COINQVEST Instant Withdrawals
 
 == Changelog ==
+
+= 1.1.0 =
+
+* Added checkout support for 50 currencies (45 fiat currencies and 5 cryptocurrencies), see full list [here](https://www.coinqvest.com/en/api-docs#get-exchange-rate-global)
+* Cleaned up code
 
 = 1.0.0 =
 

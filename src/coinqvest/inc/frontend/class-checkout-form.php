@@ -284,22 +284,14 @@ class Checkout_Form {
 		$row = $wpdb->get_row("SELECT hashid, status, json FROM " . $table_name . " WHERE hashid = " . $id);
 
 		if (!$row) {
-			$log = new Api\CQ_Logging_Service();
-			$log::write('[CQ Frontend Submit Checkout] [COINQVEST_checkout id="' . $id . '"] doesn\'t exist.');
-            Common_Helpers::renderResponse(array(
-                "success" => false,
-                "message" => esc_html(sprintf(__('Payment button id %s does not exist.', 'coinqvest'), $id))
-            ));
+            $message = esc_html(sprintf(__('Payment button id %s does not exist.', 'coinqvest'), $id));
+            Frontend_Helpers::renderErrorMessage($message);
 		}
 
 		// validate that button is active
 		if ($row->status != 1) {
-			$log = new Api\CQ_Logging_Service();
-			$log::write('[CQ Frontend Submit Checkout] [COINQVEST_checkout id="' . $id . '"] is not active.');
-            Common_Helpers::renderResponse(array(
-                "success" => false,
-                "message" => esc_html(sprintf(__('Payment button id %s is inactive.', 'coinqvest'), $id))
-            ));
+            $message = esc_html(sprintf(__('Payment button id %s is inactive.', 'coinqvest'), $id));
+            Frontend_Helpers::renderErrorMessage($message);
 		}
 
 		$settings = unserialize(get_option('coinqvest_settings'));
@@ -322,19 +314,13 @@ class Checkout_Form {
 
 			$errors = Common_Helpers::validate_required_form_fields($requiredFields, $_POST);
 			if ($errors) {
-                Common_Helpers::renderResponse(array(
-                    "success" => false,
-                    "message" => esc_html(__('Please provide all highlighted fields.', 'coinqvest')),
-                    "highlightFields" => $errors
-                ));
+                $message = esc_html(__('Please provide all highlighted fields.', 'coinqvest'));
+                Frontend_Helpers::renderErrorMessage($message, $errors);
 			}
 
 			if (!is_email($email)) {
-                Common_Helpers::renderResponse(array(
-                    "success" => false,
-                    "message" => esc_html(__('Please provide a valid email address.', 'coinqvest')),
-                    "highlightFields" => ['cq_email']
-                ));
+                $message = esc_html(__('Please provide a valid email address.', 'coinqvest'));
+                Frontend_Helpers::renderErrorMessage($message, ['cq_email']);
 			}
 
 		}
@@ -343,11 +329,7 @@ class Checkout_Form {
 		 * Init the COINQVEST API
 		 */
 
-		$client = new Api\CQ_Merchant_Client(
-			$settings['api_key'],
-			$settings['api_secret'],
-			true
-		);
+		$client = new Api\CQ_Merchant_Client($settings['api_key'], $settings['api_secret'], true);
 
 		/**
 		 * Create a customer first
@@ -376,10 +358,8 @@ class Checkout_Form {
 			)));
 
 			if ($response->httpStatusCode != 200) {
-                Common_Helpers::renderResponse(array(
-                    "success" => false,
-                    "message" => esc_html(__('Failed to create customer. Please try again later.', 'coinqvest'))
-                ));
+                $message = esc_html(__('Failed to create customer. Please try again later.', 'coinqvest'));
+                Frontend_Helpers::renderErrorMessage($message);
 			}
 
 			$data = json_decode($response->responseBody, true);
@@ -417,13 +397,74 @@ class Checkout_Form {
 		}
 
 
+        /**
+         * Check if billing currency is a supported fiat or blockchain currency
+         * If not, the settlement currency will then be used as the new billing currency
+         */
+
+        $baseCurrency = sanitize_text_field($checkout['charge']['currency']);
+        $exchangeRate = null;
+
+        $isFiat = Common_Helpers::isFiat($client, $baseCurrency);
+        $isBlockchain = Common_Helpers::isBlockchain($client, $baseCurrency);
+
+        if (!$isFiat && !$isBlockchain) {
+
+            if (!isset($checkout['settlementCurrency'])) {
+                $message = esc_html(__('Please define a parameter "settlementCurrency".', 'coinqvest'));
+                Frontend_Helpers::renderErrorMessage($message);
+            }
+
+            /**
+             * Get the exchange rate between billing and settlement currency
+             */
+
+            $pair = array(
+                'baseCurrency' => $baseCurrency,
+                'quoteCurrency' => $checkout['settlementCurrency']
+            );
+            $response = $client->get('/exchange-rate-global', $pair);
+
+            if ($response->httpStatusCode != 200) {
+                $message = esc_html(__('Exchange rate not available. Please try again.', 'coinqvest'));
+                Frontend_Helpers::renderErrorMessage($message);
+            }
+
+            $response = json_decode($response->responseBody);
+            $exchangeRate = $response->exchangeRate;
+
+            if ($exchangeRate == null || $exchangeRate == 0) {
+                $message = esc_html(__('Conversion problem. Please contact the vendor.', 'coinqvest'));
+                Frontend_Helpers::renderErrorMessage($message);
+            }
+
+            /**
+             * Override the charge object with new currency values
+             */
+
+            $checkout = Common_Helpers::overrideCheckoutValues($checkout, $exchangeRate);
+
+            /**
+             * Add a charge item that describes the use of the currency exchange rate
+             */
+
+            $newLineItem = array(
+                'description' => esc_html(sprintf(__('Currency Exchange %1s/%2s at Rate %3s', 'coinqvest'), $checkout['settlementCurrency'], $baseCurrency, $exchangeRate)),
+                'netAmount' => 0
+            );
+            if (isset($checkout['charge']['shippingCostItems'])) {
+                array_push($checkout['charge']['shippingCostItems'], $newLineItem);
+            } else {
+                $checkout['charge']['shippingCostItems'][] = $newLineItem;
+            }
+
+        }
+
 		$response = $client->post('/checkout/hosted', $checkout);
 
 		if ($response->httpStatusCode != 200) {
-            Common_Helpers::renderResponse(array(
-                "success" => false,
-                "message" => esc_html(__('Failed to create checkout. Please try again later.', 'coinqvest'))
-            ));
+            $message = esc_html(__('Failed to create checkout. Please try again later.', 'coinqvest'));
+            Frontend_Helpers::renderErrorMessage($message);
 		}
 
 		/**
@@ -434,11 +475,8 @@ class Checkout_Form {
 		$url = $data['url'];
 
         if ($is_ajax === true) {
-            Common_Helpers::renderResponse(array(
-                "success" => true,
-                "message" => esc_html(__('Success. You will be redirected to the checkout page.', 'coinqvest')),
-                "redirect" => $url
-            ));
+            $message = esc_html(__('Success. You will be redirected to the checkout page.', 'coinqvest'));
+            Frontend_Helpers::renderSuccessMessage($message, $url);
 		}
 
 		wp_redirect($url);
