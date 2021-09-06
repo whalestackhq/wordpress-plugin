@@ -1,4 +1,4 @@
-=== COINQVEST - Bitcoin & Ethereum cryptocurrency Payment Processing and Gateway ===
+=== COINQVEST - Bitcoin and Other Cryptocurrency Payment Processing ===
 Contributors: coinqvest
 Tags: crypto, cryptocurrency, payments, payment gateway, payment processing, digital currencies, bitcoin, ethereum, ether, litecoin, ripple, stellar, lumens, xlm, btc, eth, xrp, ltc, EUR, USD, NGN, BRL
 Requires at least: 3.9
