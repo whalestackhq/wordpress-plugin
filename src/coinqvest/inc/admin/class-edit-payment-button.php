@@ -238,7 +238,7 @@ class Edit_Payment_Button {
 		 * Save to database
 		 */
 
-        $total = is_null($exchangeRate) ? Common_Helpers::numberFormat($response->total, $response->decimals) : Common_Helpers::numberFormat($response->total / $exchangeRate, $response->decimals);
+        $total = is_null($exchangeRate) ? Common_Helpers::numberFormat($response->total, $response->decimals) : Common_Helpers::numberFormat($response->total * $exchangeRate, $response->decimals);
 
         global $wpdb;
 		$table_name = $wpdb->prefix . 'coinqvest_payment_buttons';

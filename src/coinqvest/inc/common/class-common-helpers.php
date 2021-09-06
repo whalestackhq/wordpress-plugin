@@ -116,17 +116,17 @@ class Common_Helpers {
 
         if (isset($checkout['charge']['lineItems']) && !empty($checkout['charge']['lineItems'])) {
             foreach ($checkout['charge']['lineItems'] as $key => $item) {
-                $checkout['charge']['lineItems'][$key]['netAmount'] = self::numberFormat($item['netAmount'] * $exchangeRate, 7);
+                $checkout['charge']['lineItems'][$key]['netAmount'] = self::numberFormat($item['netAmount'] / $exchangeRate, 7);
             }
         }
         if (isset($checkout['charge']['discountItems']) && !empty($checkout['charge']['discountItems'])) {
             foreach ($checkout['charge']['discountItems'] as $key => $item) {
-                $checkout['charge']['discountItems'][$key]['netAmount'] = self::numberFormat($item['netAmount'] * $exchangeRate, 7);
+                $checkout['charge']['discountItems'][$key]['netAmount'] = self::numberFormat($item['netAmount'] / $exchangeRate, 7);
             }
         }
         if (isset($checkout['charge']['shippingCostItems']) && !empty($checkout['charge']['shippingCostItems'])) {
             foreach ($checkout['charge']['shippingCostItems'] as $key => $item) {
-                $checkout['charge']['shippingCostItems'][$key]['netAmount'] = self::numberFormat($item['netAmount'] * $exchangeRate, 7);
+                $checkout['charge']['shippingCostItems'][$key]['netAmount'] = self::numberFormat($item['netAmount'] / $exchangeRate, 7);
             }
         }
 
