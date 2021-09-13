@@ -64,13 +64,13 @@ class Admin_Helpers {
 
     }
 
-    public static function renderAdminSuccessMessage($message, $page, $is_ajax) {
+    public static function renderAdminSuccessMessage($message, $page, $is_ajax = false, $redirect = false) {
 
         if ($is_ajax === true) {
             Common_Helpers::renderResponse(array(
                 "success" => true,
                 "message" => $message,
-                "redirect" => "/wp-admin/admin.php?page=coinqvest-payment-buttons"
+                "redirect" => $redirect ? "/wp-admin/admin.php?page=coinqvest-payment-buttons" : null
             ));
         } else {
             self::custom_redirect('success', $message, $page);

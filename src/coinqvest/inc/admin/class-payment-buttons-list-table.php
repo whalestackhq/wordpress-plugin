@@ -213,7 +213,7 @@ class Payment_Buttons_List_Table extends Libraries\WP_List_Table  {
 
 				$message = esc_html(__('Button successfully deleted', 'coinqvest'));
 				$page = "coinqvest-payment-buttons";
-                Admin_Helpers::renderAdminSuccessMessage($message, $page, false);
+                Admin_Helpers::renderAdminSuccessMessage($message, $page, false, true);
 			}
 
 		}

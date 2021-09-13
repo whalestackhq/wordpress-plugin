@@ -170,8 +170,7 @@ class Edit_Payment_Button {
 
         $json = stripslashes($json);
         $json_array = json_decode($json, true);
-        $baseCurrency = sanitize_text_field($json_array['charge']['currency']);
-        $exchangeRate = null;
+
 
         /**
          * Check if billing currency is a supported fiat or blockchain currency
@@ -179,8 +178,11 @@ class Edit_Payment_Button {
          * The settlement currency will then be used as the new billing currency
          */
 
-        $isFiat = Common_Helpers::isFiat($client, $baseCurrency);
-        $isBlockchain = Common_Helpers::isBlockchain($client, $baseCurrency);
+        $quoteCurrency = sanitize_text_field($json_array['charge']['currency']);
+        $exchangeRate = null;
+
+        $isFiat = Common_Helpers::isFiat($client, $quoteCurrency);
+        $isBlockchain = Common_Helpers::isBlockchain($client, $quoteCurrency);
 
         if (!$isFiat && !$isBlockchain) {
 
@@ -194,10 +196,9 @@ class Edit_Payment_Button {
              */
 
             $pair = array(
-                'baseCurrency' => $baseCurrency,
-                'quoteCurrency' => $json_array['settlementCurrency']
+                'quoteCurrency' => $quoteCurrency,
+                'baseCurrency' => $json_array['settlementCurrency']
             );
-
             $response = $client->get('/exchange-rate-global', $pair);
 
             if ($response->httpStatusCode != 200) {
@@ -209,7 +210,7 @@ class Edit_Payment_Button {
             $exchangeRate = $response->exchangeRate;
 
             if ($exchangeRate == null || $exchangeRate == 0) {
-                $message = esc_html(sprintf(__('Could not convert %1s to %2s. Please choose a different settlement currency.', 'coinqvest'), $baseCurrency, $json_array['settlementCurrency']));
+                $message = esc_html(sprintf(__('Could not convert %1s to %2s. Please choose a different settlement currency.', 'coinqvest'), $quoteCurrency, $json_array['settlementCurrency']));
                 Admin_Helpers::renderAdminErrorMessage($message, $page, $is_ajax);
             }
 
@@ -250,7 +251,7 @@ class Edit_Payment_Button {
 				'name' => $name,
                 'total' => $total,
                 'decimals' => $response->decimals,
-                'currency' => $baseCurrency,
+                'currency' => $quoteCurrency,
 				'json' => $json,
                 'cssclass' => $css_class,
                 'buttontext' => $button_text
@@ -260,7 +261,7 @@ class Edit_Payment_Button {
 
 
 		$message = esc_html(__('Payment button edited successfully.', 'coinqvest'));
-        Admin_Helpers::renderAdminSuccessMessage($message, $page, $is_ajax);
+        Admin_Helpers::renderAdminSuccessMessage($message, $page, $is_ajax, true);
 
 	}
 }
