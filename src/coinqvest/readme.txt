@@ -79,7 +79,7 @@ Do you have questions or issues with COINQVEST? Feel free to contact us anytime!
 
 == Changelog ==
 
-= 1.1.0 =
+= 1.1.3 =
 
 * Added checkout support for 50 currencies (45 fiat currencies and 5 cryptocurrencies), see full list [here](https://www.coinqvest.com/en/api-docs#get-exchange-rate-global)
 * Cleaned up code

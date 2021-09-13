@@ -402,11 +402,11 @@ class Checkout_Form {
          * If not, the settlement currency will then be used as the new billing currency
          */
 
-        $baseCurrency = sanitize_text_field($checkout['charge']['currency']);
+        $quoteCurrency = sanitize_text_field($checkout['charge']['currency']);
         $exchangeRate = null;
 
-        $isFiat = Common_Helpers::isFiat($client, $baseCurrency);
-        $isBlockchain = Common_Helpers::isBlockchain($client, $baseCurrency);
+        $isFiat = Common_Helpers::isFiat($client, $quoteCurrency);
+        $isBlockchain = Common_Helpers::isBlockchain($client, $quoteCurrency);
 
         if (!$isFiat && !$isBlockchain) {
 
@@ -420,8 +420,8 @@ class Checkout_Form {
              */
 
             $pair = array(
-                'baseCurrency' => $baseCurrency,
-                'quoteCurrency' => $checkout['settlementCurrency']
+                'quoteCurrency' => $quoteCurrency,
+                'baseCurrency' => $checkout['settlementCurrency']
             );
             $response = $client->get('/exchange-rate-global', $pair);
 
@@ -449,7 +449,7 @@ class Checkout_Form {
              */
 
             $newLineItem = array(
-                'description' => esc_html(sprintf(__('Currency Exchange %1s/%2s at Rate %3s', 'coinqvest'), $checkout['settlementCurrency'], $baseCurrency, $exchangeRate)),
+                'description' => esc_html(sprintf(__('Exchange Rate 1 %1s = %2s %3s', 'coinqvest'), $quoteCurrency, Common_Helpers::numberFormat(1/$exchangeRate, 7), $checkout['settlementCurrency'])),
                 'netAmount' => 0
             );
             if (isset($checkout['charge']['shippingCostItems'])) {
