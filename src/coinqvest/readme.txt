@@ -1,8 +1,8 @@
-=== COINQVEST - Bitcoin & Ethereum cryptocurrency Payment Processing and Gateway ===
+=== COINQVEST - Cryptocurrency Payment Gateway for Bitcoin ===
 Contributors: coinqvest
 Tags: crypto, cryptocurrency, payments, payment gateway, payment processing, digital currencies, bitcoin, ethereum, ether, litecoin, ripple, stellar, lumens, xlm, btc, eth, xrp, ltc, EUR, USD, NGN, BRL
 Requires at least: 3.9
-Tested up to: 5.8
+Tested up to: 5.9
 Stable tag: 1.1
 Requires PHP: 5.6
 License: Apache 2.0
@@ -10,17 +10,17 @@ License URI: https://www.apache.org/licenses/LICENSE-2.0
 
 == Description ==
 
-COINQVEST provides digital currency checkouts that automatically go from Bitcoin to your bank account or crypto wallet. COINQVEST helps online merchants and e-commerce shops programmatically accept and settle payments in new digital currencies while staying compliant, keeping their accountants and tax authorities happy. With COINQVEST, online businesses can denominate and settle sales in a national currency (e.g. EUR, USD, ARS, BRL or NGN) regardless of whether their customers pay in Bitcoin, Ethereum or Stellar Lumens.
+COINQVEST is a [cryptocurrency payment processor](https://www.coinqvest.com) and provides digital currency checkouts that automatically go from Bitcoin to your bank account or crypto wallet. COINQVEST helps online merchants and e-commerce shops programmatically accept and settle payments in new digital currencies while staying compliant, keeping their accountants and tax authorities happy. With COINQVEST, online businesses can denominate and settle sales in a national currency (e.g. EUR, USD, ARS, BRL or NGN) regardless of whether their customers pay in Bitcoin, Ethereum or Stellar Lumens.
 
 The COINQVEST crypto payment gateway supports 45 billing currencies and easily lets you add a crypto payment option to your website or online shop to sell digital content, services, products and much more in your national currency.
 
 = Key features =
 
-* Accepts Bitcoin (BTC), Ethereum (ETH), Ripple (XRP), Stellar Lumens (XLM) and Litecoin (LTC) payments from customers.
+* Accepts Bitcoin (BTC), Ethereum (ETH), Ripple (XRP), Stellar Lumens (XLM) and Litecoin (LTC) payments on your WordPress website from customers.
 * Instantly settles in your preferred national currency (USD, EUR, ARS, BRL, NGN) or above crypto currencies.
 * Sets the product price in your national currency - 45 fiat currencies are available, see full list [here](https://www.coinqvest.com/en/api-docs#get-exchange-rate-global).
-* Doesn't require any e-commerce setup on your WordPress site.
-* Embeds a payment button in any page, post or widget of your WordPress site.
+* Doesn't require any e-commerce setup on your WordPress website.
+* Embeds a payment button in any page, post or widget of your WordPress website.
 * Sets the checkout language in your preferred language.
 * Eliminates chargebacks and gives you control over refunds.
 * Eliminates currency volatility risks due to instant conversions and settlement.
@@ -36,7 +36,7 @@ Argentine Peso (ARS), Australian Dollar (AUD), Bahraini Dinar (BHD), Bangladeshi
 
 = Use case =
 
-Example: You sell an e-book for 20 USD on your website. Your user pays in Bitcoin and you will receive 20 USD in your bank account. Within minutes. All you need is to implement the COINQVEST checkout button into your WordPress site.
+Example: You sell an e-book for 20 USD on your website. Your user pays in Bitcoin and you will receive 20 USD in your bank account. Within minutes. All you need is to implement the COINQVEST checkout button into your WordPress website.
 
 = Docs and support =
 
@@ -59,7 +59,7 @@ You can find the [plugin guide](https://www.coinqvest.com/en/blog/how-to-accept-
 1. Get your [API key and secret](https://www.coinqvest.com/en/api-settings) from your COINQVEST merchant account.
 1. Enter API key and secret into the COINQVEST plugin settings page.
 1. Create a new payment button and copy the generated shortcode into your page, post or widget.
-1. Manage all payments in your [merchant account](https://www.coinqvest.com). You will be notified by email about every new payment.
+1. Manage all payments in your merchant account. You will be notified by email about every new payment.
 
 == Frequently Asked Questions ==
 
@@ -78,6 +78,13 @@ Do you have questions or issues with COINQVEST? Feel free to contact us anytime!
 5. COINQVEST Instant Withdrawals
 
 == Changelog ==
+
+= 1.1.4 =
+
+* Added 'ORIGIN' as settlement currency option
+* Text changes
+* Tested for WordPress version 5.9
+* Minor fixes
 
 = 1.1.3 =
 

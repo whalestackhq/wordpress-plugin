@@ -1,17 +1,17 @@
 # COINQVEST WordPress Plugin
 
-This is the official WordPress Plugin for COINQVEST. Accept and settle payments in digital currencies on your WordPress site.
+This is the official WordPress Plugin for COINQVEST, a leading [cryptocurrency payment processor](https://www.coinqvest.com). Accept Bitcoin on your WordPress website and settle payments in crypto and fiat currencies. 
 
 This WordPress plugin implements the PHP REST API documented at https://www.coinqvest.com/en/api-docs
 
 Key Features
 ------------
 
-* Accepts Bitcoin (BTC), Ethereum (ETH), Ripple (XRP), Stellar Lumens (XLM) and Litecoin (LTC) payments from customers.
-* Instantly settles in your preferred national currency (USD, EUR, ARS, BRL, NGN).
+* Accepts Bitcoin (BTC), Ethereum (ETH), Ripple (XRP), Stellar Lumens (XLM) and Litecoin (LTC) payments on your WordPress website from your customers.
+* Instantly settles in your preferred fiat currency (USD, EUR, ARS, BRL, NGN).
 * Sets the product price in your national currency - 45 fiat currencies are available, see full list [here](https://www.coinqvest.com/en/api-docs#get-exchange-rate-global).
-* Doesn't require any e-commerce setup on your WordPress site.
-* Embeds a payment button in any page, post or widget of your WordPress site.
+* Doesn't require any e-commerce setup on your WordPress website.
+* Embeds a payment button in any page, post or widget of your WordPress website.
 * Sets the product price in your national currency.
 * Sets the checkout language in your preferred language.
 * Eliminates chargebacks and gives you control over refunds.
@@ -50,7 +50,7 @@ Installation as Plugin
 1. Get your [API key and secret](https://www.coinqvest.com/en/api-settings) from your COINQVEST merchant account.
 1. Enter API key and secret into the COINQVEST plugin settings page.
 1. Create a new payment button and copy the generated shortcode into your page, post or widget.
-1. Manage all payments in your [merchant account](https://www.coinqvest.com). You will be notified by email about every new payment.
+1. Manage all payments in your merchant account. You will be notified by email about every new payment.
 
 Please inspect our [API documentation](https://www.coinqvest.com/en/api-docs) for more info or send us an email to service@coinqvest.com.
 

@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: COINQVEST v0.0.1\n"
-"POT-Creation-Date: 2021-09-13 19:04+0200\n"
+"POT-Creation-Date: 2022-02-10 19:05+0100\n"
 "PO-Revision-Date: 2020-05-23 10:41+0200\n"
 "Last-Translator: \n"
 "Language-Team: COINQVEST www.coinqvest.com\n"
@@ -58,7 +58,7 @@ msgstr ""
 #: admin/class-edit-payment-button.php:67
 #: admin/class-edit-payment-button.php:75 admin/class-settings.php:132
 #: admin/class-settings.php:140 admin/class-settings.php:148
-#: admin/class-settings.php:158 admin/class-settings.php:181
+#: admin/class-settings.php:158 admin/class-settings.php:186
 #: frontend/class-checkout-form.php:168 frontend/class-checkout-form.php:172
 #: frontend/class-checkout-form.php:183 frontend/class-checkout-form.php:205
 msgid "optional"
@@ -93,7 +93,7 @@ msgid "active"
 msgstr ""
 
 #: admin/class-add-payment-button.php:85 admin/class-edit-payment-button.php:89
-#: admin/class-settings.php:111 admin/class-settings.php:220
+#: admin/class-settings.php:111 admin/class-settings.php:225
 msgid "Save"
 msgstr ""
 
@@ -145,7 +145,7 @@ msgid "Supported digital currencies: Bitcoin (BTC), Ethereum (ETH), Ripple (XRP)
 msgstr ""
 
 #: admin/class-coinqvest-start.php:27
-msgid "Supported payout currencies: USD, EUR, NGN, BRL and above digital currencies"
+msgid "Supported payout currencies: USD, EUR, ARS, BRL, NGN and above digital currencies"
 msgstr ""
 
 #: admin/class-coinqvest-start.php:38
@@ -337,75 +337,83 @@ msgstr ""
 msgid "Select currency"
 msgstr ""
 
-#: admin/class-settings.php:172
-msgid "The currency that the crypto payments get converted to. If you don't choose a currency here, the settlement currency will be the billing currency."
+#: admin/class-settings.php:174
+msgid "The currency that the crypto payments get converted to. "
 msgstr ""
 
-#: admin/class-settings.php:181
+#: admin/class-settings.php:175
+msgid "- If you don't choose a currency, you will be credited in the billing currency."
+msgstr ""
+
+#: admin/class-settings.php:176
+msgid "- Choose ORIGIN if you want to get credited in the exact same currency your customer paid in (without any conversion)."
+msgstr ""
+
+#: admin/class-settings.php:186
 msgid "Checkout Language"
 msgstr ""
 
-#: admin/class-settings.php:185
+#: admin/class-settings.php:190
 msgid "Select language"
 msgstr ""
 
-#: admin/class-settings.php:195
+#: admin/class-settings.php:200
 msgid "The language that your checkout page will display in. Choose 'auto' to automatically detect the customer's main browser language. Fallback language code is 'en'."
 msgstr ""
 
-#: admin/class-settings.php:202
+#: admin/class-settings.php:207
 msgid "Required customer info"
 msgstr ""
 
-#: admin/class-settings.php:205
+#: admin/class-settings.php:210
 msgid "None"
 msgstr ""
 
-#: admin/class-settings.php:206
+#: admin/class-settings.php:211
 msgid "Minimal"
 msgstr ""
 
-#: admin/class-settings.php:207
+#: admin/class-settings.php:212
 msgid "Compliant"
 msgstr ""
 
-#: admin/class-settings.php:210
-msgid "Defines what customer data to collect. Main purpose is to connect a payment to a customer and staying tax compliant."
+#: admin/class-settings.php:215
+msgid "Defines what customer data to collect. Main purpose is to connect a payment to a customer and stay tax compliant."
 msgstr ""
 
-#: admin/class-settings.php:211
+#: admin/class-settings.php:216
 msgid "- None: No customer data required. You will receive the payment amount, but will not know from whom. Can be used for donations."
 msgstr ""
 
-#: admin/class-settings.php:212
+#: admin/class-settings.php:217
 msgid "- Minimal (default): Email and firstname + lastname"
 msgstr ""
 
-#: admin/class-settings.php:213
+#: admin/class-settings.php:218
 msgid "- Compliant: All data that is required to generate invoices"
 msgstr ""
 
-#: admin/class-settings.php:245
+#: admin/class-settings.php:250
 msgid "Please provide API Key and API Secret"
 msgstr ""
 
-#: admin/class-settings.php:250
+#: admin/class-settings.php:255
 msgid "API key seems to be wrong. Please double check."
 msgstr ""
 
-#: admin/class-settings.php:255
+#: admin/class-settings.php:260
 msgid "API secret seems to be wrong. Please double check."
 msgstr ""
 
-#: admin/class-settings.php:268
+#: admin/class-settings.php:273
 msgid "API key and/or API secret are wrong."
 msgstr ""
 
-#: admin/class-settings.php:279
+#: admin/class-settings.php:284
 msgid "API settings saved successfully."
 msgstr ""
 
-#: admin/class-settings.php:304
+#: admin/class-settings.php:309
 msgid "Global settings saved successfully."
 msgstr ""
 
