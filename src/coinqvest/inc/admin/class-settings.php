@@ -160,6 +160,7 @@ class Settings {
                             <select name="cq_settlement_currency" id="cq_settlement_currency">
 
                                 <option value="0" <?=($settlement_currency == "0") ? 'selected="selected"' : null?>>=== <?php echo esc_html(__('Select currency', 'coinqvest'))?> ===</option>
+                                <option value="ORIGIN" <?=($settlement_currency == "ORIGIN") ? 'selected="selected"' : null?>>ORIGIN</option>
 
                                 <?php foreach ($currencies as $key => $value) { ?>
 
@@ -169,7 +170,11 @@ class Settings {
 
                             </select>
 
-                            <p class="description"><?php echo esc_html(__('The currency that the crypto payments get converted to. If you don\'t choose a currency here, the settlement currency will be the billing currency.', 'coinqvest'))?></p>
+                            <p class="description">
+                                <?php echo esc_html(__('The currency that the crypto payments get converted to. ', 'coinqvest'))?><br />
+                                <?php echo esc_html(__('- If you don\'t choose a currency, you will be credited in the billing currency.', 'coinqvest'))?><br />
+                                <?php echo esc_html(__('- Choose ORIGIN if you want to get credited in the exact same currency your customer paid in (without any conversion).', 'coinqvest'))?>
+                            </p>
                         </td>
                     </tr>
 
@@ -207,7 +212,7 @@ class Settings {
                                 <option value="compliant" <?=($customer_info == "compliant") ? 'selected="selected"' : null?>><?php echo esc_html(__('Compliant', 'coinqvest'))?></option>
                             </select>
                             <p class="description">
-	                            <?php echo esc_html(__('Defines what customer data to collect. Main purpose is to connect a payment to a customer and staying tax compliant.', 'coinqvest'))?><br />
+	                            <?php echo esc_html(__('Defines what customer data to collect. Main purpose is to connect a payment to a customer and stay tax compliant.', 'coinqvest'))?><br />
 	                            <?php echo esc_html(__('- None: No customer data required. You will receive the payment amount, but will not know from whom. Can be used for donations.', 'coinqvest'))?><br />
 	                            <?php echo esc_html(__('- Minimal (default): Email and firstname + lastname', 'coinqvest'))?><br />
 	                            <?php echo esc_html(__('- Compliant: All data that is required to generate invoices', 'coinqvest'))?>

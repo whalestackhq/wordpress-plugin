@@ -18,13 +18,13 @@ class Coinqvest_Start {
 
 			<img class="responsive paddingTop10" src="<?=$this->plugin_name_url?>assets/images/admin-banner-very-thin.jpg">
 
-			<div id="welcome-panel" class="welcome-panel">
-				<div class="welcome-panel-content">
+			<div id="welcome-panel">
+				<div class="">
 					<h2><?php echo esc_html(__('Accept digital currencies from your clients and settle instantly in your preferred local payout currency.', 'coinqvest'))?></h2>
 					<p class="fontSize16">
 						<?php echo esc_html(__('Supported digital currencies: Bitcoin (BTC), Ethereum (ETH), Ripple (XRP), Stellar Lumens (XLM), Litecoin (LTC)', 'coinqvest'))?>
                         <br />
-						<?php echo esc_html(__('Supported payout currencies: USD, EUR, NGN, BRL and above digital currencies', 'coinqvest'))?>
+						<?php echo esc_html(__('Supported payout currencies: USD, EUR, ARS, BRL, NGN and above digital currencies', 'coinqvest'))?>
                     </p>
 				</div>
 			</div>
