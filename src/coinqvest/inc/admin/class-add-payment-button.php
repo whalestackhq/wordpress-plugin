@@ -147,55 +147,6 @@ class Add_Payment_Button {
         $json = stripslashes($json);
         $json_array = json_decode($json, true);
 
-        /**
-         * Check if billing currency is a supported fiat or blockchain currency
-         * If not, require a settlement currency
-         * The settlement currency will then be used as the new billing currency
-         */
-
-        $quoteCurrency = sanitize_text_field($json_array['charge']['currency']);
-        $exchangeRate = null;
-
-        $isFiat = Common_Helpers::isFiat($client, $quoteCurrency);
-        $isBlockchain = Common_Helpers::isBlockchain($client, $quoteCurrency);
-
-        if (!$isFiat && !$isBlockchain) {
-
-            if (!isset($json_array['settlementCurrency'])) {
-                $message = esc_html("Please define a parameter \"settlementCurrency\". See example ") . "<a href='https://www.coinqvest.com/en/api-docs#post-checkout-hosted' target='_blank'>here</a>.";
-                Admin_Helpers::renderAdminErrorMessage($message, $page, $is_ajax);
-            }
-
-            /**
-             * Get the exchange rate between billing and settlement currency
-             */
-
-            $pair = array(
-                'quoteCurrency' => $quoteCurrency,
-                'baseCurrency' => $json_array['settlementCurrency']
-            );
-            $response = $client->get('/exchange-rate-global', $pair);
-
-            if ($response->httpStatusCode != 200) {
-                $message = esc_html("Status Code: " . $response->httpStatusCode . " - " . $response->responseBody);
-                Admin_Helpers::renderAdminErrorMessage($message, $page, $is_ajax);
-            }
-
-            $response = json_decode($response->responseBody);
-            $exchangeRate = $response->exchangeRate;
-
-            if ($exchangeRate == null || $exchangeRate == 0) {
-                $message = esc_html(sprintf(__('Could not convert %1s to %2s. Please choose a different settlement currency.', 'coinqvest'), $quoteCurrency, $json_array['settlementCurrency']));
-                Admin_Helpers::renderAdminErrorMessage($message, $page, $is_ajax);
-            }
-
-            /**
-             * Override the charge object with new currency values
-             */
-
-            $json_array = Common_Helpers::overrideCheckoutValues($json_array, $exchangeRate);
-
-        }
 
         /**
          * Validate the charge
@@ -212,7 +163,8 @@ class Add_Payment_Button {
 		 * Save to database
 		 */
 
-        $total = is_null($exchangeRate) ? Common_Helpers::numberFormat($response->total, $response->decimals) : Common_Helpers::numberFormat($response->total * $exchangeRate, $response->decimals);
+        $total = Common_Helpers::numberFormat($response->total, $response->decimals);
+        $billingCurrency = isset($json_array['charge']['currency']) ? sanitize_text_field($json_array['charge']['currency']) : sanitize_text_field($json_array['charge']['billingCurrency']);
 
         global $wpdb;
 		$table_name = $wpdb->prefix . 'coinqvest_payment_buttons';
@@ -225,7 +177,7 @@ class Add_Payment_Button {
 				'name' => $name,
 				'total' => $total,
 				'decimals' => $response->decimals,
-				'currency' => $quoteCurrency,
+				'currency' => $billingCurrency,
 				'json' => $json,
                 'cssclass' => $css_class,
                 'buttontext' => $button_text

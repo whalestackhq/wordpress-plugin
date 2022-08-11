@@ -176,7 +176,6 @@
   font-family: Avenir, Helvetica Neue, Helvetica, Arial, sans-serif;
   background: white;
   box-shadow: none;
-  height: 100%;
 }
 
 .coinqvest-checkout .cq-grid .cq-row select.cq-select {
@@ -197,7 +196,6 @@
   font-family: Avenir, Helvetica Neue, Helvetica, Arial, sans-serif;
   background: white;
   box-shadow: none;
-  height: 100%;
 }
 
 .coinqvest-checkout .cq-grid .cq-row input.cq-error,

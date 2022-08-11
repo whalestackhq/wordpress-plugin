@@ -369,15 +369,17 @@ class Checkout_Form {
 
 		/**
 		 * Build the checkout array
-		 * Global settings overwrite JSON parameters
+		 * Important: Global settings overwrite JSON parameters
 		 */
 
 		$checkout = json_decode($row->json, true);
 
+		$checkout = Common_Helpers::useNewParameterNaming($checkout);
+
 		$checkout['charge']['customerId'] = $customer_id;
 
 		if (isset($settings['settlement_currency']) && $settings['settlement_currency'] != "0") {
-			$checkout['settlementCurrency'] = $settings['settlement_currency'];
+			$checkout['settlementAsset'] = $settings['settlement_currency'];
 		}
 
         if (isset($settings['checkout_language']) && $settings['checkout_language'] != "0") {
@@ -396,72 +398,11 @@ class Checkout_Form {
 			$checkout['links']['returnUrl'] = $settings['return_url'];
 		}
 
-
         /**
-         * Check if billing currency is a supported fiat or blockchain currency
-         * If not, the settlement currency will then be used as the new billing currency
+         * Send the checkout
          */
 
-        $quoteCurrency = sanitize_text_field($checkout['charge']['currency']);
-        $exchangeRate = null;
-
-        $isFiat = Common_Helpers::isFiat($client, $quoteCurrency);
-        $isBlockchain = Common_Helpers::isBlockchain($client, $quoteCurrency);
-
-        if (!$isFiat && !$isBlockchain) {
-
-            if (!isset($checkout['settlementCurrency'])) {
-                $message = esc_html(__('Please define a parameter "settlementCurrency".', 'coinqvest'));
-                Frontend_Helpers::renderErrorMessage($message);
-            }
-
-            /**
-             * Get the exchange rate between billing and settlement currency
-             */
-
-            $pair = array(
-                'quoteCurrency' => $quoteCurrency,
-                'baseCurrency' => $checkout['settlementCurrency']
-            );
-            $response = $client->get('/exchange-rate-global', $pair);
-
-            if ($response->httpStatusCode != 200) {
-                $message = esc_html(__('Exchange rate not available. Please try again.', 'coinqvest'));
-                Frontend_Helpers::renderErrorMessage($message);
-            }
-
-            $response = json_decode($response->responseBody);
-            $exchangeRate = $response->exchangeRate;
-
-            if ($exchangeRate == null || $exchangeRate == 0) {
-                $message = esc_html(__('Conversion problem. Please contact the vendor.', 'coinqvest'));
-                Frontend_Helpers::renderErrorMessage($message);
-            }
-
-            /**
-             * Override the charge object with new currency values
-             */
-
-            $checkout = Common_Helpers::overrideCheckoutValues($checkout, $exchangeRate);
-
-            /**
-             * Add a charge item that describes the use of the currency exchange rate
-             */
-
-            $newLineItem = array(
-                'description' => esc_html(sprintf(__('Exchange Rate 1 %1s = %2s %3s', 'coinqvest'), $quoteCurrency, Common_Helpers::numberFormat(1/$exchangeRate, 7), $checkout['settlementCurrency'])),
-                'netAmount' => 0
-            );
-            if (isset($checkout['charge']['shippingCostItems'])) {
-                array_push($checkout['charge']['shippingCostItems'], $newLineItem);
-            } else {
-                $checkout['charge']['shippingCostItems'][] = $newLineItem;
-            }
-
-        }
-
 		$response = $client->post('/checkout/hosted', $checkout);
-
 		if ($response->httpStatusCode != 200) {
             $message = esc_html(__('Failed to create checkout. Please try again later.', 'coinqvest'));
             Frontend_Helpers::renderErrorMessage($message);
