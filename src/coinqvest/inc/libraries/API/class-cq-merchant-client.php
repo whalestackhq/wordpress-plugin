@@ -115,7 +115,7 @@ class CQ_Merchant_Client extends CQ_Rest_Client {
         $method = 'POST';
         $authHeaders = $this->buildAuthHeaders($endpoint, $method, $params);
         $response = $this->sendRequest($endpoint, $method, $params, true, array(), $authHeaders, $this->buildCustomOptions());
-        $this->log("[CQMerchantClient][post] Request: GET $endpoint Params: " . json_encode($params) . " Auth Headers: " . json_encode($authHeaders));
+        $this->log("[CQMerchantClient][post] Request: POST $endpoint Params: " . json_encode($params) . " Auth Headers: " . json_encode($authHeaders));
         $this->log("[CQMerchantClient][post] Response: " . json_encode($response));
         return $response;
     }

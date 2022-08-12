@@ -26,39 +26,23 @@ class Settings {
         $checkout_language = isset($settings['checkout_language']) ? $settings['checkout_language'] : null;
 		$customer_info = isset($settings['customer_info']) ? $settings['customer_info'] : null;
 
-		$currencies = array();
+		$settlement_assets = array();
 		$checkout_languages = array();
         $checkout_languages['auto'] = 'Automatic';
 
 		if (!empty($api_key) && !empty($api_secret)) {
 
-			$client = new Api\CQ_Merchant_Client(
-				$api_key,
-				$api_secret,
-				true
-			);
+			$client = new Api\CQ_Merchant_Client($api_key, $api_secret, true);
 
             /**
-             * Get fiat currencies
+             * Get settlement currencies/assets
              */
 
-			$response = $client->get('/fiat-currencies');
+            $response = $client->get('/assets');
             if ($response->httpStatusCode == 200) {
-                $fiats = json_decode($response->responseBody);
-                foreach ($fiats->fiatCurrencies as $currency) {
-                    $currencies[$currency->assetCode] = esc_html($currency->assetName);
-                }
-            }
-
-            /**
-             * Get blockchains
-             */
-
-            $response = $client->get('/blockchains');
-            if ($response->httpStatusCode == 200) {
-                $chains = json_decode($response->responseBody);
-                foreach ($chains->blockchains as $blockchain) {
-                    $currencies[$blockchain->nativeAssetCode] = esc_html($blockchain->nativeAssetName);
+                $assets = json_decode($response->responseBody);
+                foreach ($assets->assets as $asset) {
+                    $settlement_assets[$asset->assetCode] = esc_html($asset->name);
                 }
             }
 
@@ -132,7 +116,7 @@ class Settings {
                         <th scope="row"><?php echo esc_html(__('Return URL', 'coinqvest'))?> <span class="optional">(<?php _e('optional', 'coinqvest')?>)</span></th>
                         <td>
                             <input name="cq_return_url" type="text" id="cq_return_url" value="<?=esc_url($return_url)?>" placeholder="https://www.your-domain.com/return-url" class="regular-text" />
-                            <p class="description"><?php echo esc_html(__('Specifies where to send the customer when the payment successfully completed.', 'coinqvest'))?></p>
+                            <p class="description"><?php echo esc_html(__('Specifies where to send the customer when the payment successfully completed. Also requires to set a `Cancel URL`.', 'coinqvest'))?></p>
                         </td>
                     </tr>
 
@@ -140,7 +124,7 @@ class Settings {
                         <th scope="row"><?php echo esc_html(__('Cancel URL', 'coinqvest'))?> <span class="optional">(<?php echo esc_html(__('optional', 'coinqvest'))?>)</span></th>
                         <td>
                             <input name="cq_cancel_url" type="text" id="cq_cancel_url" value="<?=esc_url($cancel_url)?>" placeholder="https://www.your-domain.com/cancel-url" class="regular-text" />
-                            <p class="description"><?php echo esc_html(__('Specifies where to send the customer when he wishes to cancel the checkout process.', 'coinqvest'))?></p>
+                            <p class="description"><?php echo esc_html(__('Specifies where to send the customer when he wishes to cancel the checkout process. Also requires to set a `Return URL`.', 'coinqvest'))?></p>
                         </td>
                     </tr>
 
@@ -152,7 +136,7 @@ class Settings {
                         </td>
                     </tr>
 
-                    <?php if (!empty($currencies)) { ?>
+                    <?php if (!empty($settlement_assets)) { ?>
 
                     <tr>
                         <th scope="row"><?php echo esc_html(__('Settlement Currency', 'coinqvest'))?> <span class="optional">(<?php echo esc_html(__('optional', 'coinqvest'))?>)</span></th>
@@ -162,7 +146,7 @@ class Settings {
                                 <option value="0" <?=($settlement_currency == "0") ? 'selected="selected"' : null?>>=== <?php echo esc_html(__('Select currency', 'coinqvest'))?> ===</option>
                                 <option value="ORIGIN" <?=($settlement_currency == "ORIGIN") ? 'selected="selected"' : null?>>ORIGIN</option>
 
-                                <?php foreach ($currencies as $key => $value) { ?>
+                                <?php foreach ($settlement_assets as $key => $value) { ?>
 
                                 <option value="<?=esc_attr($key)?>" <?=($settlement_currency == $key) ? 'selected="selected"' : null?>><?=esc_html($key)?> - <?=esc_html($value)?></option>
 
@@ -207,13 +191,11 @@ class Settings {
                         <th scope="row"><?php echo esc_html(__('Required customer info', 'coinqvest'))?></th>
                         <td>
                             <select name="cq_customer_info" id="cq_customer_info">
-                                <option value="none" <?=($customer_info == "none") ? 'selected="selected"' : null?>><?php echo esc_html(__('None', 'coinqvest'))?></option>
-                                <option value="minimal" <?=($customer_info == "minimal") ? 'selected="selected"' : null?>><?php echo esc_html(__('Minimal', 'coinqvest'))?></option>
+                                <option value="minimal" <?=($customer_info != "compliant") ? 'selected="selected"' : null?>><?php echo esc_html(__('Minimal', 'coinqvest'))?></option>
                                 <option value="compliant" <?=($customer_info == "compliant") ? 'selected="selected"' : null?>><?php echo esc_html(__('Compliant', 'coinqvest'))?></option>
                             </select>
                             <p class="description">
-	                            <?php echo esc_html(__('Defines what customer data to collect. Main purpose is to connect a payment to a customer and stay tax compliant.', 'coinqvest'))?><br />
-	                            <?php echo esc_html(__('- None: No customer data required. You will receive the payment amount, but will not know from whom. Can be used for donations.', 'coinqvest'))?><br />
+	                            <?php echo esc_html(__('Defines what customer data to collect.', 'coinqvest'))?><br />
 	                            <?php echo esc_html(__('- Minimal (default): Email and firstname + lastname', 'coinqvest'))?><br />
 	                            <?php echo esc_html(__('- Compliant: All data that is required to generate invoices', 'coinqvest'))?>
                             </p>
@@ -294,6 +276,24 @@ class Settings {
         $checkout_language =  sanitize_text_field($_POST['cq_checkout_language']);
 		$customer_info = sanitize_text_field($_POST['cq_customer_info']);
         $is_ajax = (isset( $_POST['ajaxrequest']) && $_POST['ajaxrequest'] === 'true') ? true : false;
+
+        /**
+         * Input validation
+         */
+
+        if (!is_null($return_url) && is_null($cancel_url)) {
+            $message = esc_html(__('Please set a Cancel URL as well.', 'coinqvest'));
+            Admin_Helpers::renderAdminErrorMessage($message, $this->page, $is_ajax);
+        }
+
+        if (!is_null($cancel_url) && is_null($return_url)) {
+            $message = esc_html(__('Please set a Return URL as well.', 'coinqvest'));
+            Admin_Helpers::renderAdminErrorMessage($message, $this->page, $is_ajax);
+        }
+
+        /**
+         * Save
+         */
 
 		$settings = array(
 			"webhook_url" => $webhook_url,
