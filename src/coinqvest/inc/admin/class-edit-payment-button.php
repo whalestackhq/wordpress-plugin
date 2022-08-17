@@ -175,7 +175,7 @@ class Edit_Payment_Button {
          * Validate the charge
          */
 
-        $response = $client->post('/checkout/validate-for-wordpress', $json_array);
+        $response = $client->post('/checkout/validate-checkout-charge', $json_array);
 		if ($response->httpStatusCode != 200) {
 			$message = esc_html("Status Code: " . $response->httpStatusCode . " - " . $response->responseBody);
             Admin_Helpers::renderAdminErrorMessage($message, $page, $is_ajax);

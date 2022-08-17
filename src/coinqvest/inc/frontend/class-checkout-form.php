@@ -391,11 +391,11 @@ class Checkout_Form {
 		}
 
 		if (isset($settings['cancel_url']) && !empty($settings['cancel_url'])) {
-			$checkout['links']['cancelUrl'] = $settings['cancel_url'];
+			$checkout['pageSettings']['cancelUrl'] = $settings['cancel_url'];
 		}
 
 		if (isset($settings['return_url']) && !empty($settings['return_url'])) {
-			$checkout['links']['returnUrl'] = $settings['return_url'];
+			$checkout['pageSettings']['returnUrl'] = $settings['return_url'];
 		}
 
         /**
