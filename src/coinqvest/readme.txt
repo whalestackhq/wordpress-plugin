@@ -79,6 +79,10 @@ Do you have questions or issues with COINQVEST? Feel free to contact us anytime!
 
 == Changelog ==
 
+= 1.1.6 =
+
+* Minor code changes
+
 = 1.1.5 =
 
 * Reduced number of API calls

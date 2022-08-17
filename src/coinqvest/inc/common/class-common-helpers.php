@@ -95,6 +95,16 @@ class Common_Helpers {
             unset($checkout['settlementCurrency']);
         }
 
+        if (isset($checkout['links']['returnUrl'])) {
+            $checkout['pageSettings']['returnUrl'] = $checkout['links']['returnUrl'];
+            unset($checkout['links']['returnUrl']);
+        }
+
+        if (isset($checkout['links']['cancelUrl'])) {
+            $checkout['pageSettings']['cancelUrl'] = $checkout['links']['cancelUrl'];
+            unset($checkout['links']['cancelUrl']);
+        }
+
         return $checkout;
 
     }
