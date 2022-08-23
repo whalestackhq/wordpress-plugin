@@ -79,6 +79,10 @@ Do you have questions or issues with COINQVEST? Feel free to contact us anytime!
 
 == Changelog ==
 
+= 1.1.7 =
+
+* Adoption of new checkout parameter naming
+
 = 1.1.6 =
 
 * Minor code changes
