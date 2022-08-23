@@ -97,12 +97,14 @@ class Common_Helpers {
 
         if (isset($checkout['links']['returnUrl'])) {
             $checkout['pageSettings']['returnUrl'] = $checkout['links']['returnUrl'];
-            unset($checkout['links']['returnUrl']);
         }
 
         if (isset($checkout['links']['cancelUrl'])) {
             $checkout['pageSettings']['cancelUrl'] = $checkout['links']['cancelUrl'];
-            unset($checkout['links']['cancelUrl']);
+        }
+
+        if (isset($checkout['links'])) {
+            unset($checkout['links']);
         }
 
         return $checkout;
