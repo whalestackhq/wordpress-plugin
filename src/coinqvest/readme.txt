@@ -2,7 +2,7 @@
 Contributors: coinqvest
 Tags: crypto, cryptocurrency, payments, payment gateway, payment processing, digital currencies, bitcoin, ethereum, ether, litecoin, ripple, stellar, lumens, xlm, btc, eth, xrp, ltc, EUR, USD, NGN, BRL
 Requires at least: 3.9
-Tested up to: 6.0
+Tested up to: 6.3
 Stable tag: 1.1
 Requires PHP: 5.6
 License: Apache 2.0
@@ -16,8 +16,8 @@ The COINQVEST crypto payment gateway supports 45 billing currencies and easily l
 
 = Key features =
 
-* Accepts Bitcoin (BTC), Ethereum (ETH), Ripple (XRP), Stellar Lumens (XLM) and Litecoin (LTC) payments on your WordPress website from customers.
-* Instantly settles in your preferred national currency (USD, EUR, ARS, BRL, NGN) or above crypto currencies.
+* Accepts cryptocurrencies (BTC, Lightning, LTC, XLM) and stablecoins (USDC, EURC) on your WordPress website from customers.
+* Instantly settles in your preferred national currency (USD, EUR, BRL) or above crypto currencies.
 * Sets the product price in your national currency - 45 fiat currencies are available, see full list [here](https://www.coinqvest.com/en/api-docs#get-exchange-rate-global).
 * Doesn't require any e-commerce setup on your WordPress website.
 * Embeds a payment button in any page, post or widget of your WordPress website.
@@ -78,6 +78,10 @@ Do you have questions or issues with COINQVEST? Feel free to contact us anytime!
 5. COINQVEST Instant Withdrawals
 
 == Changelog ==
+
+= 1.1.8 =
+
+* Minor text updates
 
 = 1.1.7 =
 
