@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: COINQVEST v0.0.1\n"
-"POT-Creation-Date: 2022-08-11 16:38+0200\n"
+"POT-Creation-Date: 2023-11-05 11:09+0100\n"
 "PO-Revision-Date: 2020-05-23 10:41+0200\n"
 "Last-Translator: \n"
 "Language-Team: COINQVEST www.coinqvest.com\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.1.1\n"
+"X-Generator: Poedit 3.4.1\n"
 "X-Poedit-Basepath: ../inc\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e\n"
@@ -135,58 +135,54 @@ msgid "Accept digital currencies from your clients and settle instantly in your 
 msgstr ""
 
 #: admin/class-coinqvest-start.php:25
-msgid "Supported digital currencies: Bitcoin (BTC), Ethereum (ETH), Ripple (XRP), Stellar Lumens (XLM), Litecoin (LTC)"
+msgid "Supported currencies: BTC, Lightning, LTC, XLM, USDC, EURC"
 msgstr ""
 
-#: admin/class-coinqvest-start.php:27
-msgid "Supported payout currencies: USD, EUR, ARS, BRL, NGN and above digital currencies"
-msgstr ""
-
-#: admin/class-coinqvest-start.php:38
+#: admin/class-coinqvest-start.php:36
 msgid "How it works:"
 msgstr ""
 
-#: admin/class-coinqvest-start.php:42
+#: admin/class-coinqvest-start.php:40
 msgid "Log in or sign up on COINQVEST."
 msgstr ""
 
-#: admin/class-coinqvest-start.php:45
+#: admin/class-coinqvest-start.php:43
 msgid "Get your API Keys."
 msgstr ""
 
-#: admin/class-coinqvest-start.php:48
+#: admin/class-coinqvest-start.php:46
 msgid "Enter API key and secret on the settings page."
 msgstr ""
 
-#: admin/class-coinqvest-start.php:51
+#: admin/class-coinqvest-start.php:49
 msgid "Create a new payment button"
 msgstr ""
 
-#: admin/class-coinqvest-start.php:54
+#: admin/class-coinqvest-start.php:52
 msgid "Embed that payment button with the generated shortcode into your Wordpress page or theme."
 msgstr ""
 
-#: admin/class-coinqvest-start.php:57
+#: admin/class-coinqvest-start.php:55
 msgid "Manage all payments in your merchant account on www.coinqvest.com. You will be notified by email about every new payment."
 msgstr ""
 
-#: admin/class-coinqvest-start.php:68
+#: admin/class-coinqvest-start.php:66
 msgid "COINQVEST Resources"
 msgstr ""
 
-#: admin/class-coinqvest-start.php:71
+#: admin/class-coinqvest-start.php:69
 msgid "API Documentation"
 msgstr ""
 
-#: admin/class-coinqvest-start.php:71
+#: admin/class-coinqvest-start.php:69
 msgid "Hosted Checkouts"
 msgstr ""
 
-#: admin/class-coinqvest-start.php:72
+#: admin/class-coinqvest-start.php:70
 msgid "Installation Guide"
 msgstr ""
 
-#: admin/class-coinqvest-start.php:73
+#: admin/class-coinqvest-start.php:71
 msgid "Help Center"
 msgstr ""
 
