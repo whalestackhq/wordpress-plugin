@@ -42,7 +42,7 @@ class Settings {
             if ($response->httpStatusCode == 200) {
                 $assets = json_decode($response->responseBody);
                 foreach ($assets->assets as $asset) {
-                    $settlement_assets[$asset->assetCode] = esc_html($asset->name);
+                    $settlement_assets[$asset->id] = esc_html($asset->name);
                 }
             }
 
@@ -148,7 +148,7 @@ class Settings {
 
                                 <?php foreach ($settlement_assets as $key => $value) { ?>
 
-                                <option value="<?=esc_attr($key)?>" <?=($settlement_currency == $key) ? 'selected="selected"' : null?>><?=esc_html($key)?> - <?=esc_html($value)?></option>
+                                <option value="<?=esc_attr($key)?>" <?=($settlement_currency == $key) ? 'selected="selected"' : null?>><?=esc_html($value)?></option>
 
                                 <?php } ?>
 

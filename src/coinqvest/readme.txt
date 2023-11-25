@@ -79,6 +79,10 @@ Do you have questions or issues with COINQVEST? Feel free to contact us anytime!
 
 == Changelog ==
 
+= 1.1.9 =
+
+* Updated settlement currency to reflect new API response from /asset endpoint (asset.id)
+
 = 1.1.8 =
 
 * Minor text updates
