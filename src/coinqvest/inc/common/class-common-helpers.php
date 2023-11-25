@@ -42,7 +42,7 @@ class Common_Helpers {
 
 	public static function pretty_json_example() {
 
-		$example_json = '{"charge":{"billingCurrency":"USD","lineItems":[{"description":"T-Shirt","netAmount":"9.99"}]},"settlementAsset":"USDC"}';
+		$example_json = '{"charge":{"billingCurrency":"USD","lineItems":[{"description":"T-Shirt","netAmount":"9.99"}]}}';
 		return json_encode(json_decode($example_json), JSON_PRETTY_PRINT);
 	}
 
